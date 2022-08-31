@@ -6,12 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/btn_setAlarm"
+
+        android:layout_width="195dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="129dp"
+        android:text="@string/setAlarm"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_setMinute" />
+
+    <EditText
+        android:id="@+id/et_setMinute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="@string/selectMinute"
+        android:inputType="number"
+        android:maxLength="60"
+        app:layout_constraintBottom_toTopOf="@+id/btn_setAlarm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_setHour" />
+
+    <EditText
+        android:id="@+id/et_setHour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/selectHour"
+        android:inputType="number"
+        android:maxLength="24"
+        android:shadowColor="#0E0D0D"
+        app:layout_constraintBottom_toTopOf="@+id/et_setMinute"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
