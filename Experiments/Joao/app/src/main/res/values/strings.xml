@@ -3,4 +3,6 @@
     <string name="selectHour">Set Hour ( 1 to 12 )</string>
     <string name="selectMinute">Set Minute ( 1 to 60 )</string>
     <string name="setAlarm">Set Alarm</string>
+    <string name="enterMessage">Enter Message</string>
+    <string name="sendMessage">Send Message</string>
 </resources>
