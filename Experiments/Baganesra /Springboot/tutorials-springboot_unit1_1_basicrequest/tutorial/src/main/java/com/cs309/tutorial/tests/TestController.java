@@ -13,8 +13,8 @@ public class TestController {
 	
 	
 	@GetMapping("/getTest")
-	public String getTest(@RequestParam(value = "username", defaultValue = "World") String message) {
-		return String.format("Hello, %s! You sent a get request with a parameter!", message);
+	public String getTest(@RequestParam(value = "username",defaultValue = "World") String message, @RequestParam(value = "lastname", defaultValue = "(Earth)") String msg) {
+		return String.format("Hello, %s, %s! You sent a get request with a username and lastname!", message, msg);
 	}
 	
 	@PostMapping("/postTest1")
@@ -30,12 +30,14 @@ public class TestController {
 	}
 	
 	@DeleteMapping("/deleteTest")
-	public void deleteTest() {
+	public String deleteTest() {
 		//TODO
+		return String.format("This is a delete request, which will remove the stuff");
 	}
 	
 	@PutMapping("/putTest")
-	public void putTest() {
+	public String putTest() {
 		//TODO
+		return String.format("This is a PUT request , which updates the existing content");
 	}
 }
