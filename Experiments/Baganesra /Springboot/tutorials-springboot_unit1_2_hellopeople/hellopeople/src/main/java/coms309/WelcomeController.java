@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 class WelcomeController {
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String welcome() {
-        return "Hello and welcome to COMS 309";
+        return "Hello and welcome to COMS 309, you have successfully entered the Mainpage";
     }
 }

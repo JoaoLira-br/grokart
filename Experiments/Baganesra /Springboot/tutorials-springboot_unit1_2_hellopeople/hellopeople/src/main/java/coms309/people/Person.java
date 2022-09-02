@@ -7,7 +7,7 @@ package coms309.people;
  * @author Vivek Bengre
  */
 
-public class Person {
+public class  Person {
 
     private String firstName;
 

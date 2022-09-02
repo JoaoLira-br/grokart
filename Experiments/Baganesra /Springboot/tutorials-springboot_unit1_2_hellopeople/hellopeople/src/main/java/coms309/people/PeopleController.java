@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * Controller used to showcase Create and Read from a LIST
@@ -34,11 +35,16 @@ public class PeopleController {
     // Springboot automatically converts the list to JSON format 
     // in this case because of @ResponseBody
     // Note: To LIST, we use the GET method
-    @GetMapping("/people")
+    @GetMapping("/peopleList")
     public @ResponseBody HashMap<String,Person> getAllPersons() {
         return peopleList;
     }
 
+    @GetMapping("/peopleList/{lastName}")
+    public @ResponseBody Person getPersonLast(@PathVariable String lastName){
+        Person p = peopleList.get(lastName);
+        return p;
+    }
     // THIS IS THE CREATE OPERATION
     // springboot automatically converts JSON input into a person object and 
     // the method below enters it into the list.
