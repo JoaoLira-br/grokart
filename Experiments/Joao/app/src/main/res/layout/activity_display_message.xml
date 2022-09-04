@@ -19,4 +19,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_enterResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/enterResponse"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/btn_sendResponse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_receivedText" />
+
+    <Button
+        android:id="@+id/btn_sendResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/sendResponse"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_enterResponse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_enterResponse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

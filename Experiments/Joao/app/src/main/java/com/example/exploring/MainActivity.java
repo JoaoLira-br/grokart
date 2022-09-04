@@ -2,6 +2,7 @@ package com.example.exploring;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -12,12 +13,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TOAST_TITLE = "Enter the time please";
     public static final int DURATION = Toast.LENGTH_SHORT;
     public static final String EXTRA_MESSAGE = "com.example.exploring.MESSAGE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         Button btn_setAlarm = findViewById(R.id.btn_setAlarm);
         EditText et_enterMessage = findViewById(R.id.et_enterMessage);
         Button btn_sendMessage = findViewById(R.id.btn_sendMessage);
-
+        TextView tv_response = findViewById(R.id.tv_response);
+        Intent intent = getIntent();
+        String response = intent.getStringExtra("EXTRA_MESSAGE");
+        tv_response.setText("this is the response: "+ response);
 
         et_setMinute.setFilters(new InputFilter[]{
                 new InputFilterMinMax("1", "60")}
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Enter a message", Toast.LENGTH_SHORT).show();
             }else{
                 sendMessage(view, message);
+
             }
             }
         });
@@ -86,8 +93,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(AlarmClock.EXTRA_MINUTES, minutes);
     }
     //todo implement this method with intent
+//    public void sendMessage(View view, String message, Context from, Class sendTo){
+//        Intent intent = new Intent(from, sendTo);
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        startActivity(intent);
+//    }
     public void sendMessage(View view, String message){
         Intent intent = new Intent(this, DisplayMessageActivity.class);
+        //todo USAR EXTRA_MESSAGE no MAIN
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
