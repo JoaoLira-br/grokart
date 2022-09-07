@@ -5,4 +5,7 @@
     <string name="setAlarm">Set Alarm</string>
     <string name="enterMessage">Enter Message</string>
     <string name="sendMessage">Send Message</string>
+    <string name="enterResponse">Enter Response</string>
+    <string name="sendResponse">Send Response</string>
+    <string name="responseMessage"></string>
 </resources>
