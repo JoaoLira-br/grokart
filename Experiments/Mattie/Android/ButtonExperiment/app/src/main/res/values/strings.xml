@@ -10,5 +10,5 @@
     <string name="hello_first_fragment">Welcome to my app!</string>
     <string name="hello_second_fragment">Here is page two</string>
 
-    <string name="question">Would you like to see a dog?</string>
+    <string name="question">Would you like to see a dog? Click the toggle button below to change your answer.</string>
 </resources>
