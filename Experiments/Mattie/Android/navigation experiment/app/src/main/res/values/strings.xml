@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Navigation Experiment</string>
+    <string name="title_home">Willow</string>
+    <string name="title_dashboard">Spooky</string>
+    <string name="title_notifications">Louie</string>
+</resources>
