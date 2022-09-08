@@ -1,17 +1,14 @@
 package coms309.people;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.awt.Desktop;
 
 /**
  * Controller used to showcase Create and Read from a LIST
@@ -93,6 +90,28 @@ public class PeopleController {
     public @ResponseBody HashMap<String, Person> deletePerson(@PathVariable String firstName) {
         peopleList.remove(firstName);
         return peopleList;
+    }
+
+
+
+
+
+    //For Groceries
+    @GetMapping("/groceries/{firstName}")
+    public @ResponseBody Person getGroceries(@PathVariable String firstName) {
+        Person p = peopleList.get(firstName);
+        return p;
+    }
+
+    // For file loading - still working on this
+    @GetMapping("/loadingFile")
+    public @ResponseBody String loadFile() throws IOException {
+        File file = new File("/Users/bagab/Desktop/hello.txt");
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()){
+            desktop.open(file);
+        }
+        return "File successfully loaded";
     }
 }
 
