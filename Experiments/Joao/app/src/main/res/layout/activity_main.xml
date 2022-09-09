@@ -6,13 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tv_sendMessageSection"
+        android:layout_width="248dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="79dp"
+        android:text="@string/sectionSendMessage"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spr_chooseColor" />
+
+    <TextView
+        android:id="@+id/tv_chooseColorSection"
+        android:layout_width="255dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/sectionChooseColor"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setAlarm" />
+
     <Button
         android:id="@+id/btn_setAlarm"
 
-        android:layout_width="195dp"
-        android:layout_height="49dp"
+        android:layout_width="134dp"
+        android:layout_height="41dp"
         android:layout_marginStart="129dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="129dp"
         android:text="@string/setAlarm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +53,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="40dp"
         android:ems="10"
@@ -33,7 +61,7 @@
         android:maxLength="60"
         app:layout_constraintBottom_toTopOf="@+id/btn_setAlarm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_setHour" />
 
@@ -42,9 +70,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="88dp"
-        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/selectHour"
         android:inputType="number"
@@ -52,18 +79,18 @@
         android:shadowColor="#0E0D0D"
         app:layout_constraintBottom_toTopOf="@+id/et_setMinute"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/et_enterMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="166dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/enterMessage"
         android:inputType="textPersonName"
@@ -71,7 +98,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_sendMessage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_setAlarm" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sendMessageSection"
+        app:layout_constraintVertical_bias="0.687" />
 
     <Button
         android:id="@+id/btn_sendMessage"
@@ -87,16 +115,42 @@
         android:id="@+id/tv_response"
         android:layout_width="118dp"
         android:layout_height="23dp"
-        android:layout_marginTop="59dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="84dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sendMessage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/et_enterMessage" />
+
+    <Spinner
+        android:id="@+id/spr_chooseColor"
+        android:layout_width="343dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/color_array"
+        android:prompt="@string/spinnerTitle"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_chooseColorSection" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="186dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/sectionAlarm"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/et_setHour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

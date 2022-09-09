@@ -23,34 +23,37 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Button btn_sendResponse =  findViewById(R.id.btn_sendResponse);
         EditText et_enterResponse =  findViewById(R.id.et_enterResponse);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-
         TextView tv_receivedText =  findViewById(R.id.tv_receivedText);
-        tv_receivedText.setText("The other Activity sent us this message: " + message);
+        Intent intent = getIntent();
+        String someMessage = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
 
-        btn_sendResponse.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String message =  et_enterResponse.getText().toString();
-                        if (TextUtils.isEmpty(message)) {
-                            Toast.makeText(DisplayMessageActivity.this, "Enter a response please", Toast.LENGTH_SHORT).show();
-                        }else{
-                           sendMessage(view, message);
 
-                        }
-                    }
-                    });
+
+        tv_receivedText.setText(someMessage);
+
+
+        //todo: i click and then the app crashes
+//        btn_sendResponse.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        String message =  et_enterResponse.getText().toString();
+//                        if (TextUtils.isEmpty(message)) {
+//                            Toast.makeText(DisplayMessageActivity.this, "Enter a response please", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                           sendMessage(view, message);
+//
+//                        }
+//                    }
+//                    });
 
     }
-    public void sendMessage(View view, String message){
-        Intent intent = new Intent(this, MainActivity.class);
-        //todo USAR EXTRA_MESSAGE no MAIN
-        intent.putExtra(MainActivity.EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
+//    public void sendMessage(View view, String message){
+//        Intent intent = new Intent(this, MainActivity.class);
+//        //todo USAR EXTRA_MESSAGE no MAIN
+//        intent.putExtra(MainActivity.EXTRA_MESSAGE, message);
+//        startActivity(intent);
+//    }
 
 
 

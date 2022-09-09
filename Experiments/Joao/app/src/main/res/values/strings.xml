@@ -8,4 +8,9 @@
     <string name="enterResponse">Enter Response</string>
     <string name="sendResponse">Send Response</string>
     <string name="responseMessage"></string>
+    <string name="sectionAlarm">Alarm Section</string>
+    <string name="sectionSendMessage">Send Message Section</string>
+    <string name="sectionChooseColor">Choose Color Section</string>
+    <string name="spinnerTitle">Select a Color</string>
+
 </resources>

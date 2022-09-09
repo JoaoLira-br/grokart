@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">iPets</string>
+    <string name="action_settings">Sorry, there are no settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Welcome Page</string>
+    <string name="second_fragment_label">Home Page</string>
+    <string name="next">Continue</string>
+    <string name="previous">Back</string>
+
+    <string name="hello_first_fragment">Welcome to iPets!</string>
+    <string name="hello_second_fragment">Choose what you would like to see from the options below.</string>
+
+
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="frog">Frog</string>
+</resources>
