@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>coms309</groupId>
-  <artifactId>hellopeople</artifactId>
+  <artifactId>groKart_Test</artifactId>
   <version>1.0.0</version>
 
   <!-- To make it a spring boot project -->
@@ -15,7 +15,7 @@
     <version>2.4.2</version>
   </parent>
 
-  <name>hellopeople</name>
+  <name>groKart_Test</name>
 
   <properties>
 
