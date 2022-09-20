@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Simple Hello World Controller to display the string returned
+ * Simple Hello World Controller to display the string returned - Test Purpose
  *
- * @author Vivek Bengre
+ * @author Baganesra Bhaskaran
  */
 
 @RestController
@@ -14,6 +14,6 @@ class WelcomeController {
 
     @GetMapping("/home")
     public String welcome() {
-        return "Hello and welcome to COMS 309, you have successfully entered the Mainpage";
+        return "Hello succesfully loaded the Application";
     }
 }
