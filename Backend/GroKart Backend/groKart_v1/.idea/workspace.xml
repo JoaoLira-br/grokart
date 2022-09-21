@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d760908-c399-4a9e-b149-f5f615614f80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Experiments/Baganesra /Springboot/tutorials-springboot_unit1_1_helloworld/.idea/tutorials-springboot_unit1_1_helloworld.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/.gitignore" beforeDir="false" />
