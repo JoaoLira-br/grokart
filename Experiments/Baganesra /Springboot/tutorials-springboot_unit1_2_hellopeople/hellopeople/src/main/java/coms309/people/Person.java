@@ -69,9 +69,9 @@ public class  Person {
         return this.items;
     }
 
-    public void setItems(Grocery items) {
-        this.items = items;
-    }
+    public void setItems(Grocery items) {this.items = items;}
+
+
     @Override
     public String toString() {
         return firstName + " " 

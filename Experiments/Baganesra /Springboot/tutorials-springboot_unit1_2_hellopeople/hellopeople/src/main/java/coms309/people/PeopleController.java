@@ -1,5 +1,6 @@
 package coms309.people;
 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.awt.Desktop;
-
+import coms309.groceries.Grocery;
 /**
  * Controller used to showcase Create and Read from a LIST
  *
@@ -92,20 +93,35 @@ public class PeopleController {
         return peopleList;
     }
 
+    //For equational purposes
+    @GetMapping ("/equation/{numbers}")
+    public @ResponseBody String doEquation(@PathVariable String numbers){
+        int result = Integer.parseInt(numbers)*100/12;
+        return "Your number is :" + result;
+    }
+
 
 
 
 
     //For Groceries
     @GetMapping("/groceries/{firstName}")
-    public @ResponseBody Person getGroceries(@PathVariable String firstName) {
-        Person p = peopleList.get(firstName);
-        return p;
+    public @ResponseBody Grocery getGroceries(@PathVariable String firstName) {
+        Grocery g = peopleList.get(firstName).getItems();
+        return g;
     }
 
-    // For file loading - still working on this
+    //For put Items - doesn't work
+    @PutMapping("/groceries/{firstname}")
+    public @ResponseBody Person updateItems(@PathVariable String firstName, @RequestBody Grocery items){
+        peopleList.get(firstName).setItems(items);
+        return peopleList.get(firstName);
+    }
+
+
+    // For file loading - still working on this - FOUND THAT NEED MAIN FOR EXECUTION
     @GetMapping("/loadingFile")
-    public @ResponseBody String loadFile() throws IOException {
+    public @ResponseBody String loadingFile() throws IOException {
         File file = new File("/Users/bagab/Desktop/hello.txt");
         Desktop desktop = Desktop.getDesktop();
         if(file.exists()){
