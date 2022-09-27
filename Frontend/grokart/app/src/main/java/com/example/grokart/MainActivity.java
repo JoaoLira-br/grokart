@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn_login = findViewById(R.id.btn_login);
+        Button btn_login = findViewById(R.id.btn_loginPage);
         Button btn_register = findViewById(R.id.btn_register);
 
         //TODO Send user to register page
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                sendPage(view);
             }
         });
         //TODO Send user to register page
@@ -29,12 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                sendPage(view);
             }
         });
     }
 
-    public void sendRegisterPage(View view) {
+    public void sendPage(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        //Intent intent2 = new Intent(this, LoginActivity.class);
+        switch (view.getId()) {
+            case R.id.btn_register:
+                startActivity(intent);
+                break;
+            case R.id.btn_loginPage:
+            break;
+        }
 
     }
 }

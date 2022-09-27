@@ -8,12 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#31FF6C</color>
-    <color name="c1">#FFFFFFFF</color>
-    <color name="c2">#FFFFFFFF</color>
-    <color name="c3">#FFFFFFFF</color>
-    <color name="c4">#FFFFFFFF</color>
-    <color name="c5">#FFFFFFFF</color>
-    <color name="c6">#FFFFFFFF</color>
     <color name="green_logo">#01E65D</color>
+    <color name="grey_white" />
+    <color name="grey_input">#D0D0D0</color>
 
 </resources>

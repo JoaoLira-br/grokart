@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">grokart</string>
     <string name="groKart">GroKart</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <!-- Strings related to login -->
@@ -13,4 +15,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_login">LoginActivity</string>
+
+
 </resources>
