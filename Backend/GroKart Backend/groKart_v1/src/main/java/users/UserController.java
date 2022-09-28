@@ -22,11 +22,35 @@ public class UserController {
     //ItemRepository itemRepository;
 
     private String requestSuccess = "{\"message\":\"success\"}";
+    private String requestFailure = "{\"message\":\"failure\"}";
 
+    //USERS
     @GetMapping(path = "/users")
     List<User> getUsersLists(){
         return userRepository.findAll();
     }
+
+    @GetMapping(path = "/user/{userID}/{password}")
+    User getSpecificUser(@PathVariable int userID, String password){
+        return userRepository.findUsingId(userID, password);
+    }
+
+    @PostMapping(path = "/user")
+    String createUser(@RequestBody User user) {
+        if (user == null) {return requestFailure;}
+        userRepository.save(user);
+        return requestSuccess;
+    }
+
+    @DeleteMapping(path = "/user/{userID}")
+    String deleteSpecificUser(@PathVariable int userID){
+        userRepository.deleteUsingId(userID);
+        return requestSuccess;
+    }
+
+
+
+
 
 
 }
