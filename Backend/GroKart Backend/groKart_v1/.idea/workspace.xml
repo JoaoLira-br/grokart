@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d760908-c399-4a9e-b149-f5f615614f80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/users/People.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/users/People.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/users/User.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/users/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/users/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/.gitignore" beforeDir="false" />
@@ -30,6 +36,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -49,6 +71,11 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/grocery" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
