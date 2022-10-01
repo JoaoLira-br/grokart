@@ -68,7 +68,7 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
      * */
     private void makeJsonObjReq() {
         showProgressDialog();
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.POST,
                 Const.URL_JSON_OBJECT, null,
                 new Response.Listener<JSONObject>() {
 
