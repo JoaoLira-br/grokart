@@ -1,7 +1,5 @@
 package com.example.grokart;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -12,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,12 +20,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
-import com.example.grokart.utils.Const;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,8 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText et_username, et_password;
     private Boolean isValid = false;
     private JSONObject user;
-    private TextView msgResponse, tv_JSONOutput;
-    private String TAG = RegisterActivity.class.getSimpleName();
+    private TextView msgResponse, tv_JSONOutput, tv_appName;
+    private Button btn_register, btn_login;
+    private final String TAG = RegisterActivity.class.getSimpleName();
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -45,8 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        TextView tv_appName = findViewById(R.id.tv_appTitle);
-
+        tv_appName = findViewById(R.id.tv_appTitle);
+        btn_login =  findViewById(R.id.btn_login);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -56,8 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         et_username =  findViewById(R.id.et_username);
         et_password =  findViewById(R.id.et_password);
 
-        Button btn_register = findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        btn_login = findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = et_username.getText().toString();
@@ -76,10 +74,17 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+        btn_register.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
 
-    private boolean checkInputs() {
+    private void checkInputs() {
         int invalidCounter = 0;
         if (et_username.length() == 0) {
             et_username.setError("Username is required");
@@ -92,8 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
             et_password.setError("Password must be minimum 8 characters");
             invalidCounter++;
         }
-        isValid = invalidCounter == 0;
-        return isValid;
+        if (invalidCounter == 0) isValid = true;
+        else isValid = false;
         // after all validation return true.
     }
 
@@ -108,6 +113,9 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
+    //how to handle
+    // case 1:  user has not created an account already when pressing login button
+    //case 2:
     private void makeJsonObjReq(JSONObject user, String path) {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 path, user,
@@ -160,8 +168,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    public void sendToHome(View view) {
-       // Intent intent = new Intent(this, HomeActivity.class);
+    public void sendToRegisterPage(View view) {
+       // Intent intent = new Intent(this, <RegisterActivity.class>);
         //startActivity(intent);
     }
 }
