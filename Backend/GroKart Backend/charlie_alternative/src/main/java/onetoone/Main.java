@@ -23,7 +23,7 @@ class Main {
 
     // Create 3 admin stores and their admin users
     /**
-     * 
+     *
      * @param userRepository repository for the User entity
      * @param storeRepository repository for the Store entity
      * Creates a commandLine runner to enter dummy data into the database
