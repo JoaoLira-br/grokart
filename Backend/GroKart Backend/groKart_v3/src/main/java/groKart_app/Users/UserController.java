@@ -1,4 +1,4 @@
-package onetoone.Users;
+package groKart_app.Users;
 
 import java.util.List;
 
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import onetoone.Stores.Store;
-import onetoone.Stores.StoreRepository;
+
 
 @RestController
 public class UserController {
@@ -20,8 +19,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    StoreRepository storeRepository;
+//    @Autowired
+//    StoreRepository storeRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -40,43 +39,34 @@ public class UserController {
     @GetMapping(path = "/users/{userName}/{password}")
     String getUserById( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserName(userName);
-        if (user.getPassword().equals(password)) return "Successful login";
-        else return "Failed login.";
+//        if (user.getPassword().equals(password)) return "Successful login";
+//        else return "Failed login.";
+
+        if (user == null || !user.getPassword().equals(password)) return "Failed login";
+        else return "Successful login";
     }
 
     // CREATE USER
     @PostMapping(path = "/users")
     String createUser(@RequestBody User user){
-        if (user == null)
+        if (user == null || userRepository.existsByUserName(user.getUserName()))
             return failure;
         userRepository.save(user);
         return success;
     }
 
-    @PutMapping("/users/{id}")
-    User updateUser(@PathVariable int id, @RequestBody User request){
-        User user = userRepository.findById(id);
-        if(user == null)
+    @PutMapping("/users/{userName}")
+    User updateUser(@PathVariable String userName, @RequestBody User request){
+        User user = userRepository.findByUserName(userName);
+        if(user == null || userRepository.existsByUserName(user.getUserName()))
             return null;
         userRepository.save(request);
-        return userRepository.findById(id);
+        return userRepository.findByUserName(userName);
     }   
-    
-    @PutMapping("/users/{userId}/stores/{storeId}")
-    String assignStoreToUser(@PathVariable int userId,@PathVariable int storeId){
-        User user = userRepository.findById(userId);
-        Store store = storeRepository.findById(storeId);
-        if(user == null || store == null)
-            return failure;
-        store.setUser(user);
-        user.setStore(store);
-        userRepository.save(user);
-        return success;
-    }
 
-    @DeleteMapping(path = "/users/{id}")
-    String deleteUser(@PathVariable int id){
-        userRepository.deleteById(id);
+    @DeleteMapping(path = "/users/{userName}")
+    String deleteUser(@PathVariable String userName){
+        userRepository.deleteByUserName(userName);
         return success;
     }
 }
