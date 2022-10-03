@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_createProfile"
+        android:layout_width="184dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/green"
+        android:backgroundTintMode="@color/green_logo"
+        android:text="@string/create_profile"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <TextView
+        android:id="@+id/tv_createProfileTitle"
+        android:layout_width="277dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/k2d_bold"
+        android:text="@string/create_profile"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_password2"
+        android:layout_width="305dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password2" />
+
+    <TextView
+        android:id="@+id/tv_password2"
+        android:layout_width="183dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/password"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_username2" />
+
+    <EditText
+        android:id="@+id/et_username2"
+        android:layout_width="305dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username2" />
+
+    <TextView
+        android:id="@+id/tv_username2"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="50dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/username"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_createProfileTitle" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="305dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="25dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/name"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
