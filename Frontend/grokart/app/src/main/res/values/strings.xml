@@ -17,7 +17,7 @@
     <string name="title_activity_login">LoginActivity</string>
 
 
-    <string name = "create_profile">Create Profile</string>
+    <string name = "edit_profile">Edit Profile</string>
     <string name = "name">Name</string>
 
 
