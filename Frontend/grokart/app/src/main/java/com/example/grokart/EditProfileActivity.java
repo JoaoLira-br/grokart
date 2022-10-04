@@ -1,10 +1,12 @@
 package com.example.grokart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +28,8 @@ import java.util.Map;
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
     private JSONObject user;
+    private TextView msgResponse;
+    private boolean isSuccessful = false;
     private String TAG = RegisterActivity.class.getSimpleName();
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
@@ -41,7 +45,7 @@ public class EditProfileActivity extends AppCompatActivity {
         et_email =  findViewById(R.id.et_email);
         et_phone =  findViewById(R.id.et_phone);
         et_preferredStore =  findViewById(R.id.et_preferredStore);
-
+        msgResponse = (TextView) findViewById(R.id.msgResponse);
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +53,21 @@ public class EditProfileActivity extends AppCompatActivity {
                 //gets the current user hopefully
                 makeJsonObjReq();
                 //update user profile
-                String name = et_name.getText().toString();
-                String email = et_email.getText().toString();
-                String phone = et_phone.getText().toString();
-                String store = et_preferredStore.getText().toString();
-                updateUser(name,email,phone,store);
+                updateUser(et_name.getText().toString(),et_email.getText().toString(),et_phone.getText().toString(),et_preferredStore.getText().toString());
                 makeJsonObjReq(user);
-                //ToDO: If successful, change pages
+                msgResponse.setVisibility(View.VISIBLE);
+                //TODO: Switch pages
+                if(isSuccessful == true){
+                    Intent intent = new Intent(EditProfileActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
     //TODO figure out if this is actually how you get the user object
 
-    //TODO error: ullPointerException: Attempt to invoke virtual method
+    //TODO error: nullPointerException: Attempt to invoke virtual method
     // 'void com.example.grokart.app.AppController.addToRequestQueue(com.android.volley.Request, java.lang.String)'
     // on a null object reference
     private void makeJsonObjReq() {
@@ -129,6 +135,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
+                        msgResponse.setText(response.toString());
+                        isSuccessful=true;
 //                        hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
@@ -136,6 +144,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                msgResponse.setText("Error: " + error.getMessage());
+                isSuccessful=false;
 //                hideProgressDialog();
             }
         }) {
