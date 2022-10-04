@@ -19,9 +19,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-//    @Autowired
-//    StoreRepository storeRepository;
-
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
 
@@ -38,15 +35,17 @@ public class UserController {
     // LOGIN
     @GetMapping(path = "/users/{userName}/{password}")
     String getUserById( @PathVariable String userName, @PathVariable String password) {
-        User user = userRepository.findByUserName(userName);
-//        if (user.getPassword().equals(password)) return "Successful login";
-//        else return "Failed login.";
+        User user = userRepository.findByUserNameAndPassword(userName, password);
 
-        if (user == null || !user.getPassword().equals(password)) return "Failed login";
+        if (user == null) return "Failed login";
         else return "Successful login";
     }
 
-    // CREATE USER
+    /**
+     * CREATE USER
+     * @param user
+     * @return
+     */
     @PostMapping(path = "/users")
     String createUser(@RequestBody User user){
         if (user == null || userRepository.existsByUserName(user.getUserName()))
@@ -55,15 +54,27 @@ public class UserController {
         return success;
     }
 
+    /**
+     * UPDATE USER
+     * @param userName
+     * @param request
+     * @return
+     */
     @PutMapping("/users/{userName}")
     User updateUser(@PathVariable String userName, @RequestBody User request){
         User user = userRepository.findByUserName(userName);
-        if(user == null || userRepository.existsByUserName(user.getUserName()))
+        if (user == null)
             return null;
+        userRepository.deleteByUserName((userName));
         userRepository.save(request);
         return userRepository.findByUserName(userName);
-    }   
+    }
 
+    /**
+     * DELETE USER
+     * @param userName
+     * @return
+     */
     @DeleteMapping(path = "/users/{userName}")
     String deleteUser(@PathVariable String userName){
         userRepository.deleteByUserName(userName);
