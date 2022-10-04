@@ -5,53 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_name2"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name2" />
-
-    <TextView
-        android:id="@+id/tv_name2"
-        android:layout_width="185dp"
-        android:layout_height="0dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="25dp"
-        android:lineSpacingExtra="-9sp"
-        android:text="@string/name"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
-
-    <Button
-        android:id="@+id/btn_editProfile"
-        android:layout_width="184dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="@color/green"
-        android:backgroundTintMode="@color/green_logo"
-        android:text="@string/edit_profile"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name2" />
-
     <TextView
         android:id="@+id/tv_editProfileTitle"
         android:layout_width="277dp"
@@ -64,81 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_password2"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password2" />
-
-    <TextView
-        android:id="@+id/tv_password2"
-        android:layout_width="183dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/password"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_username2" />
-
-    <EditText
-        android:id="@+id/et_username2"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username2" />
-
-    <TextView
-        android:id="@+id/tv_username2"
-        android:layout_width="185dp"
-        android:layout_height="0dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="50dp"
-        android:lineSpacingExtra="-9sp"
-        android:text="@string/username"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_editProfileTitle" />
-
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -155,17 +33,128 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_editProfileTitle" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
-        android:id="@+id/tv_userUsername"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/tv_email"
+        android:layout_width="183dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/prompt_email"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username2" />
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <EditText
+        android:id="@+id/et_password2"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="15dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/phone"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password2" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+    <TextView
+        android:id="@+id/tv_preferredStore"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="15dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/preferred_store"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+
+    <EditText
+        android:id="@+id/et_name2"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preferredStore" />
+
+    <Button
+        android:id="@+id/btn_editProfile"
+        android:layout_width="184dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/green"
+        android:backgroundTintMode="@color/green_logo"
+        android:text="@string/edit_profile"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

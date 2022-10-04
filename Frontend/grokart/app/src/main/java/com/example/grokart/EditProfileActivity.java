@@ -16,8 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
+import com.example.grokart.utils.Const;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -38,11 +38,11 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        et_username =  findViewById(R.id.et_username2);
+        et_username =  findViewById(R.id.et_name);
         et_password =  findViewById(R.id.et_password2);
 
-        Button btn_register = findViewById(R.id.btn_editProfile);
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        Button btn_editProfile = findViewById(R.id.btn_editProfile);
+        btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //this is where victor created the profile
@@ -51,24 +51,23 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void makeJsonObjReq(JSONObject user, String path) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                path, user,
+    private void makeJsonObjReq() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                Const.URL_JSON_OBJECT, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
+                        user = response;
 //                        hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-            }
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        //hideProgressDialog();
+                    }
         }) {
 
             /**

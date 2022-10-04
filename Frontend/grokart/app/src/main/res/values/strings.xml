@@ -18,7 +18,9 @@
 
 
     <string name = "edit_profile">Edit Profile</string>
+    <string name = "phone">Phone Number</string>
     <string name = "name">Name</string>
+    <string name = "preferred_store">Preferred Store</string>
 
 
 </resources>
