@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
+import com.example.grokart.utils.Const;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_username, et_password;
-    private Boolean isValid = false;
+
     private JSONObject user;
     private TextView msgResponse, tv_JSONOutput, tv_appName;
     private Button btn_register, btn_login;
@@ -45,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         tv_appName = findViewById(R.id.tv_appTitle);
         btn_login =  findViewById(R.id.btn_login);
+        btn_register = findViewById(R.id.btn_register);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -54,37 +56,31 @@ public class RegisterActivity extends AppCompatActivity {
         et_username =  findViewById(R.id.et_username);
         et_password =  findViewById(R.id.et_password);
 
-        btn_login = findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
-                checkInputs();
+
 
                 //TODO send input to backend and proceed to Home page
                 // with response as Intent Extra
-                if(isValid) {
+                if( checkInputs()) {
                     user = createUser(username, password);
 
                     //TODO send input to appropriate backend path
-                   // makeJsonObjReq(user, "Const.someUserPath");
+                    makeJsonObjReq(user, Const.URL_USER);
 
                 }
 
             }
         });
-        btn_register.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
 
-    private void checkInputs() {
+    private Boolean checkInputs() {
         int invalidCounter = 0;
         if (et_username.length() == 0) {
             et_username.setError("Username is required");
@@ -97,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
             et_password.setError("Password must be minimum 8 characters");
             invalidCounter++;
         }
-        if (invalidCounter == 0) isValid = true;
-        else isValid = false;
+        if (invalidCounter == 0)  return true;
+        else return false;
         // after all validation return true.
     }
 
@@ -136,25 +132,25 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }) {
 
-            /**
-             * Passing some request headers
-             * */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", "Androidhive");
-//                params.put("email", "abc@androidhive.info");
-//                params.put("pass", "password123");
-
-                return params;
-            }
+//            /**
+//             * Passing some request headers
+//             * */
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                HashMap<String, String> headers = new HashMap<String, String>();
+//                headers.put("Content-Type", "application/json");
+//                return headers;
+//            }
+//
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+////                params.put("name", "Androidhive");
+////                params.put("email", "abc@androidhive.info");
+////                params.put("pass", "password123");
+//
+//                return params;
+//            }
 
         };
 

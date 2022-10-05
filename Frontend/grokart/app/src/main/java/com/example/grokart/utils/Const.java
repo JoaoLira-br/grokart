@@ -5,4 +5,6 @@ public class Const {
 //	public static final String URL_JSON_ARRAY = "https://dummyjson.com/users";
 //	public static final String URL_STRING_REQ = "https://dummyjson.com/users/search?q=John";
 //	public static final String URL_IMAGE = "https://api.androidhive.info/volley/volley-image.jpg";
+
+    public static final String URL_USER = "https://48bbbd75-a948-45d5-8711-721c89526c8c.mock.pstmn.io/user/";
 }

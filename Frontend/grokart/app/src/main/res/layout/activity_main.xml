@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_main_appName"
+    style="@style/constraint_background_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTintMode="src_in"
+    android:foregroundTintMode="src_in"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_main_appTitle"
+        android:layout_width="201dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/k2d_bold"
+        android:text="@string/groKart"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_main_welcome"
+        android:layout_width="298dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/welcome_user"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_main_appTitle" />
+
+    <Button
+        android:id="@+id/btn_main_createNewList"
+        style="@style/white_button"
+        android:text="@string/create_new_list"
+        app:cornerRadius="10dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_main_welcome"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <Button
+        android:id="@+id/btn_main_viewListHistory"
+        style="@style/white_button"
+        android:layout_width="317dp"
+        android:layout_height="64dp"
+        android:text="@string/view_list_history"
+        app:cornerRadius="10dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_main_createNewList"
+        app:layout_constraintVertical_bias="0.187" />
+
+    <ImageButton
+        android:id="@+id/btn_main_menu"
+        android:layout_width="42dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#F0F0F0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_main_appTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_menu2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="411dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
