@@ -7,12 +7,6 @@
     <list default="true" id="31b9d1ee-baa3-412b-b240-5554e99ae75e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +17,29 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
