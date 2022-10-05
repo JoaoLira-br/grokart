@@ -110,6 +110,21 @@ public class UserController {
         return userName + " displayName updated successfully";
     }
 
+    /**
+     * UPDATE PASSWORD OF USER
+     * @param userName
+     * @return
+     */
+    @PutMapping("/password/{userName}")
+    String updatePassword(@PathVariable String userName, @RequestBody String newPassword){
+        User user = userRepository.findByUserName(userName);
+        if (user == null)
+            return null;
+        user.setPassword(newPassword);
+        userRepository.save(user);
+        return userName + " password updated successfully";
+    }
+
 
     /**
      * DELETE USER
