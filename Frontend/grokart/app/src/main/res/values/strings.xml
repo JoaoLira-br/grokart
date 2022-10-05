@@ -15,6 +15,17 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_login">LoginActivity</string>
+    <!-- Strings related to edit profile -->
+    <string name = "edit_profile">Edit Profile</string>
+    <string name = "phone">Phone Number</string>
+    <string name = "name">Name</string>
+    <string name = "preferred_store">Preferred Store</string>
+    <string name="edit_response_success">Your profile has been successfully updated</string>
+    <string name="edit_response_failure">Failed to update profile</string>
+    <!-- Strings related to dashboard -->
+    <string name = "create_list">Create new list</string>
+    <string name="edit_profile_lc">Edit profile</string>
+    <string name="view_lists">View lists</string>
 
 
 </resources>

@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cbd67b1-d67b-47e9-b20e-7d0eeca151a1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Experiments/Mattie/tutorials-android_unit2_1_volley/AndroidVolley/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiments/Mattie/tutorials-android_unit2_1_volley/AndroidVolley/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="ed514937-cdaf-4535-b096-9e082c6b5a67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grokart/app/src/main/java/com/example/grokart/EditProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/grokart/app/src/main/java/com/example/grokart/EditProfileActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grokart/app/src/main/java/com/example/grokart/utils/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/grokart/app/src/main/java/com/example/grokart/utils/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grokart/app/src/main/res/layout/activity_edit_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/grokart/app/src/main/res/layout/activity_edit_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/java/com/example/grokart/EditProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/java/com/example/grokart/EditProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/res/layout/activity_edit_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Frontend/grokart/app/src/main/res/layout/activity_edit_profile.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +27,12 @@
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="ProjectId" id="2F3RADfYHF3easzeUKDLOpPLukC" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FV31xEZ5N75aDrWsbpGuTt8Vmh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,11 +43,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/grokart" />
+    <property name="last_opened_file_path" value="$USER_HOME$/practice/tutorials/AndroidVolley" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="Grokart.app" />
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="AndroidVolley.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -100,31 +104,18 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8cbd67b1-d67b-47e9-b20e-7d0eeca151a1" name="Changes" comment="" />
-      <created>1663718635471</created>
+      <changelist id="ed514937-cdaf-4535-b096-9e082c6b5a67" name="Changes" comment="" />
+      <created>1664563212276</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1663718635471</updated>
+      <updated>1664563212276</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
