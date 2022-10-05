@@ -170,7 +170,6 @@
         android:layout_width="359dp"
         android:layout_height="19dp"
         android:layout_marginTop="5dp"
-        android:text="message here"
         android:textAlignment="center"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
