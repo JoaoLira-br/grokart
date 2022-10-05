@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -27,7 +29,9 @@ import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
+    private RequestQueue mQueue;
     private String TAG = RegisterActivity.class.getSimpleName();
+    private TextView msgResponse;
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -41,11 +45,37 @@ public class EditProfileActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_phone = findViewById(R.id.et_phone);
         et_preferredStore = findViewById(R.id.et_preferredStore);
+        msgResponse = (TextView) findViewById(R.id.msgResponse);
+
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
+
+        mQueue = Volley.newRequestQueue(this);
+
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                jsonTest();
             }
         });
+    }
+    private void jsonTest() {
+        String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/test";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        msgResponse.setText(response.toString());
+                    }
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue.add(request);
     }
 }
