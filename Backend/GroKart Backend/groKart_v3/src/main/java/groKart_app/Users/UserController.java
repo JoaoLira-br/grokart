@@ -22,17 +22,42 @@ public class UserController {
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
 
+    /**
+     * GET ALL USERS IN THE DB
+     * @return
+     */
     @GetMapping(path = "/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
+    /**
+     * SEARCH USER BY USERNAME
+     * Used for profile update search after login
+     * @param userName
+     * @return
+     */
+    @GetMapping(path = "/user/{userName}")
+    User getSpecificUser( @PathVariable String userName){
+        return userRepository.findByUserName(userName);
+    }
+
+    /**
+     * SEARCH USER BY ID
+     * @param id
+     * @return
+     */
     @GetMapping(path = "/users/{id}")
     User getUserById( @PathVariable int id){
         return userRepository.findById(id);
     }
 
-    // LOGIN
+    /**
+     * LOGIN
+     * @param userName
+     * @param password
+     * @return
+     */
     @GetMapping(path = "/users/{userName}/{password}")
     String getUserById( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
@@ -69,6 +94,22 @@ public class UserController {
         userRepository.save(request);
         return userRepository.findByUserName(userName);
     }
+
+    /**
+     * UPDATE DISPLAY NAME OF USER
+     * @param userName
+     * @return
+     */
+    @PutMapping("/displayName/{userName}")
+    String updateDisplayName(@PathVariable String userName, @RequestBody String displayName){
+        User user = userRepository.findByUserName(userName);
+        if (user == null)
+            return null;
+        user.setDisplayName(displayName);
+        userRepository.save(user);
+        return userName + " displayName updated successfully";
+    }
+
 
     /**
      * DELETE USER
