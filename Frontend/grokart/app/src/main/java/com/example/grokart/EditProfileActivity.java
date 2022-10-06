@@ -33,6 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username = "";
+    private JSONObject user;
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -59,7 +60,11 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //jsonTest();
-                jsonUpdateUser();
+                try {
+                    jsonUpdateUser();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -94,6 +99,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         try {
+                            user = response;
                             username = response.getString("username");
                             msgResponse.setText("hello " + username);
                         } catch (JSONException e) {
@@ -110,10 +116,15 @@ public class EditProfileActivity extends AppCompatActivity {
         });
         mQueue.add(request);
     }
-    private void jsonUpdateUser() {
+    private void jsonUpdateUser() throws JSONException {
+        user.put("name", et_name.getText().toString());
+        user.put("email", et_email.getText().toString());
+        user.put("phone", et_phone.getText().toString());
+        user.put("preferredStore", et_preferredStore.getText().toString());
+
         String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/user/" + username;
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, user,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -122,6 +133,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             msgResponse.setText(response.getString("message"));
                         } catch (JSONException e) {
                             e.printStackTrace();
+
                         }
                     }
 
@@ -129,7 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         }) {
             @Override
@@ -142,10 +154,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("name", et_name.getText().toString());
-                params.put("email", et_email.getText().toString());
-                params.put("phone", et_phone.getText().toString());
-                params.put("preferredStore", et_preferredStore.getText().toString());
+//                params.put("name", et_name.getText().toString());
+//                params.put("email", et_email.getText().toString());
+//                params.put("phone", et_phone.getText().toString());
+//                params.put("preferredStore", et_preferredStore.getText().toString());
 
                 return params;
             }
