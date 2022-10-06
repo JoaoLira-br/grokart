@@ -62,8 +62,8 @@ public class UserController {
     String getUserById( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
 
-        if (user == null) return "Failed login";
-        else return "Successful login";
+        if (user == null) return failure;
+        else return success;
     }
 
     /**
@@ -104,10 +104,10 @@ public class UserController {
     String updateDisplayName(@PathVariable String userName, @RequestBody String displayName){
         User user = userRepository.findByUserName(userName);
         if (user == null)
-            return null;
+            return failure;
         user.setDisplayName(displayName);
         userRepository.save(user);
-        return userName + " displayName updated successfully";
+        return success;
     }
 
     /**
@@ -119,10 +119,10 @@ public class UserController {
     String updatePassword(@PathVariable String userName, @RequestBody String newPassword){
         User user = userRepository.findByUserName(userName);
         if (user == null)
-            return null;
+            return failure;
         user.setPassword(newPassword);
         userRepository.save(user);
-        return userName + " password updated successfully";
+        return success;
     }
 
 
