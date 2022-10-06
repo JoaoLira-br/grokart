@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.example.grokart.app.AppController"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -32,11 +33,7 @@
 
 
         </activity>
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="true">
-        </activity>
-<!--        <activity-->
+        <!--        <activity-->
 <!--            android:name=".utils.MainActivity"-->
 <!--            android:exported="true">-->
 <!--            <intent-filter>-->
