@@ -54,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        TextView tv_appName = findViewById(R.id.tv_appTitle);
 
         tv_appName = findViewById(R.id.tv_appTitle);
         btn_login =  findViewById(R.id.btn_login);
