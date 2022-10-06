@@ -64,9 +64,8 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
     private void jsonGetUser() {
-        String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/user/1";
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Const.URL_USER, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -96,7 +95,7 @@ public class EditProfileActivity extends AppCompatActivity {
         user.put("phone", et_phone.getText().toString());
         user.put("preferredStore", et_preferredStore.getText().toString());
 
-        String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/user/" + username;
+        String url = Const.URL_USER + "/" + username;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, user,
                 new Response.Listener<JSONObject>() {
