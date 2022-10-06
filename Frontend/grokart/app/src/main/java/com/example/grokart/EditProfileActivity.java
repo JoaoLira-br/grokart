@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -29,13 +27,12 @@ import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
-    private RequestQueue mQueue;
-    private String TAG = RegisterActivity.class.getSimpleName();
+    private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username = "";
     private JSONObject user;
     // These tags will be used to cancel the requests
-    private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+    private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
 
     @Override
@@ -51,9 +48,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
-
-
-        mQueue = Volley.newRequestQueue(this);
         jsonGetUser();
 
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
@@ -69,27 +63,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
-    private void jsonTest() {
-        String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/test";
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
-                    }
-
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        mQueue.add(request);
-    }
-
     private void jsonGetUser() {
         String url = "https://eb90d981-fc0b-42ec-ad43-3cfec437d3ed.mock.pstmn.io/user/1";
 
@@ -114,7 +87,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-        mQueue.add(request);
+        AppController.getInstance().addToRequestQueue(request,
+                tag_json_obj);
     }
     private void jsonUpdateUser() throws JSONException {
         user.put("name", et_name.getText().toString());
@@ -145,7 +119,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
                 return headers;
@@ -162,6 +136,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 return params;
             }
         };
-        mQueue.add(request);
+        AppController.getInstance().addToRequestQueue(request,
+                tag_json_obj);
     }
 }
