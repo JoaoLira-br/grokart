@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/onetoone.iml" filepath="$PROJECT_DIR$/onetoone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/groKartApplication.iml" filepath="$PROJECT_DIR$/groKartApplication.iml" />
     </modules>
   </component>
 </project>
