@@ -65,7 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
     private void jsonGetUser() {
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Const.URL_USER, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Const.URL_SAMPLE_READ_USER_GET, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -95,9 +95,7 @@ public class EditProfileActivity extends AppCompatActivity {
         user.put("phone", et_phone.getText().toString());
         user.put("preferredStore", et_preferredStore.getText().toString());
 
-        String url = Const.URL_USER + "/" + username;
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, user,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, Const.URL_SAMPLE_UPDATE_OR_DELETE_USER, user,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
