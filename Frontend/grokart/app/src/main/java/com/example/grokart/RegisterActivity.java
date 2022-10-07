@@ -34,7 +34,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_username, et_password;
-    private String jsonResponse;
+    private static String jsonResponse;
     private JSONObject user;
     private TextView msgResponse, tv_JSONOutput, tv_appName;
     private Button btn_register, btn_login;
@@ -43,9 +43,10 @@ public class RegisterActivity extends AppCompatActivity {
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
-    public static final String EXTRA_USERNAME= "com.groKart.android.username";
+    public static String EXTRA_USERNAME= "com.groKart.android.username";
     public static final String EXTRA_PASSWORD= "com.groKart.android.password";
     public static final String EXTRA_EMAIL= "com.groKart.android.email";
+
 
 
 
@@ -86,7 +87,11 @@ public class RegisterActivity extends AppCompatActivity {
                         String path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
                         Log.d(TAG, path);
                         jsonObjGetReq(path);
+                    Log.d(TAG, "response: "+jsonResponse);
+                    Log.d(TAG, (String) msgResponse.getText());
                         jsonObjGetReq(Const.URL_SAMPLE_READ_USER_GET+userName);
+                    Log.d(TAG, "response: "+ jsonResponse);
+
                         sendToLoginPage(v);
                     //TODO get user info after succesful login check and send him to main PAGE
 
@@ -222,9 +227,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                        if (response.has("userName")&&response.has("id")) {
 //                            setUser(response, new String[]{"userName", "id"});
 //                        }
-//
+
                         jsonResponse = response.toString();
+                        EXTRA_USERNAME = response.toString();
                         Log.d(TAG, jsonResponse);
+                        Log.d(TAG, EXTRA_USERNAME);
+                        msgResponse.setText(EXTRA_USERNAME);
 
 
 //                        hideProgressDialog();
