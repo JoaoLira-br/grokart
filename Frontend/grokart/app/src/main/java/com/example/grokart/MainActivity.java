@@ -9,12 +9,8 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
-
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 //    private EditText et_username, et_password;
@@ -36,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_appName = findViewById(R.id.tv_main_appName);
+        tv_appName = findViewById(R.id.tv_main_appTitle);
         btn_createNewList =  findViewById(R.id.btn_main_createNewList);
         btn_viewListHistory = findViewById(R.id.btn_main_viewListHistory);
         btn_menu = findViewById(R.id.btn_main_menu);

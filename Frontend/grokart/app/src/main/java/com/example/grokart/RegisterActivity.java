@@ -39,12 +39,14 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgResponse, tv_JSONOutput, tv_appName;
     private Button btn_register, btn_login;
     private final String TAG = RegisterActivity.class.getSimpleName();
-    private boolean successfulLogin = false;
+    private boolean successfulLogin;
     // These tags will be used to cancel the requests
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+
     public static final String EXTRA_USERNAME= "com.groKart.android.username";
     public static final String EXTRA_PASSWORD= "com.groKart.android.password";
     public static final String EXTRA_EMAIL= "com.groKart.android.email";
+
 
 
 
@@ -59,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         tv_appName = findViewById(R.id.tv_appTitle);
         btn_login =  findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
+        msgResponse = findViewById(R.id.tv_msgResponse);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -68,21 +71,31 @@ public class RegisterActivity extends AppCompatActivity {
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
 
+
+
         //TODO all url endpoints must have no whitespace
+
         btn_login.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if(checkInputs()){
-                    String username = et_username.getText().toString();
-                    String password = et_password.getText().toString();
 //                    String path = (Const.URL_USER_PSTMN + "?username="+username.trim()+"&password="+password).replaceAll("\\s", "");
-                        String path = (Const.URL_USER_SERVER + username + "/" + password).replaceAll("\\s", "");
+                        String userName = et_username.getText().toString();
+                        String password = et_password.getText().toString();
+                        String path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
                         Log.d(TAG, path);
                         jsonObjGetReq(path);
-                        if(successfulLogin) {
+                        jsonObjGetReq(Const.URL_SAMPLE_READ_USER_GET+userName);
+                        sendToLoginPage(v);
+                    //TODO get user info after succesful login check and send him to main PAGE
+
+//                        if(successfulLogin) {
+//                            path = Const.URL_SAMPLE_READ_USER_GET+"userName";
+//                            jsonObjGetReq(Const.URL_SAMPLE_READ_USER_GET+"userName");
+//
 //                            sendToLoginPage(v, user );
-                        }
+//                        }
 
 
 
@@ -97,12 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
                 //TODO send input to backend and proceed to Home page
                 // with response as Intent Extra
                 if( checkInputs()) {
-                    String username = et_username.getText().toString();
+                    String userName = et_username.getText().toString();
                     String password = et_password.getText().toString();
-                    user = createUser(username, password);
+                    user = createUser(userName, password);
 
                     //TODO send input to appropriate backend path
-                    jsonObjPostReq(Const.URL_USER_PSTMN, user);
+                    jsonObjPostReq(user);
 
                 }
 
@@ -121,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (et_password.length() == 0) {
             et_password.setError("Password is required");
             invalidCounter++;
-        } else if (et_password.length() < 8) {
+        } else if (et_password.length() < 7) {
             et_password.setError("Password must be minimum 8 characters");
             invalidCounter++;
         }
@@ -130,10 +143,10 @@ public class RegisterActivity extends AppCompatActivity {
         // after all validation return true.
     }
 
-    private JSONObject createUser(String username, String password){
+    private JSONObject createUser(String userName, String password){
         user = new JSONObject();
         try {
-            user.put("username", username);
+            user.put("userName", userName);
             user.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -195,29 +208,36 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * Making json object request
      * */
+
     private void jsonObjGetReq(String path) {
 //        showProgressDialog();
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONObject>()  {
 
+                //expect: "message":"successful"
+                    //TODO receive id of user back
                     @Override
                     public void onResponse(JSONObject response) {
-                        successfulLogin = true;
-                        user = response;
+//                        setSuccessfulLoginCheck(true);
+//                        if (response.has("userName")&&response.has("id")) {
+//                            setUser(response, new String[]{"userName", "id"});
+//                        }
+//
                         jsonResponse = response.toString();
                         Log.d(TAG, jsonResponse);
-                        Log.d(TAG, "hheuahfeauhfklsahefkjldhsakjhf");
-                        Log.d(TAG, "gotcha!!!!!!!!");
-//                        msgResponse.setText(response.toString());
+
+
 //                        hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 VolleyLog.d(TAG, "Unfortunately we got an error");
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 //                hideProgressDialog();
+                msgResponse.setText(error.getMessage());
             }
         }) {
 
@@ -250,9 +270,21 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     }
-    private void jsonObjPostReq(String path,JSONObject user) {
+
+    private void setUser(JSONObject copyFrom, String[] names){
+        try {
+            user = new JSONObject(copyFrom, names);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void setSuccessfulLoginCheck(Boolean successful){
+        successfulLogin = successful;
+    }
+    private void jsonObjPostReq(JSONObject user) {
 //        showProgressDialog();
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,path,user,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,Const.URL_SAMPLE_CREATE_USER_POST,user,
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -308,12 +340,13 @@ public class RegisterActivity extends AppCompatActivity {
 //     * */
     private void makeJsonArrayReq() {
 //        showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_USER_PSTMN,
+        JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_USERS,
                     new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Log.d(TAG, Const.URL_SERVER_USERS);
                         Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
+//                        msgResponse.setText(response.toString());
 //                        hideProgressDialog();
                     }
                 }, new Response.ErrorListener() {
@@ -335,10 +368,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
-    public void sendToLoginPage(View view, JSONObject user) {
+//TODO add parameter JSONObject user and send to main page`s greetings and profile
+    public void sendToLoginPage(View view) {
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-        intent.putExtra("jsonUser", user.toString());
+//        intent.putExtra("jsonUser", user.toString());
         startActivity(intent);
     }
+
+
 }

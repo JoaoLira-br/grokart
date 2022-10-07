@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tv_main_appName"
+    android:id="@+id/cl_main"
     style="@style/constraint_background_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
