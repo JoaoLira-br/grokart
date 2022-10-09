@@ -2,6 +2,7 @@ package com.example.grokart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -26,12 +27,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         private ImageButton btn_menu;
 
 
+
 //    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String userName = intent.getStringExtra("userName");
 
+        tv_welcomeUser =  findViewById(R.id.tv_main_welcome);
         tv_appName = findViewById(R.id.tv_main_appTitle);
         btn_createNewList =  findViewById(R.id.btn_main_createNewList);
         btn_viewListHistory = findViewById(R.id.btn_main_viewListHistory);
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_appName.setText(groKart);
+        tv_welcomeUser.append(" " + userName + "!");
+
 
         btn_menu.setOnClickListener(this);
         btn_createNewList.setOnClickListener(this);

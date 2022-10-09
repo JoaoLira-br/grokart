@@ -123,11 +123,11 @@
 
     <TextView
         android:id="@+id/tv_msgResponse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="243dp"
+        android:layout_height="29dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
