@@ -1,5 +1,8 @@
 package groKart_app.Items;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import groKart_app.Stores.Store;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,12 @@ public class Item {
     private double price;
     private String storeName;
     private int quantityAvailable;
+
+    @ManyToOne
+    @JoinColumn(name = "storeName")
+    @JsonIgnore
+    private Store store;
+
 
     public Item(String name, double price, String storeName, int quantityAvailable) {
         this.name = name;

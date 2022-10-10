@@ -1,6 +1,7 @@
 package groKart_app.Stores;
 
 import groKart_app.Items.Item;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Store {
 
     private String storeName;
 
-    @OneToMany (mappedBy = "storeName")
+    @OneToMany
     private List<Item> items;
 
 
@@ -44,11 +45,9 @@ public class Store {
 
     public void setItems(List<Item> items) {this.items = items;}
 
-    public void addItems(Item items){
-        this.items.add(items);
-    }
+    public void addItems(Item items){this.items.add(items);}
 
-
+    public void removeItems(Item items){this.items.remove(items);}
 
 }
 

@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9600c1d-dd15-4be7-ac5d-5255e822ffee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GroKart Backend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_GroKart/groKart_Test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test_GroKart/groKart_Test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/Readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/src/main/java/coms309/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/src/main/java/coms309/ExceptionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/src/main/java/coms309/WelcomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Experiments/Baganesra /GroKart Backend/Test_GroKart/groKart_Test/src/main/resources/application.properties" beforeDir="false" />
-    </list>
+    <list default="true" id="c9600c1d-dd15-4be7-ac5d-5255e822ffee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
