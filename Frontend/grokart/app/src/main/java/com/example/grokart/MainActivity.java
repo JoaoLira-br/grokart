@@ -59,7 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_main_menu:
-                //do something
+                Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.btn_main_createNewList:
                 //do something
