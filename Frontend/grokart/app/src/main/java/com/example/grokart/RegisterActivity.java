@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
         /* OBS: All url endpoints must have no whitespace
         * */
         jsonResponse = "Antes ou Depois";
-        msgResponse.setText("Antes");
+
         btn_login.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -109,13 +109,11 @@ public class RegisterActivity extends AppCompatActivity {
                                             e.printStackTrace();
                                         }
                                         try {
-
-                                            if(response.get("message").toString().equals("success"))
-                                                 sendToLoginPage(v, userName);
+                                            //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
+                                            if(response.get("message").toString().equals("success")) {
+                                                sendToHomePage(v, userName, 1);
                                                 msgResponse.setText(response.toString());
-
-
-
+                                            }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -172,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //TODO send input to backend and proceed to Home page
+                //TODO have REGISTER button send input to backend and proceed to Home page
                 // with response as Intent Extra
                 if( checkInputs()) {
                     String userName = et_username.getText().toString();
@@ -377,10 +375,17 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    public void sendToLoginPage(View view, String userName) {
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-        intent.putExtra("userName", userName);
-        startActivity(intent);
+    public void sendToHomePage(View view, String userName,int privilege) {
+        if(privilege == 0){
+            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
+            intentBase.putExtra("userName", userName);
+            startActivity(intentBase);
+        }else if(privilege == 1){
+            Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
+            startActivity(intentAdmin);
+        }else{
+            //TODO if user is store admin send him to store admin home page
+        }
     }
 
 
