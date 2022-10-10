@@ -29,7 +29,7 @@ public class StoreController {
      * @param store
      * @return
      */
-    @PostMapping(path = "/stores/{storeName}")
+    @PostMapping(path = "/stores")
     String createStore(@RequestBody Store store){
         if(store == null || storeRepository.existsByStoreName(store.getStoreName()))
             return failure;
@@ -41,7 +41,7 @@ public class StoreController {
      * GET ITEMS IN THE STORE
      * @param storeName
      * @return
-     */
+     *
     @GetMapping(path ="/stores/{storeName}/items")
     List<Item> returnStoreItems(@PathVariable String storeName){
         Store store = storeRepository.findByStoreName(storeName);
@@ -65,7 +65,7 @@ public class StoreController {
 
     /**
      * ASSIGN AN ITEM TO A STORE / ADD AN ITEM TO A STORE
-     */
+     *
     @PutMapping(path = "/stores/{storeName}/items")
     String addItemToStore(@PathVariable String storeName, @RequestBody Item newItem){
         Store store = storeRepository.findByStoreName(storeName);

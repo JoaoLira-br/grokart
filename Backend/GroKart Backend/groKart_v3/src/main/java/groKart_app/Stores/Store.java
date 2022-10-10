@@ -10,44 +10,46 @@ import java.util.Set;
 
 
 @Entity
-@Table (name = "Stores")
+@Table (name = "Store")
 public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int storeId;
+    private int id;
 
     private String storeName;
 
-    @OneToMany
+    /*
+    @OneToMany(mappedBy = "store")
     private List<Item> items;
+     */
 
 
-    public Store(int storeId, String storeName){
-        this.storeId = storeId;
+    public Store(int id, String storeName){
+        this.id = id;
         this.storeName = storeName;
-        items = new ArrayList<>();
+        //items = new ArrayList<>();
     }
     public Store() {
-        items = new ArrayList<>() ;
+        //items = new ArrayList<>() ;
     }
 
 
-    public int getStoreId() {return storeId;}
+    public int getStoreId() {return id;}
 
-    public void setStoreId(int storeId) {this.storeId = storeId;}
+    public void setStoreId(int storeId) {this.id = id;}
 
     public String getStoreName() {return storeName;}
 
     public void setStoreName(String storeName) {this.storeName = storeName;}
 
-    public List<Item> getItems() {return items;}
+    //public List<Item> getItems() {return items;}
 
-    public void setItems(List<Item> items) {this.items = items;}
+    //public void setItems(List<Item> items) {this.items = items;}
 
-    public void addItems(Item items){this.items.add(items);}
+    //public void addItems(Item items){this.items.add(items);}
 
-    public void removeItems(Item items){this.items.remove(items);}
+    //public void removeItems(Item items){this.items.remove(items);}
 
 }
 
