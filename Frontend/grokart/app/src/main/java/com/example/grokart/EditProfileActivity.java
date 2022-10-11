@@ -3,12 +3,16 @@ package com.example.grokart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextView msgResponse;
     private String username = "";
     private JSONObject user;
+    private Toolbar myToolbar;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -39,6 +44,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
+        //adds in updated toolbar
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
@@ -135,5 +145,30 @@ public class EditProfileActivity extends AppCompatActivity {
         };
         AppController.getInstance().addToRequestQueue(request,
                 tag_json_obj);
+    }
+
+    //adds in methods for toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
