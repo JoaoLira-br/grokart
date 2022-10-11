@@ -51,24 +51,24 @@ public class AdminHomeActivity extends AppCompatActivity {
                                                @Override
                                                public void onClick(View v) {
                                                    //TODO change path to array stores endpoint
-//                                                   JsonArrayRequest jsonArrReqStores = new JsonArrayRequest(Const.URL_SERVER_USERS,
-//                                                           new Response.Listener<JSONArray>() {
-//                                                               @Override
-//                                                               public void onResponse(JSONArray response) {
-//                                                                   jsonResponse = Integer.toString(response.length());
-//                                                                   storesCount.setText(jsonResponse);
-////                        msgResponse.setText(response.toString());
-////                        hideProgressDialog();
-//                                                               }
-//                                                           }, new Response.ErrorListener() {
-//                                                       @Override
-//                                                       public void onErrorResponse(VolleyError error) {
-//                                                           VolleyLog.d(TAG, "Error: " + error.getMessage());
-////                hideProgressDialog();
-//                                                       }
-//                                                   });
-//                                                   AppController.getInstance().addToRequestQueue(jsonArrReqStores,
-//                                                           tag_json_arry);
+                                                   JsonArrayRequest jsonArrReqStores = new JsonArrayRequest(Const.URL_SERVER_STORES,
+                                                           new Response.Listener<JSONArray>() {
+                                                               @Override
+                                                               public void onResponse(JSONArray response) {
+                                                                   jsonResponse = Integer.toString(response.length());
+                                                                   storesCount.setText(jsonResponse);
+//
+
+                                                               }
+                                                           }, new Response.ErrorListener() {
+                                                       @Override
+                                                       public void onErrorResponse(VolleyError error) {
+                                                           VolleyLog.d(TAG, "Error: " + error.getMessage());
+//
+                                                       }
+                                                   });
+                                                   AppController.getInstance().addToRequestQueue(jsonArrReqStores,
+                                                           tag_json_arry);
 
                                                    // Cancelling request
                                                    // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);

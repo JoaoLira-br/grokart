@@ -110,9 +110,9 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                         try {
                                             //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
+                                            msgResponse.setText(response.toString());
                                             if(response.get("message").toString().equals("success")) {
-                                                sendToHomePage(v, userName, 1);
-                                                msgResponse.setText(response.toString());
+                                                sendToHomePage(v, userName, 0);
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -224,13 +224,11 @@ public class RegisterActivity extends AppCompatActivity {
 //        showProgressDialog();
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
                 new Response.Listener<JSONObject>()  {
-
-
                     @Override
                     public void onResponse(JSONObject response) {
 //                        setSuccessfulLoginCheck(true);
 
-                                AppController.users.put(et_username.toString(), response);
+                        AppController.users.put(et_username.toString(), response);
                         jsonResponse = response.toString();
                         Log.d(TAG, jsonResponse);
 

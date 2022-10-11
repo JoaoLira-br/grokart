@@ -11,6 +11,7 @@ public class Const {
 
 //    ENDPOINTS FOR TESTING ON SERVER
     public static final String URL_SERVER_USERS = "http://coms-309-011.class.las.iastate.edu:8080/users/";
+    public static final String URL_SERVER_STORES = "http://coms-309-011.class.las.iastate.edu:8080/stores/";
     public static final String URL_SAMPLE_LOGIN_GET_1 = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer/ex_pass";
     public static final String URL_SAMPLE_LOGIN_GET_2 = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer/ex_pass";
     public static final String URL_SAMPLE_CREATE_USER_POST = "http://coms-309-011.class.las.iastate.edu:8080/users";
