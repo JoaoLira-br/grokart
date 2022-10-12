@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
+    private Button btn_editProfile;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username;
@@ -58,8 +59,7 @@ public class EditProfileActivity extends AppCompatActivity {
         et_phone = findViewById(R.id.et_phone);
         et_preferredStore = findViewById(R.id.et_preferredStore);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
-
-        Button btn_editProfile = findViewById(R.id.btn_editProfile);
+        btn_editProfile = findViewById(R.id.btn_editProfile);
 
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
