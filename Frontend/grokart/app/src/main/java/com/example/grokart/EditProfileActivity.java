@@ -3,12 +3,17 @@ package com.example.grokart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +36,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextView msgResponse;
     private String username = "";
     private JSONObject user;
+    private Toolbar myToolbar;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -40,6 +46,12 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        //adds in updated toolbar
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
         et_phone = findViewById(R.id.et_phone);
@@ -48,7 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
-        jsonGetUser();
+        //jsonGetUser();
 
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +75,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
+
     private void jsonGetUser() {
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Const.URL_SAMPLE_READ_USER_GET, null,
@@ -89,6 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(request,
                 tag_json_obj);
     }
+
     private void jsonUpdateUser() throws JSONException {
         user.put("name", et_name.getText().toString());
         user.put("email", et_email.getText().toString());
@@ -135,5 +149,25 @@ public class EditProfileActivity extends AppCompatActivity {
         };
         AppController.getInstance().addToRequestQueue(request,
                 tag_json_obj);
+    }
+
+    //adds in methods for toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                startActivity(intent);
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

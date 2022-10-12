@@ -42,4 +42,5 @@
     <string name="user_count_title">Users Count</string>
     <string name="store_count_title">Stores Count</string>
 
+    <string name="action_settings">Settings</string>
 </resources>
