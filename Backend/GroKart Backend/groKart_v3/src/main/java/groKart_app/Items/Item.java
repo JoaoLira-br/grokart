@@ -20,6 +20,7 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "store_id")
+    @JsonIgnore
     private Store store;
 
 
@@ -79,5 +80,14 @@ public class Item {
 
     public void setQuantityAvailable(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return id + " "
+                + name + " "
+                + price + " "
+                + storeName + " "
+                + quantityAvailable;
     }
 }

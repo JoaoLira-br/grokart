@@ -11,6 +11,8 @@ import java.util.List;
 public class StoreController {
     @Autowired
     StoreRepository storeRepository;
+    @Autowired
+    ItemRepository itemRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -76,16 +78,16 @@ public class StoreController {
         return storeRepository.findByStoreName(storeName);
     }
 
-    /** TODO
+    /**TODO
      * ASSIGN AN ITEM TO A STORE / ADD AN ITEM TO A STORE
-     *
-    @PutMapping(path = "/stores/{storeName}/items/{itemId}")
-    String addItemToStore(@PathVariable String storeName, @PathVariable int itemId){
+     */
+    @PutMapping(path = "/stores/{storeName}/items")
+    String addItemToStore(@PathVariable String storeName, @RequestBody Item newItem){
         Store store = storeRepository.findByStoreName(storeName);
-        if(store == null){return failure;}
-
-
-
+        if(store == null || newItem == null || itemRepository.existsByStoreNameAndName(storeName,newItem.getName())){return failure;}
+        newItem.setStore(store);
+        itemRepository.save(newItem);
+        storeRepository.save(store);
         return success;
     }
 

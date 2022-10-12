@@ -52,6 +52,13 @@ public class Store {
 
     public void removeItems(Item items){this.items.remove(items);}
 
+
+    @Override
+    public String toString() {
+        return id + " "
+                + storeName + " "
+                + items;
+    }
 }
 
 
