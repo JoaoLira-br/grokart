@@ -34,7 +34,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
-    private String username = "";
+    private String username;
     private JSONObject user;
     private Toolbar myToolbar;
     // These tags will be used to cancel the requests
@@ -45,7 +45,8 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
+        Intent intent = getIntent();
+        username = intent.getStringExtra("userName");
         //adds in updated toolbar
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -60,12 +61,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
-        //jsonGetUser();
-
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //jsonTest();
                 try {
                     jsonUpdateUser();
                 } catch (JSONException e) {
@@ -74,33 +72,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void jsonGetUser() {
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Const.URL_SAMPLE_READ_USER_GET, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        try {
-                            user = response;
-                            username = response.getString("username");
-                            msgResponse.setText("hello " + username);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        AppController.getInstance().addToRequestQueue(request,
-                tag_json_obj);
     }
 
     private void jsonUpdateUser() throws JSONException {
