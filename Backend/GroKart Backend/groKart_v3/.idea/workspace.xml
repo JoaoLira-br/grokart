@@ -10,11 +10,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -19,19 +19,19 @@ public class Store {
 
     private String storeName;
 
-    /*
+
     @OneToMany(mappedBy = "store")
     private List<Item> items;
-     */
+
 
 
     public Store(int id, String storeName){
         this.id = id;
         this.storeName = storeName;
-        //items = new ArrayList<>();
+        items = new ArrayList<>();
     }
     public Store() {
-        //items = new ArrayList<>() ;
+        items = new ArrayList<>() ;
     }
 
 
@@ -43,13 +43,13 @@ public class Store {
 
     public void setStoreName(String storeName) {this.storeName = storeName;}
 
-    //public List<Item> getItems() {return items;}
+    public List<Item> getItems() {return items;}
 
-    //public void setItems(List<Item> items) {this.items = items;}
+    public void setItems(List<Item> items) {this.items = items;}
 
-    //public void addItems(Item items){this.items.add(items);}
+    public void addItems(Item items){this.items.add(items);}
 
-    //public void removeItems(Item items){this.items.remove(items);}
+    public void removeItems(Item items){this.items.remove(items);}
 
 }
 

@@ -65,7 +65,7 @@ public class StoreController {
 
     /**
      * ASSIGN AN ITEM TO A STORE / ADD AN ITEM TO A STORE
-     *
+     */
     @PutMapping(path = "/stores/{storeName}/items")
     String addItemToStore(@PathVariable String storeName, @RequestBody Item newItem){
         Store store = storeRepository.findByStoreName(storeName);

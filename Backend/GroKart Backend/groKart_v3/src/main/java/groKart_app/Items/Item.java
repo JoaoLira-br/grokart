@@ -17,11 +17,10 @@ public class Item {
     private String storeName;
     private int quantityAvailable;
 
-    /*
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
-     */
+
 
     public Item(String name, double price, String storeName, int quantityAvailable) {
         this.name = name;
@@ -42,7 +41,7 @@ public class Item {
         return name;
     }
 
-/*
+
     public Store getStore() {
         return store;
     }
@@ -51,7 +50,7 @@ public class Item {
         this.store = store;
     }
 
- */
+
 
     public void setName(String name) {
         this.name = name;
