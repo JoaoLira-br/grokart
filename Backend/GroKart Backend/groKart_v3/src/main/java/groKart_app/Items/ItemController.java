@@ -20,14 +20,14 @@ public class ItemController {
     private String failure = "{\"message\":\"failure\"}";
 
     /**
-     * GET USERS
+     * GET ITEMS
      * @return
      */
     @GetMapping(path = "/items")
     List<Item> getAllItems() { return itemRepository.findAll(); }
 
     /**
-     * GET USER (by name & store)
+     * GET ITEMS (by name & store)
      * @param itemName
      * @return
      */

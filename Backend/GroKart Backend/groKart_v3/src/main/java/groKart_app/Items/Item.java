@@ -17,8 +17,9 @@ public class Item {
     private String storeName;
     private int quantityAvailable;
 
+
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id")
     private Store store;
 
 

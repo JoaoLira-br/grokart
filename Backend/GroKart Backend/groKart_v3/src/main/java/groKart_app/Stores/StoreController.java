@@ -1,6 +1,7 @@
 package groKart_app.Stores;
 
 import groKart_app.Items.Item;
+import groKart_app.Items.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,18 @@ public class StoreController {
         return storeRepository.findAll();
     }
 
+
+    /**
+     * GET A SPECIFIC STORE
+     * @param storeName
+     * @return
+     */
+    @GetMapping(path = "/stores/{storeName}")
+    int getSpecificStore(@PathVariable String storeName){
+        Store store = storeRepository.findByStoreName(storeName);
+        return store.getStoreId();
+    }
+
     /**
      * POST A STORE
      * @param store
@@ -41,7 +54,7 @@ public class StoreController {
      * GET ITEMS IN THE STORE
      * @param storeName
      * @return
-     *
+     */
     @GetMapping(path ="/stores/{storeName}/items")
     List<Item> returnStoreItems(@PathVariable String storeName){
         Store store = storeRepository.findByStoreName(storeName);
@@ -63,15 +76,16 @@ public class StoreController {
         return storeRepository.findByStoreName(storeName);
     }
 
-    /**
+    /** TODO
      * ASSIGN AN ITEM TO A STORE / ADD AN ITEM TO A STORE
-     */
-    @PutMapping(path = "/stores/{storeName}/items")
-    String addItemToStore(@PathVariable String storeName, @RequestBody Item newItem){
+     *
+    @PutMapping(path = "/stores/{storeName}/items/{itemId}")
+    String addItemToStore(@PathVariable String storeName, @PathVariable int itemId){
         Store store = storeRepository.findByStoreName(storeName);
-        if(store == null || newItem == null){return failure;}
-        store.addItems(newItem);
-        storeRepository.save(store);
+        if(store == null){return failure;}
+
+
+
         return success;
     }
 

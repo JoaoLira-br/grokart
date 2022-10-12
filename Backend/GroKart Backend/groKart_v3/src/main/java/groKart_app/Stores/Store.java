@@ -1,6 +1,7 @@
 package groKart_app.Stores;
 
 import groKart_app.Items.Item;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Store {
     private String storeName;
 
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 
 
@@ -45,7 +46,7 @@ public class Store {
 
     public List<Item> getItems() {return items;}
 
-    public void setItems(List<Item> items) {this.items = items;}
+    public void setItem(List<Item> items) {this.items = items;}
 
     public void addItems(Item items){this.items.add(items);}
 
