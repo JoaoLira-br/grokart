@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_phone, et_preferredStore;
@@ -44,15 +45,17 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // sets the view to the right layout
         setContentView(R.layout.activity_edit_profile);
+        // gets the user info from the main activity that sent us to this page
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
         //adds in updated toolbar
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        // sets the text and button objects here to their matched pair in the layout
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
         et_phone = findViewById(R.id.et_phone);
@@ -60,6 +63,11 @@ public class EditProfileActivity extends AppCompatActivity {
         msgResponse = (TextView) findViewById(R.id.msgResponse);
         btn_editProfile = findViewById(R.id.btn_editProfile);
 
+        /*
+        * This sets what happens if the edit profile button is clicked.
+        * When clicked, it calls the jsonUpdateUser method,
+        * which updates the info kept on the user in the backend.
+        */
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,11 +76,15 @@ public class EditProfileActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }
 
+    /*
+    * This method sends a Json object put request
+    * to update the user info in the backend.
+    * TODO move the user.put(..things..) to its own method
+    */
     private void jsonUpdateUser() throws JSONException {
         user.put("name", et_name.getText().toString());
         user.put("email", et_email.getText().toString());
@@ -88,10 +100,8 @@ public class EditProfileActivity extends AppCompatActivity {
                             msgResponse.setText(response.getString("message"));
                         } catch (JSONException e) {
                             e.printStackTrace();
-
                         }
                     }
-
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -111,7 +121,6 @@ public class EditProfileActivity extends AppCompatActivity {
 //                params.put("email", et_email.getText().toString());
 //                params.put("phone", et_phone.getText().toString());
 //                params.put("preferredStore", et_preferredStore.getText().toString());
-
                 return params;
             }
         };

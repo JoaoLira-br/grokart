@@ -334,7 +334,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
-    
+
     public void sendToHomePage(View view, String userName,int privilege) {
         if(privilege == 0){
             Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
