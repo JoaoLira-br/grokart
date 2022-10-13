@@ -49,19 +49,10 @@ public class RegisterActivity extends AppCompatActivity {
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
 
-
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
 
         tv_appName = findViewById(R.id.tv_appTitle);
         btn_login =  findViewById(R.id.btn_login);
@@ -75,8 +66,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
-
-
 
         /* OBS: All url endpoints must have no whitespace
         * */
@@ -92,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
                         String password = et_password.getText().toString();
                         String path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
                         Log.d(TAG, path);
-
 
 //        showProgressDialog();
                         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
@@ -169,7 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 //TODO have REGISTER button send input to backend and proceed to Home page
                 // with response as Intent Extra
                 if( checkInputs()) {
@@ -177,16 +164,11 @@ public class RegisterActivity extends AppCompatActivity {
                     String password = et_password.getText().toString();
                     user = createUser(userName, password);
 
-
                     jsonObjPostReq(user);
-
                 }
-
             }
         });
-
     }
-
 
     private Boolean checkInputs() {
         int invalidCounter = 0;
@@ -216,9 +198,6 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
-
-
-
     private void jsonObjGetReq(String path) {
 
 //        showProgressDialog();
@@ -231,30 +210,19 @@ public class RegisterActivity extends AppCompatActivity {
                         AppController.users.put(et_username.toString(), response);
                         jsonResponse = response.toString();
                         Log.d(TAG, jsonResponse);
-
-
-
-
                         }
-
-
-
-
-
 //                        hideProgressDialog();
                     }
                 , new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 VolleyLog.d(TAG, "Unfortunately we got an error");
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 //                hideProgressDialog();
                 msgResponse.setText(error.getMessage());
             }
         }) {
-
             /**
              * Passing some request headers
              * */
@@ -284,8 +252,6 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     }
-
-
 
     private void jsonObjPostReq(JSONObject user) {
 //        showProgressDialog();
@@ -368,11 +334,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
-
-
-
-
-
+    
     public void sendToHomePage(View view, String userName,int privilege) {
         if(privilege == 0){
             Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
@@ -385,8 +347,4 @@ public class RegisterActivity extends AppCompatActivity {
             //TODO if user is store admin send him to store admin home page
         }
     }
-
-
-
-
 }

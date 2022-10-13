@@ -39,8 +39,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private JSONObject user;
     private Toolbar myToolbar;
     // These tags will be used to cancel the requests
-    private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
-
+    private final String tag_json_obj = "jobj_req";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
 
                 }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
@@ -106,7 +104,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 headers.put("Content-Type", "application/json");
                 return headers;
             }
-
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
@@ -118,22 +115,30 @@ public class EditProfileActivity extends AppCompatActivity {
                 return params;
             }
         };
-        AppController.getInstance().addToRequestQueue(request,
-                tag_json_obj);
+        AppController.getInstance().addToRequestQueue(request, tag_json_obj);
     }
 
-    //adds in methods for toolbar
+    /*
+    * This method is necessary when creating a toolbar for the edit profile page.
+    * It uses the menu layout stored in res/menu/menu_back_to_main.xml
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
         return true;
     }
-
+    /*
+    * This method is similar to an onClickListener.
+    * It checks to see if any of the toolbar options were selected,
+    * and then performs the appropriate action
+    */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            // If back button clicked
             case android.R.id.home:
+                // Start home intent and finish this intent
                 Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
                 startActivity(intent);
                 this.finish();
