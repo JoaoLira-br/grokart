@@ -27,11 +27,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import android.widget.Spinner;
+/*
+* Reminder: to get store name, use
+*       stores.getJSONObject(indexNum).get("storeName").toString()
+*/
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_preferredStore;
@@ -64,7 +69,11 @@ public class EditProfileActivity extends AppCompatActivity {
         et_preferredStore = findViewById(R.id.et_preferredStore);
         msgResponse = findViewById(R.id.msgResponse);
         storesMenu = findViewById(R.id.storesDropdown);
-        makeMenu();
+        try {
+            makeMenu();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
         /*
@@ -86,9 +95,12 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void makeMenu() {
+    private void makeMenu() throws JSONException {
         getStores();
-
+        String[] storesArray = new String[stores.length()];
+        for(int i = 0; i < storesArray.length; i++) {
+                storesArray[i] = stores.getJSONObject(0).get("storeName").toString();
+        }
     }
 
     private void getStores() {
