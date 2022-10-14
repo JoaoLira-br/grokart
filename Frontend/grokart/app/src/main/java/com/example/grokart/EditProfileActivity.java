@@ -18,10 +18,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,14 +31,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import android.widget.Spinner;
+
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_name, et_email, et_preferredStore;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username;
     private JSONObject user;
+    private JSONArray stores;
+    private Spinner storesMenu;
     // These tags will be used to cancel the requests
-    private final String tag_json_obj = "jobj_req";
+    private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,8 @@ public class EditProfileActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_preferredStore = findViewById(R.id.et_preferredStore);
         msgResponse = findViewById(R.id.msgResponse);
+        storesMenu = findViewById(R.id.storesDropdown);
+        makeMenu();
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
         /*
@@ -75,6 +84,31 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void makeMenu() {
+        getStores();
+
+    }
+
+    private void getStores() {
+        JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        stores = response;
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req,
+                tag_json_arry);
     }
 
     /*
