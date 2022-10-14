@@ -34,9 +34,9 @@ public class StoreController {
      * @return
      */
     @GetMapping(path = "/stores/{storeName}")
-    int getSpecificStore(@PathVariable String storeName){
+    Store getSpecificStore(@PathVariable String storeName){
         Store store = storeRepository.findByStoreName(storeName);
-        return store.getStoreId();
+        return store;
     }
 
     /**
@@ -78,13 +78,15 @@ public class StoreController {
         return storeRepository.findByStoreName(storeName);
     }
 
-    /**TODO
+    /**
      * ASSIGN AN ITEM TO A STORE / ADD AN ITEM TO A STORE
+     * @param newItem
+     * @return
      */
-    @PutMapping(path = "/stores/{storeName}/items")
-    String addItemToStore(@PathVariable String storeName, @RequestBody Item newItem){
-        Store store = storeRepository.findByStoreName(storeName);
-        if(store == null || newItem == null || itemRepository.existsByStoreNameAndName(storeName,newItem.getName())){return failure;}
+    @PutMapping(path = "/stores/items")
+    String addItemToStore(@RequestBody Item newItem){
+        Store store = storeRepository.findByStoreName(newItem.getStoreName());
+        if(store == null || newItem == null || itemRepository.existsByStoreNameAndName(newItem.getStoreName(),newItem.getName())){return failure;}
         newItem.setStore(store);
         itemRepository.save(newItem);
         storeRepository.save(store);

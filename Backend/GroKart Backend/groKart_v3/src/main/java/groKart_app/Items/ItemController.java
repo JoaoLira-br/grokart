@@ -27,13 +27,13 @@ public class ItemController {
     List<Item> getAllItems() { return itemRepository.findAll(); }
 
     /**
-     * GET ITEMS (by name & store)
+     * GET ITEMS (by name) --returns the items (all duplicate ones if all different stores)
      * @param itemName
      * @return
      */
-    @GetMapping(path = "/items/{storeName}/{itemName}")
-    Item getItemByName(@PathVariable String storeName, @PathVariable String itemName) {
-        return itemRepository.findByStoreNameAndName(storeName, itemName);
+    @GetMapping(path = "/items/{itemName}")
+    Item getItemByName(@PathVariable String itemName) {
+        return itemRepository.findByName(itemName);
     }
 
     /**
