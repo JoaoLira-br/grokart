@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class EditProfileActivity extends AppCompatActivity {
-    private EditText et_name, et_email, et_phone, et_preferredStore;
+    private EditText et_name, et_email, et_preferredStore;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username;
@@ -54,7 +54,6 @@ public class EditProfileActivity extends AppCompatActivity {
         // sets the text and button objects here to their matched pair in the layout
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
-        et_phone = findViewById(R.id.et_phone);
         et_preferredStore = findViewById(R.id.et_preferredStore);
         msgResponse = findViewById(R.id.msgResponse);
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
@@ -116,9 +115,8 @@ public class EditProfileActivity extends AppCompatActivity {
      * */
     private JSONObject editUser(){
         try {
-            user.put("name", et_name.getText().toString());
+            user.put("displayName", et_name.getText().toString());
             user.put("email", et_email.getText().toString());
-            user.put("phone", et_phone.getText().toString());
             user.put("preferredStore", et_preferredStore.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -131,11 +129,6 @@ public class EditProfileActivity extends AppCompatActivity {
     * to update the user info in the backend.
     */
     private void jsonUpdateUser(JSONObject editedUser) throws JSONException {
-        user.put("name", et_name.getText().toString());
-        user.put("email", et_email.getText().toString());
-        user.put("phone", et_phone.getText().toString());
-        user.put("preferredStore", et_preferredStore.getText().toString());
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, Const.URL_SAMPLE_UPDATE_OR_DELETE_USER, editedUser,
                 new Response.Listener<JSONObject>() {
                     @Override
