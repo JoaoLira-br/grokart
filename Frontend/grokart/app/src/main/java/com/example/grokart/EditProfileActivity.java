@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,23 +31,25 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import android.widget.Spinner;
+import android.widget.Toast;
 /*
 * Reminder: to get store name, use
 *       stores.getJSONObject(indexNum).get("storeName").toString()
 */
 
-public class EditProfileActivity extends AppCompatActivity {
-    private EditText et_name, et_email, et_preferredStore;
+public class EditProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private EditText et_name, et_email;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username;
     private JSONObject user;
-    private JSONArray stores;
     private Spinner storesMenu;
+    private List<String> storesList;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -66,14 +70,15 @@ public class EditProfileActivity extends AppCompatActivity {
         // sets the text and button objects here to their matched pair in the layout
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
-        et_preferredStore = findViewById(R.id.et_preferredStore);
         msgResponse = findViewById(R.id.msgResponse);
-        storesMenu = findViewById(R.id.storesDropdown);
-        try {
-            makeMenu();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        storesMenu = findViewById(R.id.spinner);
+        getStores();
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.activity_list_item, storesList);
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.activity_list_item);
+        // attaching data adapter to spinner
+        storesMenu.setAdapter(dataAdapter);
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
         /*
@@ -95,21 +100,19 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void makeMenu() throws JSONException {
-        getStores();
-        String[] storesArray = new String[stores.length()];
-        for(int i = 0; i < storesArray.length; i++) {
-                storesArray[i] = stores.getJSONObject(0).get("storeName").toString();
-        }
-    }
-
     private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
-                        stores = response;
+                        for(int i = 0; i < response.length(); i++) {
+                            try {
+                                storesList.add( response.getJSONObject(i).get("storeName").toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -163,7 +166,7 @@ public class EditProfileActivity extends AppCompatActivity {
         try {
             user.put("displayName", et_name.getText().toString());
             user.put("email", et_email.getText().toString());
-            user.put("preferredStore", et_preferredStore.getText().toString());
+            user.put("preferredStore", storesMenu.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -231,5 +234,18 @@ public class EditProfileActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+
     }
 }
