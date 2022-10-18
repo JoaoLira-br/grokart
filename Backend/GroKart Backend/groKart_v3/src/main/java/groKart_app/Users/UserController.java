@@ -125,7 +125,6 @@ public class UserController {
         return success;
     }
 
-
     /**
      * DELETE USER
      * @param userName
@@ -136,4 +135,7 @@ public class UserController {
         userRepository.deleteByUserName(userName);
         return success;
     }
+
+    //TODO prefferedStore mapping needed here
+    
 }

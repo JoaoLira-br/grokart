@@ -20,7 +20,8 @@ public class User {
     private String emailAdd;
     private String password;
     private String displayName;
-    private int privilege;
+    private int privilege; //TODO return this to classify user
+    //TODO add preferredStore so that they can retrieve the items
 
     public User(String userName, String emailAdd, String password, String displayName, int privilege) {
         this.userName = userName;
