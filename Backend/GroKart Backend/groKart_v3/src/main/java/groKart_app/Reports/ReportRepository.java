@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ReportRepository extends JpaRepository<Report, Long>{
     Report findById(int id);
 
-    Report findByTitle(String reportTitle);
+    Report findByReportTitle(String reportTitle);
 
-    boolean existsByTitleAndStoreName(String reportTitle, String storeName);
+    boolean existsByReportTitleAndStoreName(String reportTitle, String storeName);
 
     @Transactional
-    void deleteByTitleAndId(String reportTitle, int id);
+    void deleteByReportTitleAndId(String reportTitle, int id);
 }

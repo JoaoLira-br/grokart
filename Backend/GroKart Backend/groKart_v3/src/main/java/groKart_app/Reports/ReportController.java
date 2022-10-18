@@ -37,7 +37,7 @@ public class ReportController {
     String createReport(@RequestBody Report report){
         if(report == null){
             return failure;
-        } else if (reportRepository.existsByTitleAndStoreName(report.getReportTitle(),report.getStoreName())) {
+        } else if (reportRepository.existsByReportTitleAndStoreName(report.getReportTitle(),report.getStoreName())) {
             report.setCount(report.getCount()+1);
             reportRepository.save(report);
             return success;
@@ -53,7 +53,7 @@ public class ReportController {
      */
     @DeleteMapping(path = "/reports/{reportTitle}/{reportId}")
     String deleteReport(@PathVariable int reportId, @PathVariable String reportTitle) {
-        reportRepository.deleteByTitleAndId(reportTitle,reportId);
+        reportRepository.deleteByReportTitleAndId(reportTitle,reportId);
         return success;
     }
 }
