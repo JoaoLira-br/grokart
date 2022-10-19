@@ -148,6 +148,8 @@
         android:layout_marginTop="10dp"
         android:background="@color/teal_700"
         android:backgroundTint="#D9D9D9"
+         android:backgroundTintMode="src_in"
+        android:ems="10"
         android:contentDescription="@string/preferred_store"
         android:minHeight="48dp"
         android:spinnerMode="dropdown"
