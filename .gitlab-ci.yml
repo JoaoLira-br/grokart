@@ -1,6 +1,8 @@
 stages: 
-- maventry
-- androidtry
+- mavenbuild
+-maventest
+-androidbuild
+- androidtest
 
 maven-build:
   stage: mavenbuild
