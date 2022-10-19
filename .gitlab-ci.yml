@@ -1,7 +1,7 @@
 stages: 
 - mavenbuild
--maventest
--androidbuild
+- maventest
+- androidbuild
 - androidtest
 
 maven-build:
@@ -9,7 +9,7 @@ maven-build:
   tags: 
     - springboot_tag
   script: 
-    - cd Backend/groKart_v3
+    - cd Backend/groKart_v3/
     - mvn package
 
 maven-test: 
@@ -17,7 +17,7 @@ maven-test:
   tags: 
     - springboot_tag
   script: 
-    - cd Backend/groKart_v3
+    - cd Backend/groKart_v3/
     - mvn test
   artifacts: 
     paths: 
@@ -32,7 +32,7 @@ android-build:
   tags: 
     - android_tag
   script: 
-    - cd Frontend/grokart
+    - cd Frontend/grokart/
     - ./gradlew build
   artifacts: 
    paths: 
@@ -47,5 +47,5 @@ android-test:
   tags:
     - android_tag
   script:
-    - cd Frontend/grokart
+    - cd Frontend/grokart/
     - ./gradlew test
