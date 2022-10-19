@@ -20,3 +20,30 @@ maven-test:
   artifacts: 
     paths: 
       - Backend/groKart_v3/target/*.jar
+
+android-build:
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/grokart
+  tags: 
+    - android_tag
+  script: 
+    - cd Frontend/grokart
+    - ./gradlew build
+  artifacts: 
+   paths: 
+   - Android_test/app/build/outputs
+
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/grokart/gradlew
+  tags:
+    - android_tag
+  script:
+    - cd Frontend/grokart
+    - ./gradlew test
