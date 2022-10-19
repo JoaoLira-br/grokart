@@ -9,7 +9,7 @@ maven-build:
   tags: 
     - springboot_tag
   script: 
-    - cd Backend/groKartApplication
+    - cd Backend/groKart_v3
     - mvn package
 
 maven-test: 
