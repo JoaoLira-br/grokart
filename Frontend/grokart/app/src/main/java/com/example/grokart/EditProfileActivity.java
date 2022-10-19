@@ -48,8 +48,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private TextView msgResponse;
     private String username;
     private JSONObject user;
-    private Spinner storesMenu;
-    private List<String> storesList;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 
@@ -71,14 +69,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
         msgResponse = findViewById(R.id.msgResponse);
-        storesMenu = findViewById(R.id.spinner);
-        getStores();
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.activity_list_item, storesList);
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.activity_list_item);
-        // attaching data adapter to spinner
-        storesMenu.setAdapter(dataAdapter);
+
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
         /*
@@ -98,32 +89,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         });
-    }
-
-    private void getStores() {
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        for(int i = 0; i < response.length(); i++) {
-                            try {
-                                storesList.add( response.getJSONObject(i).get("storeName").toString());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req,
-                tag_json_arry);
     }
 
     /*
@@ -166,7 +131,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         try {
             user.put("displayName", et_name.getText().toString());
             user.put("email", et_email.getText().toString());
-            user.put("preferredStore", storesMenu.getText().toString());
+            user.put("preferredStore", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }
