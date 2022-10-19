@@ -1,0 +1,11 @@
+stages: 
+- maventry
+- androidtry
+
+maven-build:
+  stage: mavenbuild
+  tags: 
+    - springboot_tag
+  script: 
+    - cd Backend
+    - mvn package
