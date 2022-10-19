@@ -7,5 +7,16 @@ maven-build:
   tags: 
     - springboot_tag
   script: 
-    - cd Backend
+    - cd Backend/groKart_v3
     - mvn package
+
+maven-test: 
+  stage: maventest
+  tags: 
+    - springboot_tag
+  script: 
+    - cd Backend/groKart_v3
+    - mvn test
+  artifacts: 
+    paths: 
+      - Backend/groKart_v3/target/*.jar
