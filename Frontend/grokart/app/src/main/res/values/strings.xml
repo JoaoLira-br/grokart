@@ -25,17 +25,22 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Strings related to edit profile -->
-    <string name = "edit_profile">Edit Profile</string>
-    <string name = "phone">Phone Number</string>
-    <string name = "name">Name</string>
-    <string name = "preferred_store">Preferred Store</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="phone">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="preferred_store">Preferred Store</string>
     <string name="edit_response_success">Your profile has been successfully updated</string>
     <string name="edit_response_failure">Failed to update profile</string>
     <!-- Strings related to dashboard -->
-    <string name = "create_list">Create new list</string>
+    <string name="create_list">Create new list</string>
     <string name="edit_profile_lc">Edit profile</string>
     <string name="view_lists">View lists</string>
+    <!-- Strings related to Admin User   -->
+    <string name="create_new_storesAdm">Create New Store Admin</string>
+    <string name="app_activity">Show App Activity</string>
+    <string name="hide_app_activity">Hide App Activity</string>
+    <string name="user_count_title">Users Count</string>
+    <string name="store_count_title">Stores Count</string>
 
-
-
+    <string name="action_settings">Settings</string>
 </resources>

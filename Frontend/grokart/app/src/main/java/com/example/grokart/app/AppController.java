@@ -9,14 +9,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 public class AppController extends Application {
 
-	public static final String TAG = AppController.class
-			.getSimpleName();
 
+	public static HashMap<String, JSONObject> users = new HashMap<>();
+
+	public static final String TAG = AppController.class.getSimpleName();
 	private RequestQueue mRequestQueue;
 	private ImageLoader mImageLoader;
-
 	private static AppController mInstance;
 
 	@Override
@@ -28,6 +32,7 @@ public class AppController extends Application {
 	public static synchronized AppController getInstance() {
 		return mInstance;
 	}
+
 
 	public RequestQueue getRequestQueue() {
 		if (mRequestQueue == null) {
