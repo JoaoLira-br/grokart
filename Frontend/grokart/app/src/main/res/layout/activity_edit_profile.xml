@@ -118,6 +118,7 @@
         android:id="@+id/btn_editProfile"
         android:layout_width="184dp"
         android:layout_height="53dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/green"
         android:text="@string/edit_profile"
         android:textSize="16sp"
@@ -125,6 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
@@ -139,6 +141,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_editProfileTitle" />
 
-    <!-- Spinner Element -->
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:contentDescription="@string/preferred_store"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preferredStore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
