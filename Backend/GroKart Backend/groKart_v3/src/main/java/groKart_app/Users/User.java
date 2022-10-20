@@ -20,15 +20,18 @@ public class User {
     private String emailAdd;
     private String password;
     private String displayName;
-    private int privilege; //TODO return this to classify user
-    //TODO add preferredStore so that they can retrieve the items
 
-    public User(String userName, String emailAdd, String password, String displayName, int privilege) {
+    //privilege --> base_user = 0, store_admin = 1, app-admin = 2
+    private int privilege;
+    private String preferredStore;
+
+    public User(String userName, String emailAdd, String password, String displayName, int privilege, String preferredStore) {
         this.userName = userName;
         this.emailAdd = emailAdd;
         this.password = password;
         this.displayName = displayName;
         this.privilege = privilege;
+        this.preferredStore = preferredStore;
     }
 
     public User() {
@@ -71,5 +74,9 @@ public class User {
     public void setPrivilege(int privilege) { this.privilege = privilege; }
 
     public int getPrivilege() { return this.privilege; }
+
+    public String getPreferredStore() {return preferredStore;}
+
+    public void setPreferredStore(String preferredStore) {this.preferredStore = preferredStore;}
     
 }

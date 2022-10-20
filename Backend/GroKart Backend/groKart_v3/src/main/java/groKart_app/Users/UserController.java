@@ -1,5 +1,6 @@
 package groKart_app.Users;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    Hashtable<String, Integer> login = new Hashtable<>();
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -59,11 +62,13 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/users/{userName}/{password}")
-    String getUserById( @PathVariable String userName, @PathVariable String password) {
+    Hashtable getUserForLogin( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
 
-        if (user == null) return failure;
-        else return success;
+        if (user == null) {login.put(failure,null); return login;}
+        else {
+            login.put(success,user.getPrivilege()); return login;
+        }
     }
 
     /**
@@ -135,7 +140,11 @@ public class UserController {
         userRepository.deleteByUserName(userName);
         return success;
     }
-
-    //TODO prefferedStore mapping needed here
+    
+    @GetMapping(path = "/user/{userName}")
+    String getPreferredStore( @PathVariable String userName){
+        User user = userRepository.findByUserName(userName);
+        return user.getPreferredStore();
+    }
     
 }
