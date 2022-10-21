@@ -47,11 +47,12 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private EditText et_name, et_email;
     private final String TAG = RegisterActivity.class.getSimpleName();
     private TextView msgResponse;
-    private String username;
+    private String username = "";
     private JSONObject user;
+    private Toolbar myToolbar;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
-    private ArrayList<String> fakeArray;
+    private ArrayList<String> storesArray;
     private Spinner storesMenu;
 
 
@@ -64,7 +65,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
         //adds in updated toolbar
-        Toolbar myToolbar = findViewById(R.id.toolbar);
+        myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -73,9 +74,9 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         et_email = findViewById(R.id.et_email);
         msgResponse = findViewById(R.id.msgResponse);
         storesMenu = findViewById(R.id.spinner);
-        fakeArray = new ArrayList<String>();
+        storesArray = new ArrayList<String>();
         getStores();
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, fakeArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, storesArray);
         storesMenu.setAdapter(adapter);
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
@@ -90,7 +91,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
             public void onClick(View view) {
                 try {
                     user = jsonGetUser();
-                    user = editUser();
                     jsonUpdateUser(user);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -107,7 +107,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                         Log.d(TAG, response.toString());
                         for(int i = 0; i < response.length(); i++) {
                             try {
-                                fakeArray.add(response.getJSONObject(i).get("storeName").toString());
+                                storesArray.add(response.getJSONObject(i).get("storeName").toString());
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -129,31 +129,33 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
      * This method gets the current user logged in by using the username passed by the intent
      * */
     private JSONObject jsonGetUser() {
-        String path = Const.URL_SERVER_USERS + "/" + username;
+        String path = Const.URL_SAMPLE_READ_USER_GET + username;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, path, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         user = response;
+                        editUser(user);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-            @Override
-            protected Map<String, String> getParams() {
-                return new HashMap<>();
-            }
-        };
+        });
+//        {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                HashMap<String, String> headers = new HashMap<>();
+//                headers.put("Content-Type", "application/json");
+//                return headers;
+//            }
+//            @Override
+//            protected Map<String, String> getParams() {
+//                return new HashMap<>();
+//            }
+//        };
         AppController.getInstance().addToRequestQueue(request, tag_json_obj);
         return user;
     }
@@ -161,11 +163,11 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     /*
      * This adds in the new inputted information added to the profile to the user object
      * */
-    private JSONObject editUser(){
+    private JSONObject editUser(JSONObject curUser){
         try {
-            user.put("displayName", et_name.getText().toString());
-            user.put("email", et_email.getText().toString());
-            user.put("preferredStore", storesMenu.getSelectedItem().toString());
+            curUser.put("displayName", et_name.getText().toString());
+            curUser.put("emailAdd", et_email.getText().toString());
+            // user.put("preferredStore", storesMenu.getSelectedItem().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -177,27 +179,28 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     * to update the user info in the backend.
     */
     private void jsonUpdateUser(JSONObject editedUser) throws JSONException {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, Const.URL_SAMPLE_UPDATE_OR_DELETE_USER, editedUser,
+//        String path = Const.URL_SERVER_USERS + username;
+        String path = Const.URL_SAMPLE_UPDATE_OR_DELETE_USER;
+        path = path.replaceAll(" ", "%20");
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, editedUser,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
-                        try {
-                            msgResponse.setText(response.getString("message"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        msgResponse.setText("Updated successfully");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                msgResponse.setText("Failed to update");
             }
-        }) {
+        })
+        {
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
+                headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
             @Override
