@@ -9,7 +9,6 @@ maven-build:
   tags: 
     - springboot_tag
   script: 
-    - export PATH=$PATH:/opt/maven3/bin
     - cd Backend/groKart_v3
     - mvn package
 
@@ -18,7 +17,6 @@ maven-test:
   tags: 
     - springboot_tag
   script: 
-    - export PATH=$PATH:/opt/maven3/bin
     - cd Backend/groKart_v3
     - mvn test
   artifacts: 
