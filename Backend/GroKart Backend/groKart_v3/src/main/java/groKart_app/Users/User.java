@@ -1,6 +1,11 @@
 package groKart_app.Users;
 
+import groKart_app.Items.Item;
+import groKart_app.Reports.Report;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //import org.hibernate.annotations.Table;
 
@@ -25,6 +30,9 @@ public class User {
     private int privilege;
     private String preferredStore;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Report> reports;
+
     public User(String userName, String emailAdd, String password, String displayName, int privilege, String preferredStore) {
         this.userName = userName;
         this.emailAdd = emailAdd;
@@ -32,10 +40,10 @@ public class User {
         this.displayName = displayName;
         this.privilege = privilege;
         this.preferredStore = preferredStore;
+        reports = new ArrayList<>();
     }
 
-    public User() {
-    }
+    public User() {reports = new ArrayList<>();}
 
     // =============================== Getters and Setters for each field ================================== //
 
@@ -78,5 +86,11 @@ public class User {
     public String getPreferredStore() {return preferredStore;}
 
     public void setPreferredStore(String preferredStore) {this.preferredStore = preferredStore;}
-    
+
+    public List<Report> getReports(){return reports;}
+
+    public void setReports(List<Report> reports) {this.reports = reports;}
+
+    public void removeReports(Report reports){this.reports.remove(reports);}
+
 }

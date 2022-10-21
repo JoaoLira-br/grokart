@@ -1,9 +1,11 @@
 package groKart_app.Reports;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 import javax.persistence.*;
+import groKart_app.Users.User;
 
 @Entity
 @Table(name = "Reports")
@@ -13,12 +15,15 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //TODO: Need to map the User to this class
-
     private String reportTitle;
     private String description;
     private String storeName;
     private int count;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Report(int id, String reportTitle, String description, String storeName) {
         this.id = id;
@@ -68,5 +73,13 @@ public class Report {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

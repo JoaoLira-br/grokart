@@ -55,7 +55,7 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    /**
+    /**TODO need to check the hashtable
      * LOGIN
      * @param userName
      * @param password
@@ -140,7 +140,12 @@ public class UserController {
         userRepository.deleteByUserName(userName);
         return success;
     }
-    
+
+    /**
+     * GET PREFERRED STORE FOR USER
+     * @param userName
+     * @return
+     */
     @GetMapping(path = "/user/{userName}")
     String getPreferredStore( @PathVariable String userName){
         User user = userRepository.findByUserName(userName);
