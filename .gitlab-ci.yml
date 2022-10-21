@@ -21,7 +21,18 @@ maven-test:
     - mvn test
   artifacts: 
     paths: 
-      - Backend/groKart_v3/target/*.jar
+      - Backend/groKart_v3/target/*.jar 
+
+autoDeploy:
+  stage: mavenDeploy
+  tags:
+    - springboot_tag
+  script:
+    - cd Backend/groKart_v3
+    - mvn package
+    - sudo mv target/*.jar /target/web-demo.jar
+    - sudo systemctl stop system-web-demo
+    - sudo systemctl start system-web-demo
 
 android-build:
   image: gjandres/android-ci:latest
