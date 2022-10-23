@@ -1,5 +1,8 @@
 package groKart_app.Users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import groKart_app.Karts.Kart;
+
 import javax.persistence.*;
 
 //import org.hibernate.annotations.Table;
@@ -15,6 +18,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+//    @ManyToOne
+//    @JoinColumn(name = "kart_id")
+//    @JsonIgnore
+//    private Kart kart;
 
     private String userName;
     private String emailAdd;

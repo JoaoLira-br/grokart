@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31b9d1ee-baa3-412b-b240-5554e99ae75e" name="Changes" comment="" />
+    <list default="true" id="31b9d1ee-baa3-412b-b240-5554e99ae75e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar.original" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,13 +32,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -60,7 +78,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/GroKart Backend/groKart_v3",
+    "last_opened_file_path": "/home/charlie/309/1_cw_3/Backend/groKart_v3",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",

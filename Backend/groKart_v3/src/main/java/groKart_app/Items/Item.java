@@ -1,5 +1,8 @@
 package groKart_app.Items;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import groKart_app.Karts.Kart;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +11,11 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "kart_id")
+    @JsonIgnore
+    private Kart kart;
 
     private String name;
     private double price;
