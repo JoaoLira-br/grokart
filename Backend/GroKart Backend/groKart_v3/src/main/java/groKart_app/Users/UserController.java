@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class UserController {
 
@@ -62,12 +60,11 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/users/{userName}/{password}")
-    Hashtable getUserForLogin( @PathVariable String userName, @PathVariable String password) {
+    int getUserForLogin( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
-
-        if (user == null) {login.put(failure,null); return login;}
+        if (user == null) {return -1;}
         else {
-            login.put(success,user.getPrivilege()); return login;
+            return user.getPrivilege();
         }
     }
 
@@ -151,5 +148,5 @@ public class UserController {
         User user = userRepository.findByUserName(userName);
         return user.getPreferredStore();
     }
-    
+
 }
