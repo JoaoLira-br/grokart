@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
+import com.example.grokart.tabbedNavigation.TabbedNavigationActivity;
 import com.example.grokart.utils.Const;
 
 import org.json.JSONException;
@@ -163,7 +164,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, TabbedNavigationActivity.class);
                 startActivity(intent);
                 this.finish();
                 return true;
