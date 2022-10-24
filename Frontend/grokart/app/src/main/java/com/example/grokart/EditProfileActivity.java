@@ -89,12 +89,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    user = jsonGetUser();
-                    jsonUpdateUser(user);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                user = jsonGetUser();
             }
         });
     }
@@ -136,7 +131,11 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         user = response;
-                        editUser(user);
+                        try {
+                            jsonUpdateUser(user);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -161,28 +160,15 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     }
 
     /*
-     * This adds in the new inputted information added to the profile to the user object
-     * */
-    private JSONObject editUser(JSONObject curUser){
-        try {
-            curUser.put("displayName", et_name.getText().toString());
-            curUser.put("emailAdd", et_email.getText().toString());
-            // user.put("preferredStore", storesMenu.getSelectedItem().toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }
-
-    /*
     * This method sends a Json object put request
     * to update the user info in the backend.
     */
-    private void jsonUpdateUser(JSONObject editedUser) throws JSONException {
-//        String path = Const.URL_SERVER_USERS + username;
-        String path = Const.URL_SAMPLE_UPDATE_OR_DELETE_USER;
+    private void jsonUpdateUser(JSONObject curUser) throws JSONException {
+        String path = Const.URL_SERVER_USERS + username;
         path = path.replaceAll(" ", "%20");
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, editedUser,
+        curUser.put("displayName", et_name.getText().toString());
+        curUser.put("emailAdd", et_email.getText().toString());
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
