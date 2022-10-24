@@ -19,8 +19,8 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.grokart.tabbedNavigation.LibraryFragment"
+        android:name="com.example.grokart.tabbedNavigation.ListsFragment"
         android:label="@string/title_library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_lists" />
 
 </navigation>

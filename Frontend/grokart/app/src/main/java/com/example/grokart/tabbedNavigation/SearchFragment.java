@@ -14,6 +14,9 @@ import com.example.grokart.databinding.FragmentSearchBinding;
 public class SearchFragment extends Fragment {
     private @NonNull FragmentSearchBinding binding;
 
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

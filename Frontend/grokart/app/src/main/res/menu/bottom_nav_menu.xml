@@ -9,6 +9,6 @@
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_library"
-        android:title="@string/title_library" />
+        android:id="@+id/navigation_lists"
+        android:title="@string/title_lists" />
 </menu>

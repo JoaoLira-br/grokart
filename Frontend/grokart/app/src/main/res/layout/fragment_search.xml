@@ -43,20 +43,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
-    <ScrollView
-        android:layout_width="410dp"
-        android:layout_height="529dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!--Recycler view for displaying list of contacts-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVProfiles"
+        android:layout_width="418dp"
+        android:layout_height="517dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:ignore="SpeakableTextPresentCheck">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
