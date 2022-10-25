@@ -19,14 +19,12 @@ import java.util.Map;
 
 public class getRequest implements RequestITF {
     private String path;
-    private JSONObject user;
     private HashMap<String, String> responseHM;
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private String TAG; //adf
-    public getRequest(String path, JSONObject user, Intent intent, String TAG) {
+    public getRequest(String path, Intent intent, String TAG) {
         this.path = path;
-        this.user = user;
         this.TAG = TAG;
         this.responseHM = new HashMap<>();
     }
@@ -35,20 +33,12 @@ public class getRequest implements RequestITF {
         return responseHM;
     }
 
-    public String getUrl() {
+    public String getPath() {
         return path;
-    }
-
-    public JSONObject getUser() {
-        return user;
     }
 
     public void setUrl(String path) {
         this.path = path;
-    }
-
-    public void setUser(JSONObject user) {
-        this.user = user;
     }
 
     @Override

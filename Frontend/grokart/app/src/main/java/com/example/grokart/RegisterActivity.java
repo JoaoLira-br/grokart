@@ -1,8 +1,5 @@
 package com.example.grokart;
 
-import static java.lang.Thread.currentThread;
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,10 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
-
+import com.example.grokart.Requests.getRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,8 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
-
-
+    private String userName;
+    private String password;
+    private String path;
 
 
 
@@ -86,80 +83,112 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(checkInputs()){
-//                    String path = (Const.URL_USER_PSTMN + "?username="+username.trim()+"&password="+password).replaceAll("\\s", "");
-                        String userName = et_username.getText().toString();
-                        String password = et_password.getText().toString();
-                        String path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
-                        Log.d(TAG, path);
+
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+
 
 
 //        showProgressDialog();
-                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                                new Response.Listener<JSONObject>()  {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
+                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
+                                    new Response.Listener<JSONObject>()  {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
 //                                        setSuccessfulLoginCheck(true);
 //                                        AppController.users.put(et_username.toString(), response);
-                                        jsonResponse = response.toString();
+                                            jsonResponse = response.toString();
 
-                                        try {
-                                            Log.d(TAG, response.get("message").toString());
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        try {
-                                            //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
-                                            msgResponse.setText(response.toString());
-                                            if(response.get("message").toString().equals("success")) {
-                                                sendToHomePage(v, userName, 0);
+                                            try {
+                                                Log.d(TAG, response.get("message").toString());
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
                                             }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
+                                            try {
+                                                //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
+                                                msgResponse.setText(response.toString());
+                                                if(response.get("message").toString().equals("success")) {
+                                                    sendToHomePage(v, userName, 0);
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
                                         }
-                                    }
 //                        hideProgressDialog();
-                                }
-                                , new Response.ErrorListener() {
+                                    }
+                                    , new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
 
-                                VolleyLog.d(TAG, "Unfortunately we got an error");
-                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                    VolleyLog.d(TAG, "Unfortunately we got an error");
+                                    VolleyLog.d(TAG, "Error: " + error.getMessage());
 //                hideProgressDialog();
-                                msgResponse.setText(error.getMessage());
-                            }
-                        }) {
+                                    msgResponse.setText(error.getMessage());
+                                }
+                            }) {
 
-                            /**
-                             * Passing some request headers
-                             * */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
+                                /**
+                                 * Passing some request headers
+                                 * */
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    HashMap<String, String> headers = new HashMap<String, String>();
+                                    headers.put("Content-Type", "application/json");
+                                    return headers;
+                                }
 
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
 //                params.put("name", "Androidhive");
 //                params.put("email", "abc@androidhive.info");
 //                params.put("pass", "password123");
 
-                return params;
-            }
-                        };
+                                    return params;
+                                }
+                            };
 
-                        // Adding request to request queue
-                        AppController.getInstance().addToRequestQueue(jsonObjReq,
-                                tag_json_obj);
+                            // Adding request to request queue
+                            AppController.getInstance().addToRequestQueue(jsonObjReq,
+                                    tag_json_obj);
 
-                        // Cancelling request
-                        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+                            // Cancelling request
+                            // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
                     }
+                };
+
+                Runnable run2 = new Runnable() {
+                    @Override
+                    public void run() {
+                        String successfulLogin = msgResponse.getText().toString();
+                        if(successfulLogin.equals("success")){
+                            sendToHomePage(v, userName, 0);
+                        }else{
+                            Toast toast = Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                };
+                if(checkInputs()) {
+//                    String path = (Const.URL_USER_PSTMN + "?username="+username.trim()+"&password="+password).replaceAll("\\s", "");
+                    userName = et_username.getText().toString();
+                    password = et_password.getText().toString();
+                    path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
+                    Log.d(TAG, path);
+                    Thread request = new Thread(run);
+                    Thread responseHandler = new Thread(run2);
+                    request.start();
+                    try {
+                        request.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    responseHandler.start();
+                }
+
+
             }
 
         });
@@ -385,8 +414,5 @@ public class RegisterActivity extends AppCompatActivity {
             //TODO if user is store admin send him to store admin home page
         }
     }
-
-
-
 
 }
