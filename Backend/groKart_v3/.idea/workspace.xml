@@ -5,136 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31b9d1ee-baa3-412b-b240-5554e99ae75e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/application.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/MainBoot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/WelcomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/grocery/Item.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/grocery/ItemController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/lists/ItemList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/lists/ItemListController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/users/AppUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/users/AppUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/java/groKartApp/groKart_v2/users/AppUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v2/src/test/java/groKartApp/groKart_v2/MainBootTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_11_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__com_zaxxer_HikariCP_3_4_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_18.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_13_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_39.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_39.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_dom4j_dom4j_2_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_glassfish_jakarta_el_3_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_hibernate_hibernate_core_5_4_23_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_javassist_javassist_3_24_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_jboss_jandex_2_1_3_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_aop_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_beans_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_context_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_core_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_expression_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_orm_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_tx_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_web_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/libraries/Maven__org_yaml_snakeyaml_1_27.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/application.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/application.log.2022-10-19.0.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/application.log.2022-10-23.0.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/groKartApplication.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Items/Item.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Items/ItemController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Items/ItemRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Reports/Report.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Reports/ReportController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Reports/ReportRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Stores/Store.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Stores/StoreController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Stores/StoreRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Users/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Users/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/java/groKart_app/Users/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/bagabhas@coms-309-011.class.las.iastate.edu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Items/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Items/ItemController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Items/ItemRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Reports/Report.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Reports/ReportController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Reports/ReportRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Stores/Store.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Stores/StoreController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Stores/StoreRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Users/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Users/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/classes/groKart_app/Users/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/groKartApplication-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/groKartApplication-1.0.0.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GroKart Backend/groKart_v3/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,17 +60,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.general"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="groKart_app.Main" />

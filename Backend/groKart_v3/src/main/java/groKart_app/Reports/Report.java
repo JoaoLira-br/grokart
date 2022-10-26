@@ -18,6 +18,7 @@ public class Report {
     private String reportTitle;
     private String description;
     private String storeName;
+    private String reportStatus;
     private int count;
 
     @ManyToOne
@@ -81,5 +82,14 @@ public class Report {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+    public String getReportStatus() {
+        return reportStatus;
+    }
+
+    public void setReportStatus(String reportStatus) {
+        this.reportStatus = reportStatus;
     }
 }

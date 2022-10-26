@@ -1,6 +1,8 @@
 package groKart_app.Reports;
 
 import groKart_app.Items.Item;
+import groKart_app.Users.User;
+import groKart_app.Users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ public class ReportController {
 
     @Autowired
     ReportRepository reportRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -56,4 +61,16 @@ public class ReportController {
         reportRepository.deleteByReportTitleAndId(reportTitle,reportId);
         return success;
     }
+
+    /**
+     * GET REPORT STATUS
+     * @param reportId
+     * @return
+     */
+    @GetMapping(path = "/reports/{reportId}/status")
+    String getStatus(@PathVariable int reportId){
+        Report report = reportRepository.findById(reportId);
+        return report.getReportStatus();
+    }
+
 }
