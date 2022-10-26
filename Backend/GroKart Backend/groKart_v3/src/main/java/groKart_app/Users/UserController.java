@@ -1,6 +1,5 @@
 package groKart_app.Users;
 
-import java.util.Hashtable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-
-    Hashtable<String, Integer> login = new Hashtable<>();
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -53,7 +50,7 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    /**TODO need to check the hashtable
+    /**
      * LOGIN
      * @param userName
      * @param password
@@ -66,7 +63,7 @@ public class UserController {
         else {
             return user.getPrivilege();
         }
-    }
+    }/*TODO check with team on how they set the privilege in the front end*/
 
     /**
      * CREATE USER
@@ -143,7 +140,7 @@ public class UserController {
      * @param userName
      * @return
      */
-    @GetMapping(path = "/user/{userName}")
+    @GetMapping(path = "/user/{userName}/preferredStore")
     String getPreferredStore( @PathVariable String userName){
         User user = userRepository.findByUserName(userName);
         return user.getPreferredStore();
