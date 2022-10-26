@@ -36,14 +36,12 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgResponse, tv_JSONOutput, tv_appName;
     private Button btn_register, btn_login;
     private final String TAG = RegisterActivity.class.getSimpleName();
-//    private boolean successfulLogin;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
-    private String userName;
-    private String password;
     private String path;
-    private GetRequest testing;
+    private GetRequest getRequest;
+    private final String loginFailedMsg= "Login Failed";
 
 
 
@@ -79,52 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-
-                 Runnable run2 = new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        String response = String.valueOf(testing.getResponseHM().get("message"));
-
-                        if(response.equals("success")){
-                            sendToHomePage(v, userName, 0);
-                        }else{
-                           msgResponse.setText(response);
-                        }
-
-                    }
-                };
-                if(checkInputs()) {
-//                    String path = (Const.URL_USER_PSTMN + "?username="+username.trim()+"&password="+password).replaceAll("\\s", "");
-                    userName = et_username.getText().toString();
-                    password = et_password.getText().toString();
-                    path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
-                    testing = new GetRequest(path);
-                    Runnable request = testing.makeRequest();
-
-                    Thread requestThread = new Thread(request);
-                    requestThread.start();
-                    Log.d(TAG, path);
-                    Thread responseHandler = new Thread(run2);
-                    try {
-                        requestThread.join();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-               responseHandler.start();
-
-                }
-
-
+                proceedLogin(v);
             }
 
         });
-        Log.d(TAG, "onCreate: "+ msgResponse.getText().toString());
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                 //TODO have REGISTER button send input to backend and proceed to Home page
                 // with response as Intent Extra
                 if( checkInputs()) {
-                    String userName = et_username.getText().toString();
-                    String password = et_password.getText().toString();
-                    user = createUser(userName, password);
-
-
+                    user = createUser();
                     jsonObjPostReq(user);
 
                 }
@@ -147,7 +99,35 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+    private void setPathAddress(){
+         String username = et_username.getText().toString();
+         String password = et_password.getText().toString();
+        path = (Const.URL_SERVER_USERS + username + "/" + password).replaceAll("\\s", "");
 
+    }
+    private void proceedLogin(View v){
+        if(checkInputs()) {
+            setPathAddress();
+            getRequest = new GetRequest(path, TAG);
+            Thread loginRequest = getRequest.createRequestThread();
+            Thread loginResponse = getRequest.createResponsehandler(()->{
+                String response = String.valueOf(getRequest.getResponseHM().get("message"));
+                if(response.equals("success")){
+                    sendToHomePage(v, et_username.getText().toString(), 0);
+                }else{
+                    Toast.makeText(getApplicationContext(), loginFailedMsg, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            loginRequest.start();
+            try {
+                loginRequest.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           loginResponse.start();
+        }
+    };
 
     private Boolean checkInputs() {
         int invalidCounter = 0;
@@ -166,87 +146,16 @@ public class RegisterActivity extends AppCompatActivity {
         // after all validation return true.
     }
 
-    private JSONObject createUser(String userName, String password){
+    private JSONObject createUser(){
         user = new JSONObject();
         try {
-            user.put("userName", userName);
-            user.put("password", password);
+            user.put("userName", et_username.getText().toString());
+            user.put("password", et_password.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return user;
     }
-
-
-
-
-    private void jsonObjGetReq(String path) {
-
-//        showProgressDialog();
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                new Response.Listener<JSONObject>()  {
-                    @Override
-                    public void onResponse(JSONObject response) {
-//                        setSuccessfulLoginCheck(true);
-
-                        AppController.users.put(et_username.toString(), response);
-                        jsonResponse = response.toString();
-                        Log.d(TAG, jsonResponse);
-
-
-
-
-                        }
-
-
-
-
-
-//                        hideProgressDialog();
-                    }
-                , new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                VolleyLog.d(TAG, "Unfortunately we got an error");
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-                msgResponse.setText(error.getMessage());
-            }
-        }) {
-
-            /**
-             * Passing some request headers
-             * */
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("Content-Type", "application/json");
-//                return headers;
-//            }
-
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<String, String>();
-////                params.put("name", "Androidhive");
-////                params.put("email", "abc@androidhive.info");
-////                params.put("pass", "password123");
-//
-//                return params;
-//            }
-
-        };
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(jsonObjReq,
-                tag_json_obj);
-
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
-    }
-
-
 
     private void jsonObjPostReq(JSONObject user) {
 //        showProgressDialog();

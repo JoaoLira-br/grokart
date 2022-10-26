@@ -14,6 +14,7 @@ import android.content.Intent;
 
 public interface RequestITF {
 
-  public  Runnable makeRequest();
+  public Thread createRequestThread();
+
   public void storeOnHash(JSONObject response);
 }
