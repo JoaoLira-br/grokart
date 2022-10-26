@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import groKart_app.Karts.Kart;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Item")
@@ -12,10 +14,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "kart_id")
     @JsonIgnore
-    private Kart kart;
+    private List<Kart> karts;
 
     private String name;
     private double price;
@@ -27,10 +29,11 @@ public class Item {
         this.price = price;
         this.storeName = storeName;
         this.quantityAvailable = quantityAvailable;
+        karts = new ArrayList<Kart>();
     }
 
     public Item() {
-
+        karts = new ArrayList<Kart>();
     }
 
     public int getId() {
@@ -67,5 +70,16 @@ public class Item {
 
     public void setQuantityAvailable(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
+    }
+
+    public void addKart(Kart kart) {
+        karts.add(kart);
+    }
+    public void removeKart(Kart kart) {
+        karts.remove(kart);
+    }
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Store: " + storeName;
     }
 }

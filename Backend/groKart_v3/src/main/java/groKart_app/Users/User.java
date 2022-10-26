@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import groKart_app.Karts.Kart;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //import org.hibernate.annotations.Table;
 
@@ -19,10 +21,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "kart_id")
-//    @JsonIgnore
-//    private Kart kart;
+    @ManyToMany
+    @JoinColumn(name = "kart_id")
+    @JsonIgnore
+    private List<Kart> karts;
 
     private String userName;
     private String emailAdd;
@@ -36,9 +38,11 @@ public class User {
         this.password = password;
         this.displayName = displayName;
         this.privilege = privilege;
+        karts = new ArrayList<Kart>();
     }
 
     public User() {
+        karts = new ArrayList<Kart>();
     }
 
     // =============================== Getters and Setters for each field ================================== //
@@ -78,5 +82,12 @@ public class User {
     public void setPrivilege(int privilege) { this.privilege = privilege; }
 
     public int getPrivilege() { return this.privilege; }
-    
+
+    public void addKart(Kart kart) {
+        karts.add(kart);
+    }
+
+    public void removeKart(Kart kart) {
+        karts.remove(kart);
+    }
 }

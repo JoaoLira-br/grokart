@@ -1,6 +1,7 @@
 package groKart_app.Karts;
 
 import groKart_app.Items.Item;
+import groKart_app.Users.User;
 
 
 import javax.persistence.*;
@@ -20,21 +21,29 @@ public class Kart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // should be changed to a 1-1 or 1-many relation with a Store object
     private String kartName;
 
-//    @OneToMany(mappedBy = "kart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<User> users;
-    @OneToMany
+    @ManyToOne
+    private User owner;
+    @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
+
+    @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<User> users;
 
     public Kart(String kartName) {
         this.kartName = kartName;
-//        users = new ArrayList<User>();
+        users = new ArrayList<User>();
         items = new ArrayList<Item>();
     }
-
+    public Kart(String kartName, ArrayList<Item> items, ArrayList<User> users) {
+        this.kartName = kartName;
+        this.items = items;
+        this.users = users;
+    }
     public Kart() {
-//        users = new ArrayList<User>();
+        users = new ArrayList<User>();
         items = new ArrayList<Item>();
     }
 
@@ -50,50 +59,34 @@ public class Kart {
         this.kartName = kartName;
     }
 
-//    public List<User> getUsers() {
-//        return users;
-//    }
-
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
-
-//    public void addUser(User user) {
-//        this.users.add(user);
-//    }
-
-//    // I think id will be better for this parameter
-//    public User removeUser(String userName) {
-//        for (User u : users) {
-//            if (u.getUserName().equals(userName)) {
-//                users.remove(u);
-//                return u;
-//            }
-//        }
-//        return null;
-//    }
-
     public List<Item> getItems() {
         return items;
     }
+    public List<User> getUsers() { return users; }
 
     public void setItems(List<Item> items) {
         this.items = items;
     }
+    public void setUsers(List<User> user) { this.users = users; }
 
     public void addItem(Item item) {
         this.items.add(item);
     }
+    public void addUser(User user) { this.users.add(user); }
 
     // I think id will be better for this parameter
-    public Item removeItem(String itemName) {
-        for (Item i : items) {
-            if (i.getName().equals(itemName)) {
-                items.remove(i);
-                return i;
-            }
-        }
-        return null;
+    public void removeItem(Item item) {
+        items.remove(item);
+//        for (Item i : items) {
+//            if (i.getName().equals(itemName)) {
+//                items.remove(i);
+//                return i;
+//            }
+//        }
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
     }
 
     @Override
