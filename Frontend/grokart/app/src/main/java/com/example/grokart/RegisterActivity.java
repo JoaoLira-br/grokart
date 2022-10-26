@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -24,13 +23,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
-import com.example.grokart.Requests.getRequest;
+import com.example.grokart.Requests.GetRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -47,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String userName;
     private String password;
     private String path;
-
+    private GetRequest testing;
 
 
 
@@ -84,91 +80,23 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Runnable run = new Runnable() {
+
+                 Runnable run2 = new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        String response = String.valueOf(testing.getResponseHM().get("message"));
 
-
-
-
-//        showProgressDialog();
-                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                                    new Response.Listener<JSONObject>()  {
-                                        @Override
-                                        public void onResponse(JSONObject response) {
-//                                        setSuccessfulLoginCheck(true);
-//                                        AppController.users.put(et_username.toString(), response);
-                                            jsonResponse = response.toString();
-
-                                            try {
-                                                Log.d(TAG, response.get("message").toString());
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                            try {
-                                                //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
-                                                msgResponse.setText(response.toString());
-                                                if(response.get("message").toString().equals("success")) {
-                                                    sendToHomePage(v, userName, 0);
-                                                }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-//                        hideProgressDialog();
-                                    }
-                                    , new Response.ErrorListener() {
-
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                    VolleyLog.d(TAG, "Unfortunately we got an error");
-                                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-                                    msgResponse.setText(error.getMessage());
-                                }
-                            }) {
-
-                                /**
-                                 * Passing some request headers
-                                 * */
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    HashMap<String, String> headers = new HashMap<String, String>();
-                                    headers.put("Content-Type", "application/json");
-                                    return headers;
-                                }
-
-                                @Override
-                                protected Map<String, String> getParams() {
-                                    Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", "Androidhive");
-//                params.put("email", "abc@androidhive.info");
-//                params.put("pass", "password123");
-
-                                    return params;
-                                }
-                            };
-
-                            // Adding request to request queue
-                            AppController.getInstance().addToRequestQueue(jsonObjReq,
-                                    tag_json_obj);
-
-                            // Cancelling request
-                            // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
-                    }
-                };
-
-                Runnable run2 = new Runnable() {
-                    @Override
-                    public void run() {
-                        String successfulLogin = msgResponse.getText().toString();
-                        if(successfulLogin.equals("success")){
+                        if(response.equals("success")){
                             sendToHomePage(v, userName, 0);
                         }else{
-                            Toast toast = Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT);
-                            toast.show();
+                           msgResponse.setText(response);
                         }
+
                     }
                 };
                 if(checkInputs()) {
@@ -176,16 +104,20 @@ public class RegisterActivity extends AppCompatActivity {
                     userName = et_username.getText().toString();
                     password = et_password.getText().toString();
                     path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
+                    testing = new GetRequest(path);
+                    Runnable request = testing.makeRequest();
+
+                    Thread requestThread = new Thread(request);
+                    requestThread.start();
                     Log.d(TAG, path);
-                    Thread request = new Thread(run);
                     Thread responseHandler = new Thread(run2);
-                    request.start();
                     try {
-                        request.join();
+                        requestThread.join();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    responseHandler.start();
+               responseHandler.start();
+
                 }
 
 
