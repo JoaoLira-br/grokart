@@ -26,17 +26,17 @@ public class PutRequest implements RequestITF {
     private final String tag_json_arry = "jarray_req";
     private String TAG;
     private Thread reqThread;
-    private JSONObject toPost;
+    private JSONObject toPut;
 
-    public PutRequest(String path, String TAG, JSONObject toPost) {
+    public PutRequest(String path, String TAG, JSONObject toPut) {
         this.path = path;
         this.responseHM = new HashMap<>();
         this.TAG = TAG;
-        this.toPost = toPost;
+        this.toPut = toPut;
         this.reqThread = new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPost,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPut,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -108,7 +108,7 @@ public class PutRequest implements RequestITF {
         return new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,path,toPost,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPut,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
