@@ -8,7 +8,7 @@ tags:
 - test_android
 before_script:
 - export GRADLE_USER_HOME='pwd'/.gradle
-- chmod +x .
+- chmod +x ./Frontend/grokart.gradlew
 script:
 - cd Frontend/grokart/
-- ./gradlew assemble
+- ./gradlew test
