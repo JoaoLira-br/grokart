@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class GetRequest implements RequestITF {
+public class DeleteRequest implements RequestITF{
     private String path;
     private final HashMap<String, String> responseHM;
     private final String tag_json_obj = "jobj_req";
@@ -30,14 +30,36 @@ public class GetRequest implements RequestITF {
     private Thread reqThread;
     private JSONObject response;
 
-    public GetRequest(String path, String TAG) {
+    public DeleteRequest(String path, String TAG) {
         this.path = path;
         this.responseHM = new HashMap<>();
         this.TAG = TAG;
+//
+    }
+
+    public HashMap<String, String> getResponseHM() {
+        return responseHM;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setUrl(String path) {
+        this.path = path;
+    }
+
+    public Thread getRequestThread() {
+        return reqThread;
+    }
+
+    //TODO: remove this function
+    @Override
+    public Thread createRequestThread() {
         this.reqThread = new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.DELETE,path,null,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -83,79 +105,9 @@ public class GetRequest implements RequestITF {
                 AppController.getInstance().addToRequestQueue(jsonObjReq,
                         tag_json_obj);
             }
+
         });
-//
-    }
-
-    public HashMap<String, String> getResponseHM() {
-        return responseHM;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setUrl(String path) {
-        this.path = path;
-    }
-
-    public Thread getRequestThread() {
         return reqThread;
-    }
-
-    //TODO: remove this function
-    @Override
-    public Thread createRequestThread() {
-        return new Thread( new Runnable() {
-            @Override
-            public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                        new Response.Listener<JSONObject>()  {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                storeOnHash(response);
-                                Log.d(TAG, "onResponse: " + getResponseHM());
-                            }
-//                        hideProgressDialog();
-                        }
-                        , new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        VolleyLog.d("Volley Error:", "Unfortunately we got an error");
-                        VolleyLog.d("Volley Error:", "Error: " + error.getMessage());
-//                hideProgressDialog();
-
-                    }
-                }) {
-
-                    /**
-                     * Passing some request headers
-                     * */
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json");
-                        return headers;
-                    }
-
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", "Androidhive");
-//                params.put("email", "abc@androidhive.info");
-//                params.put("pass", "password123");
-
-                        return params;
-                    }
-                };
-
-                // Adding request to request queue
-                AppController.getInstance().addToRequestQueue(jsonObjReq,
-                        tag_json_obj);
-            }
-        });
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     };
@@ -171,7 +123,7 @@ public class GetRequest implements RequestITF {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                    hdlResponse.handleResponseFunction();
+                hdlResponse.handleResponseFunction();
 
             }
         });
@@ -196,6 +148,4 @@ public class GetRequest implements RequestITF {
 
         }
     }
-
-
 }
