@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     Item findById(int id);
     Item findByStoreNameAndName(String storeName, String itemName);
+    Item findByName(String itemName);
 
     boolean existsByStoreNameAndName(String storeName, String itemName);
     @Transactional
