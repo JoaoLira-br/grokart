@@ -1,15 +1,16 @@
 stages:
-- androidtry
+    - androidtry
 
 android-build:
     image: gjandres/android-ci:latest
     stage: androidtry
+    tags:
+        - test_android
     before_script:
         - export GRADLE_USER_HOME='pwd'/.gradle
         - chmod +x ./Frontend/grokart.gradlew
-    tags:
-        - test_android
+    
     script:
         - cd Frontend/grokart/
-        - ./gradlew test
+        - ./gradlew assemble
     
