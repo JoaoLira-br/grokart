@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         private TextView tv_welcomeUser, tv_appName;
         private Button btn_createNewList, btn_viewListHistory;
         private Toolbar myToolbar;
+        private String userName;
 
 
 //    
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
+        userName = intent.getStringExtra("userName");
 
         tv_welcomeUser =  findViewById(R.id.tv_main_welcome);
         tv_appName = findViewById(R.id.tv_main_appTitle);
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+            intent.putExtra("userName", userName);
             startActivity(intent);
             finish();
             return true;
