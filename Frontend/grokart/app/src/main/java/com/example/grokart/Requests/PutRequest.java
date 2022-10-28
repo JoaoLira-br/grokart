@@ -1,5 +1,4 @@
 package com.example.grokart.Requests;
-
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -20,22 +19,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class GetRequest implements RequestITF {
+public class PutRequest implements RequestITF {
     private String path;
     private final HashMap<String, String> responseHM;
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private String TAG;
     private Thread reqThread;
+    private JSONObject toPost;
 
-    public GetRequest(String path, String TAG) {
+    public PutRequest(String path, String TAG, JSONObject toPost) {
         this.path = path;
         this.responseHM = new HashMap<>();
         this.TAG = TAG;
+        this.toPost = toPost;
         this.reqThread = new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPost,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -107,7 +108,7 @@ public class GetRequest implements RequestITF {
         return new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,path,toPost,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -169,7 +170,7 @@ public class GetRequest implements RequestITF {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                    hdlResponse.handleResponseFunction();
+                hdlResponse.handleResponseFunction();
 
             }
         });
@@ -194,6 +195,4 @@ public class GetRequest implements RequestITF {
 
         }
     }
-
-
 }

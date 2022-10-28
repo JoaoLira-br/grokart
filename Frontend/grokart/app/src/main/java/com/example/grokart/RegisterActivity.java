@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.grokart.Requests.PostRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 import com.example.grokart.Requests.GetRequest;
@@ -40,7 +41,6 @@ public class RegisterActivity extends AppCompatActivity {
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private String path;
-    private GetRequest getRequest;
     private final String loginFailedMsg= "Login Failed";
 
 
@@ -58,23 +58,18 @@ public class RegisterActivity extends AppCompatActivity {
         btn_login =  findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         msgResponse = findViewById(R.id.tv_msgResponse);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_appName.setText(groKart);
 
-        et_username = findViewById(R.id.et_username);
-        et_password = findViewById(R.id.et_password);
-
-
-
         /* OBS: All url endpoints must have no whitespace
         * */
-        jsonResponse = "Antes ou Depois";
 
         btn_login.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 proceedLogin(v);
@@ -84,16 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-
+            public void onClick(View v) {
                 //TODO have REGISTER button send input to backend and proceed to Home page
                 // with response as Intent Extra
-                if( checkInputs()) {
-                    user = createUser();
-                    jsonObjPostReq(user);
-
-                }
+              proceedRegister(v);
 
             }
         });
@@ -108,14 +97,15 @@ public class RegisterActivity extends AppCompatActivity {
     private void proceedLogin(View v){
         if(checkInputs()) {
             setPathAddress();
-            getRequest = new GetRequest(path, TAG);
+            GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
-            Thread loginResponse = getRequest.createResponsehandler(()->{
+            Thread loginResponse = getRequest.createResponseHandler(()->{
                 String response = String.valueOf(getRequest.getResponseHM().get("message"));
                 if(response.equals("success")){
                     sendToHomePage(v, et_username.getText().toString(), 0);
                 }else{
-                    Toast.makeText(getApplicationContext(), loginFailedMsg, Toast.LENGTH_SHORT).show();
+                    //TOAST MAKING THE APP CRASH
+                    msgResponse.setText(response);
                 }
             });
 
@@ -126,6 +116,30 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
            loginResponse.start();
+        }
+    };
+    private void proceedRegister(View v){
+        if(checkInputs()) {
+           user = createUser();
+            PostRequest postRequest = new PostRequest(Const.URL_SAMPLE_CREATE_USER_POST, TAG, user);
+            Thread registerRequest = postRequest.getRequestThread();
+            Thread registerResponse = postRequest.createResponseHandler(()->{
+                String response = String.valueOf(postRequest.getResponseHM().get("message"));
+                if(response.equals("success")){
+                    sendToHomePage(v, et_username.getText().toString(), 0);
+                }else{
+                    //TOAST MAKING THE APP CRASH
+                    msgResponse.setText(response);
+                }
+            });
+
+            registerRequest.start();
+            try {
+                registerRequest.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           registerResponse.start();
         }
     };
 
@@ -155,6 +169,19 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public void sendToHomePage(View view, String userName,int privilege) {
+        if(privilege == 0){
+            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
+            intentBase.putExtra("userName", userName);
+            startActivity(intentBase);
+        }else if(privilege == 1){
+            Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
+            startActivity(intentAdmin);
+        }else{
+            //TODO if user is store admin send him to store admin home page
+        }
     }
 
     private void jsonObjPostReq(JSONObject user) {
@@ -238,22 +265,4 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
-
-
-
-
-
-    public void sendToHomePage(View view, String userName,int privilege) {
-        if(privilege == 0){
-            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
-            intentBase.putExtra("userName", userName);
-            startActivity(intentBase);
-        }else if(privilege == 1){
-            Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
-            startActivity(intentAdmin);
-        }else{
-            //TODO if user is store admin send him to store admin home page
-        }
-    }
-
 }
