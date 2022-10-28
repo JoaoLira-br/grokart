@@ -1,8 +1,5 @@
 package com.example.grokart;
 
-import static java.lang.Thread.currentThread;
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,23 +15,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.grokart.Requests.PostRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
-
+import com.example.grokart.Requests.GetRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -44,10 +37,16 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgResponse, tv_JSONOutput, tv_appName;
     private Button btn_register, btn_login;
     private final String TAG = RegisterActivity.class.getSimpleName();
-//    private boolean successfulLogin;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
+    private String path;
+    private final String loginFailedMsg= "Login Failed";
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,117 +57,94 @@ public class RegisterActivity extends AppCompatActivity {
         btn_login =  findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         msgResponse = findViewById(R.id.tv_msgResponse);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_appName.setText(groKart);
 
+
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
 
+
         /* OBS: All url endpoints must have no whitespace
         * */
-        jsonResponse = "Antes ou Depois";
 
         btn_login.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                if(checkInputs()){
-//                    String path = (Const.URL_USER_PSTMN + "?username="+username.trim()+"&password="+password).replaceAll("\\s", "");
-                        String userName = et_username.getText().toString();
-                        String password = et_password.getText().toString();
-                        String path = (Const.URL_SERVER_USERS + userName + "/" + password).replaceAll("\\s", "");
-                        Log.d(TAG, path);
-
-//        showProgressDialog();
-                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                                new Response.Listener<JSONObject>()  {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-//                                        setSuccessfulLoginCheck(true);
-//                                        AppController.users.put(et_username.toString(), response);
-                                        jsonResponse = response.toString();
-
-                                        try {
-                                            Log.d(TAG, response.get("message").toString());
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        try {
-                                            //TODO check for user privilege and redirect user to appropriate page in sendToHomePage method
-                                            msgResponse.setText(response.toString());
-                                            if(response.get("message").toString().equals("success")) {
-                                                sendToHomePage(v, userName, 0);
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-//                        hideProgressDialog();
-                                }
-                                , new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                                VolleyLog.d(TAG, "Unfortunately we got an error");
-                                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-                                msgResponse.setText(error.getMessage());
-                            }
-                        }) {
-
-                            /**
-                             * Passing some request headers
-                             * */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", "Androidhive");
-//                params.put("email", "abc@androidhive.info");
-//                params.put("pass", "password123");
-
-                return params;
-            }
-                        };
-
-                        // Adding request to request queue
-                        AppController.getInstance().addToRequestQueue(jsonObjReq,
-                                tag_json_obj);
-
-                        // Cancelling request
-                        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
-                    }
+                proceedLogin(v);
             }
 
         });
-        Log.d(TAG, "onCreate: "+ msgResponse.getText().toString());
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
                 //TODO have REGISTER button send input to backend and proceed to Home page
                 // with response as Intent Extra
-                if( checkInputs()) {
-                    String userName = et_username.getText().toString();
-                    String password = et_password.getText().toString();
-                    user = createUser(userName, password);
+              proceedRegister(v);
 
-                    jsonObjPostReq(user);
-                }
             }
         });
     }
+    private void setPathAddress(){
+         String username = et_username.getText().toString();
+         String password = et_password.getText().toString();
+        path = (Const.URL_SERVER_USERS + username + "/" + password).replaceAll("\\s", "");
+
+    }
+    private void proceedLogin(View v){
+        if(checkInputs()) {
+            setPathAddress();
+            GetRequest getRequest = new GetRequest(path, TAG);
+            Thread loginRequest = getRequest.createRequestThread();
+            Thread loginResponse = getRequest.createResponseHandler(()->{
+                String response = String.valueOf(getRequest.getResponseHM().get("message"));
+                if(response.equals("success")){
+                    sendToHomePage(v, et_username.getText().toString(), 0);
+                }else{
+                    //TOAST MAKING THE APP CRASH
+                    msgResponse.setText(response);
+                }
+            });
+
+            loginRequest.start();
+            try {
+                loginRequest.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           loginResponse.start();
+        }
+    };
+    private void proceedRegister(View v){
+        if(checkInputs()) {
+           user = createUser();
+            PostRequest postRequest = new PostRequest(Const.URL_SAMPLE_CREATE_USER_POST, TAG, user);
+            Thread registerRequest = postRequest.getRequestThread();
+            Thread registerResponse = postRequest.createResponseHandler(()->{
+                String response = String.valueOf(postRequest.getResponseHM().get("message"));
+                if(response.equals("success")){
+                    sendToHomePage(v, et_username.getText().toString(), 0);
+                }else{
+                    //TOAST MAKING THE APP CRASH
+                    msgResponse.setText(response);
+                }
+            });
+
+            registerRequest.start();
+            try {
+                registerRequest.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           registerResponse.start();
+        }
+    };
 
     private Boolean checkInputs() {
         int invalidCounter = 0;
@@ -187,70 +163,29 @@ public class RegisterActivity extends AppCompatActivity {
         // after all validation return true.
     }
 
-    private JSONObject createUser(String userName, String password){
+    private JSONObject createUser(){
         user = new JSONObject();
         try {
-            user.put("userName", userName);
-            user.put("password", password);
+            user.put("userName", et_username.getText().toString());
+            user.put("password", et_password.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return user;
     }
 
-    private void jsonObjGetReq(String path) {
+    public void sendToHomePage(View view, String userName,int privilege) {
+        if(privilege == 0){
+            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
+            intentBase.putExtra("userName", userName);
+            startActivity(intentBase);
+        }else if(privilege == 1){
+            Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
+            startActivity(intentAdmin);
+        }else{
+            //TODO if user is store admin send him to store admin home page
+        }
 
-//        showProgressDialog();
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,path,null,
-                new Response.Listener<JSONObject>()  {
-                    @Override
-                    public void onResponse(JSONObject response) {
-//                        setSuccessfulLoginCheck(true);
-
-                        AppController.users.put(et_username.toString(), response);
-                        jsonResponse = response.toString();
-                        Log.d(TAG, jsonResponse);
-                        }
-//                        hideProgressDialog();
-                    }
-                , new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Unfortunately we got an error");
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-                msgResponse.setText(error.getMessage());
-            }
-        }) {
-            /**
-             * Passing some request headers
-             * */
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("Content-Type", "application/json");
-//                return headers;
-//            }
-
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<String, String>();
-////                params.put("name", "Androidhive");
-////                params.put("email", "abc@androidhive.info");
-////                params.put("pass", "password123");
-//
-//                return params;
-//            }
-
-        };
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(jsonObjReq,
-                tag_json_obj);
-
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     }
 
     private void jsonObjPostReq(JSONObject user) {
@@ -335,16 +270,4 @@ public class RegisterActivity extends AppCompatActivity {
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
 
-    public void sendToHomePage(View view, String userName,int privilege) {
-        if(privilege == 0){
-            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
-            intentBase.putExtra("userName", userName);
-            startActivity(intentBase);
-        }else if(privilege == 1){
-            Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
-            startActivity(intentAdmin);
-        }else{
-            //TODO if user is store admin send him to store admin home page
-        }
-    }
 }
