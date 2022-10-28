@@ -53,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
         tv_appName = findViewById(R.id.tv_appTitle);
         btn_login =  findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
@@ -65,6 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_appName.setText(groKart);
+
+
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+
 
         /* OBS: All url endpoints must have no whitespace
         * */
@@ -86,7 +90,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
     }
     private void setPathAddress(){
          String username = et_username.getText().toString();
@@ -182,6 +185,7 @@ public class RegisterActivity extends AppCompatActivity {
         }else{
             //TODO if user is store admin send him to store admin home page
         }
+
     }
 
     private void jsonObjPostReq(JSONObject user) {
@@ -265,4 +269,5 @@ public class RegisterActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
+
 }
