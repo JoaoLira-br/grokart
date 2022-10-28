@@ -47,4 +47,7 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_lists">Lists</string>
+    <string name="home_button">Home Button</string>
+    <string name="search_button">Search Button</string>
+    <string name="list_button">List Button</string>
 </resources>

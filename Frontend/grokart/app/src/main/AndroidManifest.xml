@@ -60,9 +60,12 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".tabbedNavigation.TabbedNavigationActivity"
+            android:name=".SearchUsersActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SocialActivity"
             android:exported="true" />
     </application>
-
 
 </manifest>
