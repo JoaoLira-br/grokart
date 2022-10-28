@@ -98,40 +98,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
     <TextView
-        android:id="@+id/tv_phone"
-        android:layout_width="185dp"
-        android:layout_height="0dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="15dp"
-        android:lineSpacingExtra="-9sp"
-        android:text="@string/phone"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
-
-    <EditText
-        android:id="@+id/et_phone"
-        android:layout_width="305dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:hint="@string/phone"
-        android:inputType="phone"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
-
-    <TextView
         android:id="@+id/tv_preferredStore"
         android:layout_width="185dp"
         android:layout_height="0dp"
@@ -146,39 +112,22 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
-
-    <EditText
-        android:id="@+id/et_preferredStore"
-        android:layout_width="305dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/teal_700"
-        android:backgroundTint="#D9D9D9"
-        android:backgroundTintMode="src_in"
-        android:ems="10"
-        android:hint="@string/preferred_store"
-        android:inputType="textShortMessage"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_preferredStore" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <Button
         android:id="@+id/btn_editProfile"
         android:layout_width="184dp"
         android:layout_height="53dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/green"
-        android:backgroundTintMode="@color/green_logo"
         android:text="@string/edit_profile"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_preferredStore" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/msgResponse"
@@ -191,5 +140,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_editProfileTitle" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+         android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:contentDescription="@string/preferred_store"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preferredStore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
