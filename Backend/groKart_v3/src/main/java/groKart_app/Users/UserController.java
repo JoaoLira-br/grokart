@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class UserController {
 
@@ -59,12 +57,13 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/users/{userName}/{password}")
-    String getUserById( @PathVariable String userName, @PathVariable String password) {
+    int getUserForLogin( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
-
-        if (user == null) return failure;
-        else return success;
-    }
+        if (user == null) {return -1;}
+        else {
+            return user.getPrivilege();
+        }
+    }/*TODO check with team on how they set the privilege in the front end*/
 
     /**
      * CREATE USER
@@ -125,7 +124,6 @@ public class UserController {
         return success;
     }
 
-
     /**
      * DELETE USER
      * @param userName
@@ -136,4 +134,16 @@ public class UserController {
         userRepository.deleteByUserName(userName);
         return success;
     }
+
+    /**
+     * GET PREFERRED STORE FOR USER
+     * @param userName
+     * @return
+     */
+    @GetMapping(path = "/user/{userName}/preferredStore")
+    String getPreferredStore( @PathVariable String userName){
+        User user = userRepository.findByUserName(userName);
+        return user.getPreferredStore();
+    }
+
 }
