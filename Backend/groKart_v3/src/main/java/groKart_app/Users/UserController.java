@@ -2,6 +2,7 @@ package groKart_app.Users;
 
 import java.util.List;
 
+import groKart_app.Karts.Kart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -135,5 +136,62 @@ public class UserController {
     String deleteUser(@PathVariable String userName){
         userRepository.deleteByUserName(userName);
         return success;
+    }
+
+    /**
+     * GET OWNED KARTS - karts that user can edit
+     */
+    @GetMapping(path = "/users/ownedKarts/{userName}")
+    List<Kart> getOwnedKarts(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+        return user.getOwnedKarts();
+    }
+
+    /**
+     * GET ALL VISIBLE KARTS
+     */
+    @GetMapping(path = "/users/allKarts/{userName}")
+    List<Kart> getAllKarts(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+        List<Kart> karts = user.getOwnedKarts();
+        karts.addAll(user.getOwnedKarts());
+        return karts;
+    }
+
+    /**
+     * GET FRIENDS
+     */
+    @GetMapping(path = "/users/friends/{userName}")
+    List<User> getFriends(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+        return user.getFriends();
+    }
+
+    /**
+     * ADD FRIEND
+     */
+    @PutMapping(path = "/users/friend/{userName1}/{userName2}")
+    void makeFriends(@PathVariable String userName1, @PathVariable String userName2) {
+        User user1 = userRepository.findByUserName(userName1);
+        User user2 = userRepository.findByUserName(userName2);
+        user1.addFriend(user2);
+        user2.addFriend(user1);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+    }
+
+    /**
+     * REMOVE FRIEND
+     */
+    @PutMapping(path = "/users/unfriend/{userName1}/{userName2}")
+    void unfriend(@PathVariable String userName1, @PathVariable String userName2) {
+        User user1 = userRepository.findByUserName(userName1);
+        User user2 = userRepository.findByUserName(userName2);
+        user1.removeFriend(user2);
+        user2.removeFriend(user1);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
     }
 }

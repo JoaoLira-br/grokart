@@ -29,23 +29,47 @@ public class KartController {
     }
 
     /**
-     * Create new Kart
+     * Create new Kart -- Requires entire Kart passed as JSON object
      * @param kart
      * @return
      */
     @PostMapping(path = "/karts")
     int createKart(@RequestBody Kart kart){
-        if(kart == null || kartRepository.existsByKartName(kart.getName()))
-            return 0;
+        // error: kart with this name already exists
+        // if user owns the kart, they could overwrite it
+        if(kart == null || kartRepository.existsByKartName(kart.getName())) return 0;
+
         kartRepository.save(kart);
-        return 1;
+        return 0;
+    }
+    /**
+     * Create new Kart -- Requires only the name of the kart. This alternative might be useful
+     *  if the frontend would find it easier to create an empty kart and then add items to it
+     *  rather than creating an entire kart with a list of items.
+     *
+     *  Using a GET req to Create an empty Kart
+     *
+     * @param kartName
+     * @return
+     */
+    @GetMapping(path = "/karts/{userName}/{kartName}")
+    int createKart(@PathVariable String userName, @PathVariable String kartName){
+        // error: kart with this name already exists
+        if(kartRepository.existsByKartName(kartName)) return 1;
+        if(!userRepository.existsByUserName(userName)) return 1;
+        Kart kart = new Kart(kartName);
+        kart.setOwner(userRepository.findByUserName(userName));
+        kartRepository.save(kart);
+        return 0;
     }
 
     // Karts currently are all public, cannot have duplicate names
     @DeleteMapping(path = "/karts/{kartName}")
     int deleteKart(@PathVariable String kartName) {
+        Kart kart = kartRepository.findByKartName(kartName);
+        kart.getOwner().removeKart(kart);
         kartRepository.deleteByKartName(kartName);
-        return 1;
+        return 0;
     }
 
     /**
@@ -94,7 +118,7 @@ public class KartController {
      * @param userName
      * @return
      */
-    @PutMapping(path = "karts/addUser/{kartName}/{userName")
+    @PutMapping(path = "karts/addUser/{kartName}/{userName}")
     String userFollowKart(@PathVariable String kartName, @PathVariable String userName) {
         User user = userRepository.findByUserName(userName);
         Kart kart = kartRepository.findByKartName(kartName);
@@ -127,5 +151,9 @@ public class KartController {
     }
 
 
+    /**
+     * karts/friendsof/{userName}
+     * returns all friends' carts to populate feed
+     */
 
 }

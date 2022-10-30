@@ -21,11 +21,38 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany
-    @JoinColumn(name = "kart_id")
-    @JsonIgnore
-    private List<Kart> karts;
+//    @ManyToMany
+//    @JoinColumn(name = "kart_id")
+//    @JsonIgnore
+//    private List<Kart> karts;
 
+    // owned karts
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Kart> ownedKarts;
+
+//    // follower style
+//    /**
+//     *         follower of
+//     * many users ---> one users
+//     */
+//    @ManyToOne
+//    private List<User> followers;
+//    /**
+//     *        follows
+//     * one user ---> many users
+//     */
+//    @OneToMany
+//    private List<User> following;
+
+    // friend style
+    /**
+     *          friend of
+     * many users ---> many users
+     */
+    @ManyToMany
+//    @JsonIgnore
+    private List<User> friends;
     private String userName;
     private String emailAdd;
     private String password;
@@ -38,11 +65,13 @@ public class User {
         this.password = password;
         this.displayName = displayName;
         this.privilege = privilege;
-        karts = new ArrayList<Kart>();
+//        karts = new ArrayList<Kart>();
+        ownedKarts = new ArrayList<Kart>();
+        friends = new ArrayList<User>();
     }
 
     public User() {
-        karts = new ArrayList<Kart>();
+//        karts = new ArrayList<Kart>();
     }
 
     // =============================== Getters and Setters for each field ================================== //
@@ -83,11 +112,19 @@ public class User {
 
     public int getPrivilege() { return this.privilege; }
 
+//    public List<Kart> getKarts() { return this.karts; }
+    public List<Kart> getOwnedKarts() { return this.ownedKarts; }
+
     public void addKart(Kart kart) {
-        karts.add(kart);
+        ownedKarts.add(kart);
     }
 
     public void removeKart(Kart kart) {
-        karts.remove(kart);
+        ownedKarts.remove(kart);
     }
+
+    public List<User> getFriends() { return friends;}
+    public void addFriend(User user) { friends.add(user); }
+
+    public void removeFriend(User user) { friends.remove(user); }
 }
