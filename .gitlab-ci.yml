@@ -1,16 +1,65 @@
-stages:
-    - androidtry
+
+stages: 
+- mavenbuild
+- maventest
+- mavenDeploy
+- androidbuild
+- androidtest
+
+maven-build:
+  stage: mavenbuild
+  tags: 
+    - springboot_tag
+  script: 
+    - cd Backend/groKart_v3
+    - mvn package
+
+maven-test: 
+  stage: maventest
+  tags: 
+    - springboot_tag
+  script: 
+    - cd Backend/groKart_v3
+    - mvn test
+  artifacts: 
+    paths: 
+      - Backend/groKart_v3/target/*.jar 
+
+autoDeploy:
+  stage: mavenDeploy
+  tags:
+    - springboot_tag
+  script:
+    - cd Backend/groKart_v3
+    - mvn package
+    - sudo mv target/*.jar /target/web-demo.jar
+    - sudo systemctl stop system-web-demo
+    - sudo systemctl start system-web-demo
 
 android-build:
-    image: gjandres/android-ci:latest
-    stage: androidtry
-    tags:
-        - test_android
-    before_script:
-        - export GRADLE_USER_HOME='pwd'/.gradle
-        - chmod +x ./Frontend/grokart/gradlew
-    
-    script:
-        - cd Frontend/grokart/
-        - ./gradlew assemble
-    
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/grokart
+  tags: 
+    - android_tag
+  script: 
+    - cd Frontend/grokart/
+    - ./gradlew build
+  artifacts: 
+   paths: 
+   - Android_test/app/build/outputs
+
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/grokart/gradlew
+  tags:
+    - android_tag
+  script:
+    - cd Frontend/grokart/
+    - ./gradlew test
+
