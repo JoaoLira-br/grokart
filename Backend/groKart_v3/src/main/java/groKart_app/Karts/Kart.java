@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -33,7 +34,7 @@ public class Kart {
 //    private Store store;
     private String kartName;
 
-    private boolean shared;
+    private boolean publicity;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -42,37 +43,26 @@ public class Kart {
     @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 
-    @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<User> users;
+    private HashMap<Item, Integer> quantities;
 
     public Kart(User owner, String kartName) {
         this.owner = owner;
         this.kartName = kartName;
-        users = new ArrayList<User>();
         items = new ArrayList<Item>();
+        quantities = new HashMap<Item, Integer>();
     }
-//    public Kart(String owner_username, String kartName) {
-//        this.owner = userRepository.findByUserName(owner_username);
-//        this.kartName = kartName;
-//        users = new ArrayList<User>();
-//        items = new ArrayList<Item>();
-//    }
-    public Kart(User owner, String kartName, ArrayList<Item> items, ArrayList<User> users) {
+
+    public Kart(User owner, String kartName, ArrayList<Item> items, ArrayList<User> users, HashMap<Item, Integer> quantities) {
         this.owner = owner;
         this.kartName = kartName;
         this.items = items;
-        this.users = users;
+        this.quantities = quantities;
     }
-//    public Kart(String owner_username, String kartName, ArrayList<Item> items, ArrayList<User> users) {
-//        this.owner = userRepository.findByUserName(owner_username);
-//        this.kartName = kartName;
-//        this.items = items;
-//        this.users = users;
-//    }
+
     public Kart(String kartName) {
         this.kartName = kartName;
-        users = new ArrayList<User>();
         items = new ArrayList<Item>();
+        quantities = new HashMap<Item, Integer>();
     }
 
     public Kart(){}
@@ -91,25 +81,17 @@ public class Kart {
     public List<Item> getItems() {
         return items;
     }
-    public List<User> getUsers() { return users; }
 
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    public void setUsers(List<User> user) { this.users = users; }
 
     public void addItem(Item item) {
         this.items.add(item);
     }
-    public void addUser(User user) { this.users.add(user); }
 
-    // I think id will be better for this parameter
     public void removeItem(Item item) {
         items.remove(item);
-    }
-
-    public void removeUser(User user) {
-        users.remove(user);
     }
 
     public User getOwner() { return owner; }
@@ -119,9 +101,23 @@ public class Kart {
         owner.getOwnedKarts().add(this);
     }
 
-    public boolean isShared() { return shared; }
+    public boolean getPublicity() { return publicity; }
 
-    public void setShared(boolean shared) { this.shared = shared; }
+    public void setPublicity(boolean publicity) { this.publicity = publicity; }
+
+    public HashMap<Item, Integer> getQuantities() { return quantities; }
+
+    public void setQuantity(Item item, Integer quantity) {
+        quantities.put(item, quantity);
+    }
+
+    public double getTotalPrice() {
+        double total = 0;
+        for (Item item : items) {
+            total += quantities.get(item) * item.getPrice();
+        }
+        return total;
+    }
 
     @Override
     public String toString() {

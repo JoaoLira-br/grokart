@@ -18,6 +18,8 @@ public class KartController {
     @Autowired
     ItemRepository itemRepository;
 
+    private String failure = "{\"message\":\"failure\"}";
+
     /**
      * GET ALL KARTS IN THE DB
      *
@@ -29,20 +31,6 @@ public class KartController {
     }
 
     /**
-     * Create new Kart -- Requires entire Kart passed as JSON object
-     * @param kart
-     * @return
-     */
-    @PostMapping(path = "/karts")
-    int createKart(@RequestBody Kart kart){
-        // error: kart with this name already exists
-        // if user owns the kart, they could overwrite it
-        if(kart == null || kartRepository.existsByKartName(kart.getName())) return 0;
-
-        kartRepository.save(kart);
-        return 0;
-    }
-    /**
      * Create new Kart -- Requires only the name of the kart. This alternative might be useful
      *  if the frontend would find it easier to create an empty kart and then add items to it
      *  rather than creating an entire kart with a list of items.
@@ -52,7 +40,7 @@ public class KartController {
      * @param kartName
      * @return
      */
-    @GetMapping(path = "/karts/{userName}/{kartName}")
+    @PostMapping(path = "/karts/{userName}/{kartName}")
     int createKart(@PathVariable String userName, @PathVariable String kartName){
         // error: kart with this name already exists
         if(kartRepository.existsByKartName(kartName)) return 1;
@@ -63,7 +51,6 @@ public class KartController {
         return 0;
     }
 
-    // Karts currently are all public, cannot have duplicate names
     @DeleteMapping(path = "/karts/{kartName}")
     int deleteKart(@PathVariable String kartName) {
         Kart kart = kartRepository.findByKartName(kartName);
@@ -79,14 +66,17 @@ public class KartController {
      * @param itemName
      * @return
      */
-    @PutMapping(path = "karts/addItem/{kartName}/{storeName}/{itemName}")
-    String addItemToKart(@PathVariable String kartName, @PathVariable String storeName, @PathVariable String itemName) {
+    @PutMapping(path = "karts/addItem/{kartName}/{storeName}/{itemName}/{quantity}")
+    String addItemToKart(@PathVariable String kartName, @PathVariable String storeName, @PathVariable String itemName, @PathVariable int quantity) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         Kart kart = kartRepository.findByKartName(kartName);
 
-        if (kart.getItems().contains(item)) return "kart already contains item";
+        if (item == null || kart == null) return failure;
+
+        if (kart.getItems().contains(item)) return "{\"message\":\"kart already contains item\"}";
 
         kart.addItem(item);
+        kart.setQuantity(item, quantity);
         kartRepository.save(kart);
         item.addKart(kart);
         itemRepository.save(item);
@@ -94,7 +84,7 @@ public class KartController {
     }
 
     /**
-     * REMOVE ITEM TO KART
+     * REMOVE ITEM FROM KART
      * @param kartName
      * @param storeName
      * @param itemName
@@ -105,6 +95,8 @@ public class KartController {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         Kart kart = kartRepository.findByKartName(kartName);
 
+        if (item == null || kart == null) return failure;
+
         kart.removeItem(item);
         kartRepository.save(kart);
         item.removeKart(kart);
@@ -112,48 +104,26 @@ public class KartController {
         return item + "\n" + kart;
     }
 
+    @GetMapping(path = "karts/total/{kartName}")
+    double getTotal(@PathVariable String kartName) {
+        Kart kart = kartRepository.findByKartName(kartName);
+        return kart.getTotalPrice();
+    }
     /**
-     * ADD USER TO KART (makes them co-owner)
+     * SET PUBLICITY
      * @param kartName
-     * @param userName
+     * @param storeName
+     * @param publicity
      * @return
      */
-    @PutMapping(path = "karts/addUser/{kartName}/{userName}")
-    String userFollowKart(@PathVariable String kartName, @PathVariable String userName) {
-        User user = userRepository.findByUserName(userName);
+    @PutMapping(path = "karts/setPublicity/{kartName}/{storeName}/{publicity}")
+    String setPublicity(@PathVariable String kartName, @PathVariable String storeName, @PathVariable boolean publicity) {
         Kart kart = kartRepository.findByKartName(kartName);
 
-        if (kart.getUsers().contains(user)) return "user already follows list";
+        if (kart == null) return failure;
 
-        kart.addUser(user);
+        kart.setPublicity(publicity);
         kartRepository.save(kart);
-        user.addKart(kart);
-        userRepository.save(user);
-        return user + "\n" + kart;
+        return "" + kart;
     }
-
-    /**
-     * REMOVE USER FROM KART
-     * @param kartName
-     * @param userName
-     * @return
-     */
-    @PutMapping(path = "karts/removeUser/{kartName}/{userName}")
-    String userUnFollowKart(@PathVariable String kartName, @PathVariable String userName) {
-        User user = userRepository.findByUserName(userName);
-        Kart kart = kartRepository.findByKartName(kartName);
-
-        kart.removeUser(user);
-        kartRepository.save(kart);
-        user.removeKart(kart);
-        userRepository.save(user);
-        return user + "\n" + kart;
-    }
-
-
-    /**
-     * karts/friendsof/{userName}
-     * returns all friends' carts to populate feed
-     */
-
 }

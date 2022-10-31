@@ -64,11 +64,11 @@ public class Item {
         this.storeName = storeName;
     }
 
-    public int getQuantityAvailable() {
+    public int getQuantity() {
         return quantityAvailable;
     }
 
-    public void setQuantityAvailable(int quantityAvailable) {
+    public void setQuantity(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
     }
 

@@ -20,14 +20,14 @@ public class ItemController {
     private String failure = "{\"message\":\"failure\"}";
 
     /**
-     * GET USERS
+     * GET Items
      * @return
      */
     @GetMapping(path = "/items")
     List<Item> getAllItems() { return itemRepository.findAll(); }
 
     /**
-     * GET USER (by name & store)
+     * GET ITEM (by name & store)
      * @param itemName
      * @return
      */
@@ -52,19 +52,71 @@ public class ItemController {
     }
 
     /**
-     * UPDATE ITEM
+     * UPDATE ITEM NAME
+     * @param storeName
      * @param itemName
-     * @param request
+     * @param newName
      * @return
      */
-    @PutMapping(path = "/items/{storeName}/{itemName}")
-    Item updateItem(@PathVariable String storeName, @PathVariable String itemName, @RequestBody Item request) {
+    @GetMapping(path = "/items/updateName/{storeName}/{itemName}/{newName}")
+    Item updateItemName(@PathVariable String storeName, @PathVariable String itemName, @PathVariable String newName) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         if (item == null)
             return null;
-        itemRepository.deleteByStoreNameAndName(storeName, itemName);
-        itemRepository.save(request);
-        return itemRepository.findByStoreNameAndName(storeName, itemName);
+        item.setName(newName);
+        itemRepository.save(item);
+        return item;
+    }
+
+    /**
+     * UPDATE ITEM PRICE
+     * @param storeName
+     * @param itemName
+     * @param newPrice
+     * @return
+     */
+    @GetMapping(path = "/items/updatePrice/{storeName}/{itemName}/{newPrice}")
+    Item updateItemPrice(@PathVariable String storeName, @PathVariable String itemName, @PathVariable double newPrice) {
+        Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
+        if (item == null)
+            return null;
+        item.setPrice(newPrice);
+        itemRepository.save(item);
+        return item;
+    }
+
+    /**
+     * UPDATE ITEM STORE
+     * @param storeName
+     * @param itemName
+     * @param newStoreName
+     * @return
+     */
+    @GetMapping(path = "/items/updateStoreName/{storeName}/{itemName}/{newName}")
+    Item updateItemStore(@PathVariable String storeName, @PathVariable String itemName, @PathVariable String newStoreName) {
+        Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
+        if (item == null)
+            return null;
+        item.setStoreName(newStoreName);
+        itemRepository.save(item);
+        return item;
+    }
+
+    /**
+     * UPDATE ITEM QUANTITY
+     * @param storeName
+     * @param itemName
+     * @param newQuantity
+     * @return
+     */
+    @GetMapping(path = "/items/updatePrice/{storeName}/{itemName}/{newPrice}")
+    Item updateItemQuantity(@PathVariable String storeName, @PathVariable String itemName, @PathVariable int newQuantity) {
+        Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
+        if (item == null)
+            return null;
+        item.setQuantity(newQuantity);
+        itemRepository.save(item);
+        return item;
     }
 
     /**

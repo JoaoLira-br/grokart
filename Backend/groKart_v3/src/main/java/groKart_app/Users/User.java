@@ -13,44 +13,21 @@ import java.util.List;
 @Table(name = "AppUser")
 public class User {
 
-     /* 
-     * The annotation @ID marks the field below as the primary key for the table created by springboot
-     * The @GeneratedValue generates a value if not already present, The strategy in this case is to start from 1 and increment for each table
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-//    @ManyToMany
-//    @JoinColumn(name = "kart_id")
-//    @JsonIgnore
-//    private List<Kart> karts;
 
     // owned karts
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Kart> ownedKarts;
 
-//    // follower style
-//    /**
-//     *         follower of
-//     * many users ---> one users
-//     */
-//    @ManyToOne
-//    private List<User> followers;
-//    /**
-//     *        follows
-//     * one user ---> many users
-//     */
-//    @OneToMany
-//    private List<User> following;
-
-    // friend style
     /**
      *          friend of
      * many users ---> many users
      */
     @ManyToMany
+    @JsonIgnore
 //    @JsonIgnore
     private List<User> friends;
     private String userName;
@@ -65,13 +42,13 @@ public class User {
         this.password = password;
         this.displayName = displayName;
         this.privilege = privilege;
-//        karts = new ArrayList<Kart>();
         ownedKarts = new ArrayList<Kart>();
         friends = new ArrayList<User>();
     }
 
     public User() {
-//        karts = new ArrayList<Kart>();
+//        ownedKarts = new ArrayList<Kart>();
+//        friends = new ArrayList<User>();
     }
 
     // =============================== Getters and Setters for each field ================================== //
@@ -112,7 +89,6 @@ public class User {
 
     public int getPrivilege() { return this.privilege; }
 
-//    public List<Kart> getKarts() { return this.karts; }
     public List<Kart> getOwnedKarts() { return this.ownedKarts; }
 
     public void addKart(Kart kart) {
