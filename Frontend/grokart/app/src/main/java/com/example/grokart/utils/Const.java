@@ -16,6 +16,7 @@ public class Const {
     public static final String URL_SAMPLE_READ_USER_GET = "http://coms-309-011.class.las.iastate.edu:8080/user/";
     public static final String URL_SAMPLE_UPDATE_OR_DELETE_USER = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer";
     public static final String URL_SERVER = "http://coms-309-011.class.las.iastate.edu:8080";
+    public static final String URL_STORE_ITEMS = "http://coms-309-011.class.las.iastate.edu:8080/items/walmart"; //get all items from store
 
 //    Test urls
     public static final String URL_USER_SAMPLE = "https://48bbbd75-a948-45d5-8711-721c89526c8c.mock.pstmn.io/user/?username=johnrickman&password=12345678";
