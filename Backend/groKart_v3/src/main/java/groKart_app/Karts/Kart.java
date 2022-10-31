@@ -43,16 +43,16 @@ public class Kart {
     @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 
-    private HashMap<Item, Integer> quantities;
+    private HashMap<Integer, Integer> quantities;
 
     public Kart(User owner, String kartName) {
         this.owner = owner;
         this.kartName = kartName;
         items = new ArrayList<Item>();
-        quantities = new HashMap<Item, Integer>();
+        quantities = new HashMap<Integer, Integer>();
     }
 
-    public Kart(User owner, String kartName, ArrayList<Item> items, ArrayList<User> users, HashMap<Item, Integer> quantities) {
+    public Kart(User owner, String kartName, ArrayList<Item> items, ArrayList<User> users, HashMap<Integer, Integer> quantities) {
         this.owner = owner;
         this.kartName = kartName;
         this.items = items;
@@ -62,10 +62,13 @@ public class Kart {
     public Kart(String kartName) {
         this.kartName = kartName;
         items = new ArrayList<Item>();
-        quantities = new HashMap<Item, Integer>();
+        quantities = new HashMap<Integer, Integer>();
     }
 
-    public Kart(){}
+    public Kart() {
+        items = new ArrayList<Item>();
+        quantities = new HashMap<Integer, Integer>();
+    }
     public int getId() {
         return id;
     }
@@ -87,11 +90,12 @@ public class Kart {
     }
 
     public void addItem(Item item) {
-        this.items.add(item);
+        items.add(item);
     }
 
     public void removeItem(Item item) {
         items.remove(item);
+        quantities.remove(item.getId());
     }
 
     public User getOwner() { return owner; }
@@ -105,16 +109,16 @@ public class Kart {
 
     public void setPublicity(boolean publicity) { this.publicity = publicity; }
 
-    public HashMap<Item, Integer> getQuantities() { return quantities; }
+    public HashMap<Integer, Integer> getQuantities() { return quantities; }
 
     public void setQuantity(Item item, Integer quantity) {
-        quantities.put(item, quantity);
+        quantities.put(item.getId(), quantity);
     }
 
     public double getTotalPrice() {
         double total = 0;
         for (Item item : items) {
-            total += quantities.get(item) * item.getPrice();
+            total += quantities.get(item.getId()) * item.getPrice();
         }
         return total;
     }

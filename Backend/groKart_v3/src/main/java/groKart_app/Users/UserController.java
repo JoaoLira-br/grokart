@@ -161,7 +161,9 @@ public class UserController {
 
         for (User friend : users) {
             for (Kart k : friend.getOwnedKarts()) {
-                if (k.getPublicity()) karts.add(k);
+//                if (k.getPublicity()) {
+                    karts.add(k);
+//                }
             }
         }
 

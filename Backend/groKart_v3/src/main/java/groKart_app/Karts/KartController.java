@@ -73,12 +73,14 @@ public class KartController {
 
         if (item == null || kart == null) return failure;
 
-        if (kart.getItems().contains(item)) return "{\"message\":\"kart already contains item\"}";
+//        if (kart.getItems().contains(item)) return "{\"message\":\"kart already contains item\"}";
 
-        kart.addItem(item);
-        kart.setQuantity(item, quantity);
+        if (!kart.getItems().contains(item)) {
+            kart.addItem(item);
+            item.addKart(kart);
+        }
+        kart.setQuantity(item, new Integer(quantity));
         kartRepository.save(kart);
-        item.addKart(kart);
         itemRepository.save(item);
         return item + "\n" + kart;
     }

@@ -58,7 +58,7 @@ public class ItemController {
      * @param newName
      * @return
      */
-    @GetMapping(path = "/items/updateName/{storeName}/{itemName}/{newName}")
+    @PutMapping(path = "/items/updateName/{storeName}/{itemName}/{newName}")
     Item updateItemName(@PathVariable String storeName, @PathVariable String itemName, @PathVariable String newName) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         if (item == null)
@@ -75,7 +75,7 @@ public class ItemController {
      * @param newPrice
      * @return
      */
-    @GetMapping(path = "/items/updatePrice/{storeName}/{itemName}/{newPrice}")
+    @PutMapping(path = "/items/updatePrice/{storeName}/{itemName}/{newPrice}")
     Item updateItemPrice(@PathVariable String storeName, @PathVariable String itemName, @PathVariable double newPrice) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         if (item == null)
@@ -92,7 +92,7 @@ public class ItemController {
      * @param newStoreName
      * @return
      */
-    @GetMapping(path = "/items/updateStoreName/{storeName}/{itemName}/{newName}")
+    @PutMapping(path = "/items/updateStoreName/{storeName}/{itemName}/{newStoreName}")
     Item updateItemStore(@PathVariable String storeName, @PathVariable String itemName, @PathVariable String newStoreName) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         if (item == null)
@@ -109,7 +109,7 @@ public class ItemController {
      * @param newQuantity
      * @return
      */
-    @GetMapping(path = "/items/updatePrice/{storeName}/{itemName}/{newPrice}")
+    @PutMapping(path = "/items/updateQuantity/{storeName}/{itemName}/{newQuantity}")
     Item updateItemQuantity(@PathVariable String storeName, @PathVariable String itemName, @PathVariable int newQuantity) {
         Item item = itemRepository.findByStoreNameAndName(storeName, itemName);
         if (item == null)

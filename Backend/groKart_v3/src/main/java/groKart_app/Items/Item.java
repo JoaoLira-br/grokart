@@ -22,13 +22,13 @@ public class Item {
     private String name;
     private double price;
     private String storeName;
-    private int quantityAvailable;
+    private int quantity;
 
-    public Item(String name, double price, String storeName, int quantityAvailable) {
+    public Item(String name, double price, String storeName, int quantity) {
         this.name = name;
         this.price = price;
         this.storeName = storeName;
-        this.quantityAvailable = quantityAvailable;
+        this.quantity = quantity;
         karts = new ArrayList<Kart>();
     }
 
@@ -65,11 +65,11 @@ public class Item {
     }
 
     public int getQuantity() {
-        return quantityAvailable;
+        return quantity;
     }
 
-    public void setQuantity(int quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void addKart(Kart kart) {
