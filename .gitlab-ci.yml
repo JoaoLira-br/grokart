@@ -8,7 +8,7 @@ android-build:
         - test_android
     before_script:
         - export GRADLE_USER_HOME='pwd'/.gradle
-        - chmod +x ./Frontend/grokart.gradlew
+        - chmod +x ./Frontend/grokart/gradlew
     
     script:
         - cd Frontend/grokart/
