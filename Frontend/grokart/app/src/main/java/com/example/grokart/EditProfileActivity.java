@@ -75,8 +75,14 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         msgResponse = findViewById(R.id.msgResponse);
         storesMenu = findViewById(R.id.spinner);
         storesArray = new ArrayList<String>();
-        getStores();
+        //TODO switch out test stores
+        storesArray.add("Select preferred store");
+        storesArray.add("Walmart");
+        storesArray.add("Hy-Vee");
+        storesArray.add("Target");
+        //getStores();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, storesArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         storesMenu.setAdapter(adapter);
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
