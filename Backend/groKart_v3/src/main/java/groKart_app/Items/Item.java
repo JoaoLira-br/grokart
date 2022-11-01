@@ -2,8 +2,10 @@ package groKart_app.Items;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import groKart_app.Stores.Store;
-
+import groKart_app.Karts.Kart;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Item")
@@ -12,27 +14,31 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-    private double price;
-    private String storeName;
-    private int quantityAvailable;
-
+    @ManyToMany
+    @JoinColumn(name = "kart_id")
+    @JsonIgnore
+    private List<Kart> karts;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
     @JsonIgnore
     private Store store;
 
+    private String name;
+    private double price;
+    private String storeName;
+    private int quantity;
 
-    public Item(String name, double price, String storeName, int quantityAvailable) {
+    public Item(String name, double price, String storeName, int quantity) {
         this.name = name;
         this.price = price;
         this.storeName = storeName;
-        this.quantityAvailable = quantityAvailable;
+        this.quantity = quantity;
+        karts = new ArrayList<Kart>();
     }
 
     public Item() {
-
+        karts = new ArrayList<Kart>();
     }
 
     public int getId() {
@@ -74,12 +80,19 @@ public class Item {
         this.storeName = storeName;
     }
 
-    public int getQuantityAvailable() {
-        return quantityAvailable;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantityAvailable(int quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void addKart(Kart kart) {
+        karts.add(kart);
+    }
+    public void removeKart(Kart kart) {
+        karts.remove(kart);
     }
 
     @Override
@@ -88,6 +101,6 @@ public class Item {
                 + name + " "
                 + price + " "
                 + storeName + " "
-                + quantityAvailable;
+                + quantity;
     }
 }

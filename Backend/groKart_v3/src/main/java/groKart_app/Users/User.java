@@ -2,25 +2,34 @@ package groKart_app.Users;
 
 import groKart_app.Items.Item;
 import groKart_app.Reports.Report;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import groKart_app.Karts.Kart;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.hibernate.annotations.Table;
-
 @Entity
 @Table(name = "AppUser")
 public class User {
 
-     /* 
-     * The annotation @ID marks the field below as the primary key for the table created by springboot
-     * The @GeneratedValue generates a value if not already present, The strategy in this case is to start from 1 and increment for each table
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // owned karts
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Kart> ownedKarts;
+
+    /**
+     *          friend of
+     * many users ---> many users
+     */
+    @ManyToMany
+    @JsonIgnore
+//    @JsonIgnore
+    private List<User> friends;
     private String userName;
     private String emailAdd;
     private String password;
@@ -39,11 +48,17 @@ public class User {
         this.password = password;
         this.displayName = displayName;
         this.privilege = privilege;
+        ownedKarts = new ArrayList<Kart>();
+        friends = new ArrayList<User>();
         this.preferredStore = preferredStore;
         reports = new ArrayList<>();
     }
 
-    public User() {reports = new ArrayList<>();}
+    public User() {
+        reports = new ArrayList<>();
+        ownedKarts = new ArrayList<Kart>();
+        friends = new ArrayList<User>();
+    }
 
     // =============================== Getters and Setters for each field ================================== //
 
@@ -93,4 +108,18 @@ public class User {
 
     public void removeReports(Report reports){this.reports.remove(reports);}
 
+    public List<Kart> getOwnedKarts() { return this.ownedKarts; }
+
+    public void addKart(Kart kart) {
+        ownedKarts.add(kart);
+    }
+
+    public void removeKart(Kart kart) {
+        ownedKarts.remove(kart);
+    }
+
+    public List<User> getFriends() { return friends;}
+    public void addFriend(User user) { friends.add(user); }
+
+    public void removeFriend(User user) { friends.remove(user); }
 }
