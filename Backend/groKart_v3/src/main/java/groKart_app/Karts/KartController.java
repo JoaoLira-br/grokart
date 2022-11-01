@@ -35,8 +35,6 @@ public class KartController {
      *  if the frontend would find it easier to create an empty kart and then add items to it
      *  rather than creating an entire kart with a list of items.
      *
-     *  Using a GET req to Create an empty Kart
-     *
      * @param kartName
      * @return
      */

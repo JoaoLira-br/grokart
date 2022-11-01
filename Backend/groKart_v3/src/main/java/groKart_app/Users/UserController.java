@@ -61,11 +61,10 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/users/{userName}/{password}")
-    String getUserById( @PathVariable String userName, @PathVariable String password) {
+    String getUserForLogin( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
-
-        if (user == null) return failure;
-        else return success;
+        if (user == null) return "{\"privilege\":\"-1\"}";
+        else return "{\"privilege\":\"" + user.getPrivilege() + "\"}";
     }
 
     /**
@@ -80,22 +79,6 @@ public class UserController {
         userRepository.save(user);
         return success;
     }
-
-//    /**
-//     * UPDATE USER
-//     * @param userName
-//     * @param request
-//     * @return
-//     */
-//    @PutMapping("/users/{userName}")
-//    User updateUser(@PathVariable String userName, @RequestBody User request){
-//        User user = userRepository.findByUserName(userName);
-//        if (user == null)
-//            return null;
-//        userRepository.deleteByUserName((userName));
-//        userRepository.save(request);
-//        return userRepository.findByUserName(userName);
-//    }
 
     /**
      * UPDATE DISPLAY NAME OF USER

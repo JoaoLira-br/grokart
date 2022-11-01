@@ -37,6 +37,16 @@ public class ItemController {
     }
 
     /**
+     * GET ITEMS OF STORE
+     * @param storeName
+     * @return
+     */
+    @GetMapping(path = "/items/{storeName}")
+    List<Item> getItemStore(@PathVariable String storeName) {
+        return itemRepository.findAllByStoreName(storeName);
+    }
+
+    /**
      * CREATE ITEM
      *  if item already exists with item.name
      *      error (might consider treating it like a PUT and updating item with info)
