@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_create_new_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_white"
+    tools:context=".CreateNewListActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/et_searchBar"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList"
+        app:srcCompat="@drawable/ic_baseline_search_loop" />
+
+    <EditText
+        android:id="@+id/et_searchBar"
+        android:layout_width="265dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/what_are_you_looking_for"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList" />
+
+    <TextView
+        android:id="@+id/tv_createNewList"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/create_new_list"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="164dp"
+        android:layout_height="104dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="56dp"
+            android:layout_height="59dp"
+            android:backgroundTint="@color/grey_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.851"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/search_loop_foreground" />
+
+        <TextView
+            android:id="@+id/tv_quantityTotal"
+            android:layout_width="110dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_item4"
+        android:layout_width="380dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_item4"
+            style="@style/Item_Style_constraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btn_plus_sign4"
+                android:layout_width="25dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
+
+            <ImageButton
+                android:id="@+id/btn_minus_sign4"
+                android:layout_width="35dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_price4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.457"
+                app:srcCompat="@drawable/ic_baseline_minus" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="32dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.833"
+                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+
+            <TextView
+                android:id="@+id/tv_Item4"
+                android:layout_width="111dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.473" />
+
+            <TextView
+                android:id="@+id/tv_price4"
+                android:layout_width="124dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="12dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_Item4"
+                app:layout_constraintStart_toEndOf="@+id/tv_Item4" />
+
+            <TextView
+                android:id="@+id/tv_quantityPurchase4"
+                android:layout_width="31dp"
+                android:layout_height="22dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus_sign4"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign4"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_item3"
+        style="@style/Item_Style"
+        android:layout_width="380dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_item3"
+            style="@style/Item_Style_constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_plus_sign3"
+                android:layout_width="25dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
+
+            <ImageButton
+                android:id="@+id/btn_minus_sign3"
+                android:layout_width="35dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_price3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.457"
+                app:srcCompat="@drawable/ic_baseline_minus" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="32dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.833"
+                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+
+            <TextView
+                android:id="@+id/tv_Item3"
+                android:layout_width="111dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.473" />
+
+            <TextView
+                android:id="@+id/tv_price3"
+                android:layout_width="124dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="12dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_Item3"
+                app:layout_constraintStart_toEndOf="@+id/tv_Item3" />
+
+            <TextView
+                android:id="@+id/tv_quantityPurchase3"
+                android:layout_width="31dp"
+                android:layout_height="22dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus_sign3"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_item"
+        android:layout_width="380dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_item4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_item"
+            style="@style/Item_Style_constraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btn_plus_sign"
+                android:layout_width="25dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
+
+            <ImageButton
+                android:id="@+id/btn_minus_sign"
+                android:layout_width="35dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="12dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_price"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.457"
+                app:srcCompat="@drawable/ic_baseline_minus" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="32dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.833"
+                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+
+            <TextView
+                android:id="@+id/tv_itemName"
+                android:layout_width="111dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.473" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="124dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="12dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_itemName"
+                app:layout_constraintStart_toEndOf="@+id/tv_itemName" />
+
+            <TextView
+                android:id="@+id/tv_quantityPurchase"
+                android:layout_width="31dp"
+                android:layout_height="22dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus_sign"
+                app:layout_constraintStart_toEndOf="@+id/btn_minus_sign"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
