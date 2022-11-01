@@ -1,6 +1,7 @@
 package groKart_app;
 
 import groKart_app.Items.ItemRepository;
+import groKart_app.Karts.Kart;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import groKart_app.Users.UserRepository;
 import groKart_app.Items.ItemRepository;
+import groKart_app.Karts.KartRepository;
 
 @SpringBootApplication
 @EnableJpaRepositories

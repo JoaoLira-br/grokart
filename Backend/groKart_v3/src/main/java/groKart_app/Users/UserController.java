@@ -1,7 +1,9 @@
 package groKart_app.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import groKart_app.Karts.Kart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,13 +59,11 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/users/{userName}/{password}")
-    int getUserForLogin( @PathVariable String userName, @PathVariable String password) {
+    String getUserForLogin( @PathVariable String userName, @PathVariable String password) {
         User user = userRepository.findByUserNameAndPassword(userName, password);
-        if (user == null) {return -1;}
-        else {
-            return user.getPrivilege();
-        }
-    }/*TODO check with team on how they set the privilege in the front end*/
+        if (user == null) return "{\"privilege\":\"-1\"}";
+        else return "{\"privilege\":\"" + user.getPrivilege() + "\"}";
+    }
 
     /**
      * CREATE USER
@@ -76,22 +76,6 @@ public class UserController {
             return failure;
         userRepository.save(user);
         return success;
-    }
-
-    /**
-     * UPDATE USER
-     * @param userName
-     * @param request
-     * @return
-     */
-    @PutMapping("/users/{userName}")
-    User updateUser(@PathVariable String userName, @RequestBody User request){
-        User user = userRepository.findByUserName(userName);
-        if (user == null)
-            return null;
-        userRepository.deleteByUserName((userName));
-        userRepository.save(request);
-        return userRepository.findByUserName(userName);
     }
 
     /**
@@ -146,4 +130,94 @@ public class UserController {
         return user.getPreferredStore();
     }
 
+    /**
+     * GET OWNED KARTS - karts that user can edit
+     */
+    @GetMapping(path = "/users/ownedKarts/{userName}")
+    List<Kart> getOwnedKarts(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+        return user.getOwnedKarts();
+    }
+
+    /**
+     * GET ALL FRIEND'S KARTS
+     */
+    @GetMapping(path = "/users/friendsKarts/{userName}")
+    List<Kart> getAllFriendsKarts(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+
+        List<Kart> karts = new ArrayList<Kart>();
+
+        List<User> users = user.getFriends();
+
+        for (User friend : users) {
+            for (Kart k : friend.getOwnedKarts()) {
+//                if (k.getPublicity()) {
+                    karts.add(k);
+//                }
+            }
+        }
+
+        return karts;
+    }
+
+    /**
+     * GET ALL VISIBLE KARTS
+     */
+    @GetMapping(path = "/users/allKarts/{userName}")
+    List<Kart> getAllKarts(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+
+        List<Kart> karts = user.getOwnedKarts();
+
+        List<User> users = user.getFriends();
+
+        for (User friend : users) {
+            for (Kart k : friend.getOwnedKarts()) {
+                karts.add(k);
+            }
+        }
+
+        return karts;
+    }
+
+    /**
+     * GET FRIENDS
+     */
+    @GetMapping(path = "/users/friends/{userName}")
+    List<User> getFriends(@PathVariable String userName) {
+        User user = userRepository.findByUserName(userName);
+        return user.getFriends();
+    }
+
+    /**
+     * ADD FRIEND
+     */
+    @PutMapping(path = "/users/friend/{userName1}/{userName2}")
+    int makeFriends(@PathVariable String userName1, @PathVariable String userName2) {
+        User user1 = userRepository.findByUserName(userName1);
+        User user2 = userRepository.findByUserName(userName2);
+        if (user1 == null || user2 == null) return 1;
+        user1.addFriend(user2);
+        user2.addFriend(user1);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+        return 0;
+    }
+
+    /**
+     * REMOVE FRIEND
+     */
+    @PutMapping(path = "/users/unfriend/{userName1}/{userName2}")
+    int unfriend(@PathVariable String userName1, @PathVariable String userName2) {
+        User user1 = userRepository.findByUserName(userName1);
+        User user2 = userRepository.findByUserName(userName2);
+        user1.removeFriend(user2);
+        user2.removeFriend(user1);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+        return 0;
+    }
 }
