@@ -54,7 +54,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
-    String item;
+    String item = "null";
 
 
     @Override
@@ -168,10 +168,13 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     */
     private void jsonUpdateUser(JSONObject curUser) throws JSONException {
         String path = Const.URL_SERVER_USERS + username;
-        path = path.replaceAll(" ", "%20");
+        System.out.println("user before update");
+        System.out.println(curUser.toString());
         curUser.put("displayName", et_name.getText().toString());
         curUser.put("emailAdd", et_email.getText().toString());
         curUser.put("preferredStore",item);
+        System.out.println("user after update");
+        System.out.println(curUser.toString());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -221,6 +224,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+            intent.putExtra("userName", username);
             startActivity(intent);
             this.finish();
             return true;
@@ -232,7 +236,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         // On selecting a spinner item
         //TODO, if pos 0, then null
         if(position == 0) {
-            item = null;
+            item = "null";
         }
         else {
             item = parent.getItemAtPosition(position).toString();

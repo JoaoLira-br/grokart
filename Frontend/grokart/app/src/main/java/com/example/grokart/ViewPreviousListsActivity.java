@@ -56,8 +56,8 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         //sets up the kart stuff
         karts = new ArrayList<String>();
         kartRV = (RecyclerView) findViewById(R.id.rv_karts_list);
-        getTestKarts();
-//        getKarts();
+//        getTestKarts();
+        getKarts();
         KartsListAdapter adapter = new KartsListAdapter(karts);
         kartRV.setAdapter(adapter);
         kartRV.setLayoutManager(new LinearLayoutManager(this));
@@ -72,9 +72,6 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
     }
 
     private void getKarts() {
-
-    }
-    private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_USERS_KARTS + username,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -119,6 +116,7 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(ViewPreviousListsActivity.this, MainActivity.class);
+            intent.putExtra("userName", username);
             startActivity(intent);
             this.finish();
             return true;

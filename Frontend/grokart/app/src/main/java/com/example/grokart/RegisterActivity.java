@@ -181,9 +181,11 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
             intentBase.putExtra("userName", userName);
             startActivity(intentBase);
+            finish();
         }else if(privilege == 2){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
+            finish();
         }else{
             //TODO if user is store admin send him to store admin home page
         }
