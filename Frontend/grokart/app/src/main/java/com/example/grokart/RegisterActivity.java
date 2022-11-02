@@ -29,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_username, et_password;
@@ -103,9 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
             GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
             Thread loginResponse = getRequest.createResponseHandler(()->{
-                String response = String.valueOf(getRequest.getResponseHM().get("message"));
-                if(response.equals("success")){
-                    sendToHomePage(v, et_username.getText().toString(), 0);
+                int response = Integer.parseInt(Objects.requireNonNull(getRequest.getResponseHM().get("privilege")));
+                if(response  != -1){
+                    sendToHomePage(v, et_username.getText().toString(), response);
                 }else{
                     //TOAST MAKING THE APP CRASH
                     msgResponse.setText(response);
@@ -179,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
             intentBase.putExtra("userName", userName);
             startActivity(intentBase);
-        }else if(privilege == 1){
+        }else if(privilege == 2){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
         }else{
