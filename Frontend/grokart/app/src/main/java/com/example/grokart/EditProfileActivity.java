@@ -54,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
+    String item;
 
 
     @Override
@@ -75,12 +76,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         msgResponse = findViewById(R.id.msgResponse);
         storesMenu = findViewById(R.id.spinner);
         storesArray = new ArrayList<String>();
-        //TODO switch out test stores
         storesArray.add("Select preferred store");
-        storesArray.add("Walmart");
-        storesArray.add("Hy-Vee");
-        storesArray.add("Target");
-        //getStores();
+        getStores();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, storesArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         storesMenu.setAdapter(adapter);
@@ -174,6 +171,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         path = path.replaceAll(" ", "%20");
         curUser.put("displayName", et_name.getText().toString());
         curUser.put("emailAdd", et_email.getText().toString());
+        curUser.put("preferredStore",item);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -232,7 +230,13 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
+        //TODO, if pos 0, then null
+        if(position == 0) {
+            item = null;
+        }
+        else {
+            item = parent.getItemAtPosition(position).toString();
+        }
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
