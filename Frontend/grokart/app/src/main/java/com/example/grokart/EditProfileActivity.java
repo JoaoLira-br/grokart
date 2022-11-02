@@ -45,7 +45,7 @@ import android.widget.Toast;
 
 public class EditProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText et_name, et_email;
-    private final String TAG = RegisterActivity.class.getSimpleName();
+    private final String TAG = EditProfileActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username = "";
     private JSONObject user;
