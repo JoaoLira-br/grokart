@@ -146,18 +146,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
-//        {
-//            @Override
-//            public Map<String, String> getHeaders() {
-//                HashMap<String, String> headers = new HashMap<>();
-//                headers.put("Content-Type", "application/json");
-//                return headers;
-//            }
-//            @Override
-//            protected Map<String, String> getParams() {
-//                return new HashMap<>();
-//            }
-//        };
         AppController.getInstance().addToRequestQueue(request, tag_json_obj);
         return user;
     }
@@ -168,13 +156,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     */
     private void jsonUpdateUser(JSONObject curUser) throws JSONException {
         String path = Const.URL_SERVER_USERS + username;
-        System.out.println("user before update");
-        System.out.println(curUser.toString());
         curUser.put("displayName", et_name.getText().toString());
         curUser.put("emailAdd", et_email.getText().toString());
         curUser.put("preferredStore",item);
-        System.out.println("user after update");
-        System.out.println(curUser.toString());
+        user = curUser;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
                 new Response.Listener<JSONObject>() {
                     @Override
