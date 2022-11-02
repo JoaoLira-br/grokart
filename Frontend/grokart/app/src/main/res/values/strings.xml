@@ -50,5 +50,9 @@
 
     <!-- Strings related to View Previous Lists Page    -->
     <string name="view_prev_lists">My List History</string>
+    <string name="info_btn">Kart Info</string>
+    <string name="edit_btn">Edit Kart</string>
+    <string name="delete_btn">Delete Kart</string>
+    <string name="temp_list_name">List Name</string>
 
 </resources>

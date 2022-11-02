@@ -34,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_karts_list"
         android:layout_width="407dp"
         android:layout_height="478dp"
         android:layout_marginTop="50dp"
