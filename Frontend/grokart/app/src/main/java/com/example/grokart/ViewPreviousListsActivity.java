@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.grokart.Requests.GetRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 import com.example.grokart.utils.KartsListAdapter;
@@ -38,6 +40,7 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
     RecyclerView kartRV;
     ArrayList<String> karts;
     String username;
+    KartsListAdapter adapter;
     private Toolbar myToolbar;
     private final String TAG = ViewPreviousListsActivity.class.getSimpleName();
     private final String tag_json_arry = "jarray_req";
@@ -58,17 +61,11 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         kartRV = (RecyclerView) findViewById(R.id.rv_karts_list);
 //        getTestKarts();
         getKarts();
-        KartsListAdapter adapter = new KartsListAdapter(karts);
+        adapter = new KartsListAdapter(karts);
         kartRV.setAdapter(adapter);
         kartRV.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         kartRV.addItemDecoration(itemDecoration);
-    }
-    private void getTestKarts() {
-        //TODO get actual karts from backend
-        karts.add("Temp list 1");
-        karts.add("Temp list 2");
-        karts.add("Temp list 3");
     }
 
     private void getKarts() {
@@ -84,6 +81,7 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        adapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -91,7 +89,6 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
-
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_arry);
@@ -123,4 +120,5 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
