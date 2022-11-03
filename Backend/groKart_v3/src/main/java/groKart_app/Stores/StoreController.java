@@ -85,8 +85,9 @@ public class StoreController {
      */
     @PutMapping(path = "/stores/items")
     String addItemToStore(@RequestBody Item newItem){
+        if(newItem == null){return failure;}
         Store store = storeRepository.findByStoreName(newItem.getStoreName());
-        if(store == null || newItem == null || itemRepository.existsByStoreNameAndName(newItem.getStoreName(),newItem.getName())){return failure;}
+        if(store == null ||itemRepository.existsByStoreNameAndName(newItem.getStoreName(),newItem.getName())){return failure;}
         newItem.setStore(store);
         itemRepository.save(newItem);
         storeRepository.save(store);

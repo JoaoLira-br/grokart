@@ -38,7 +38,7 @@ public class Store {
 
     public int getStoreId() {return id;}
 
-    public void setStoreId(int storeId) {this.id = id;}
+    public void setStoreId(int id) {this.id = id;}
 
     public String getStoreName() {return storeName;}
 
