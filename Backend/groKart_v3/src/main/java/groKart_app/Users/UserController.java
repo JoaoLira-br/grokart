@@ -83,8 +83,8 @@ public class UserController {
      * @param userName
      * @return
      */
-    @PutMapping("/displayName/{userName}")
-    String updateDisplayName(@PathVariable String userName, @RequestBody String displayName){
+    @PutMapping("/displayName/{userName}/{displayName}")
+    String updateDisplayName(@PathVariable String userName, @PathVariable String displayName){
         User user = userRepository.findByUserName(userName);
         if (user == null)
             return failure;
