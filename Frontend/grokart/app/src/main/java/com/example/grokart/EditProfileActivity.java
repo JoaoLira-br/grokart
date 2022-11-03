@@ -16,12 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -48,10 +50,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private final String TAG = EditProfileActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username = "";
-    private JSONObject user;
     private Toolbar myToolbar;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+    private String tag_string_req = "string_req";
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
     String item = "null";
@@ -92,11 +94,19 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                user = jsonGetUser();
+                if(et_name != null) {
+                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "displayName", et_name.getText().toString());
+                }
+                //TODO get the other fields updating
+//                if(et_email != null) {
+//                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "emailAdd", et_email.getText().toString());
+//                }
+//                if(item != null) {
+//                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "preferredStore", item);
+//                }
             }
         });
     }
-
     private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
                 new Response.Listener<JSONArray>() {
@@ -117,77 +127,44 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
-
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_arry);
     }
-
-    /*
-     * This method gets the current user logged in by using the username passed by the intent
-     * */
-    private JSONObject jsonGetUser() {
-        String path = Const.URL_SAMPLE_READ_USER_GET + username;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, path, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        user = response;
-                        try {
-                            jsonUpdateUser(user);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+    private void makeStringReq() {
+        StringRequest strReq = new StringRequest(Request.Method.PUT, Const.URL_UPDATE_NAME + username, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                msgResponse.setText(response.toString());
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
-        });
-        AppController.getInstance().addToRequestQueue(request, tag_json_obj);
-        return user;
-    }
-
-    /*
-    * This method sends a Json object put request
-    * to update the user info in the backend.
-    */
-    private void jsonUpdateUser(JSONObject curUser) throws JSONException {
-        String path = Const.URL_SERVER_USERS + username;
-        curUser.put("displayName", et_name.getText().toString());
-        curUser.put("emailAdd", et_email.getText().toString());
-        curUser.put("preferredStore",item);
-        user = curUser;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText("Updated successfully");
-                    }
-                }, new Response.ErrorListener() {
+        }) {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                msgResponse.setText("Failed to update");
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
                 return headers;
             }
             @Override
-            protected Map<String, String> getParams() {
-                return new HashMap<>();
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String> ();
+                params.put("displayName", et_name.getText().toString());
+                return params;
             }
         };
-        AppController.getInstance().addToRequestQueue(request, tag_json_obj);
+
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
     }
+
 
     /*
     * This method is necessary when creating a toolbar for the edit profile page.
@@ -221,7 +198,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         // On selecting a spinner item
         //TODO, if pos 0, then null
         if(position == 0) {
-            item = "null";
+            item = null;
         }
         else {
             item = parent.getItemAtPosition(position).toString();
@@ -232,6 +209,41 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
 
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
+
+    }
+
+
+
+
+    private void makeGeneralStringReq(String path, String category, String info) {
+        StringRequest strReq = new StringRequest(Request.Method.PUT, path, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                msgResponse.setText(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String> ();
+                params.put(category, info);
+                return params;
+            }
+        };
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 
     }
 }
