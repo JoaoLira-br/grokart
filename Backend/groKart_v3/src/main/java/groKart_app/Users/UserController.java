@@ -93,7 +93,7 @@ public class UserController {
         return success;
     }
 
-    /**TODO preferred Store update 
+    /**
      * UPDATE PASSWORD OF USER
      * @param userName
      * @return
@@ -104,6 +104,36 @@ public class UserController {
         if (user == null)
             return failure;
         user.setPassword(newPassword);
+        userRepository.save(user);
+        return success;
+    }
+
+    /**
+     * UPDATE PREFERRED STORE OF USER
+     * @param userName
+     * @return
+     */
+    @PutMapping("/preferredStore/{userName}/{preferredStore}")
+    String updatePreferredStore(@PathVariable String userName, @PathVariable String preferredStore){
+        User user = userRepository.findByUserName(userName);
+        if (user == null)
+            return failure;
+        user.setPreferredStore(preferredStore);
+        userRepository.save(user);
+        return success;
+    }
+
+    /**
+     * UPDATE EMAIL OF USER
+     * @param userName
+     * @return
+     */
+    @PutMapping("/emailAdd/{userName}/{emailAdd}")
+    String updateEmailAdd(@PathVariable String userName, @PathVariable String emailAdd){
+        User user = userRepository.findByUserName(userName);
+        if (user == null)
+            return failure;
+        user.setEmailAdd(emailAdd);
         userRepository.save(user);
         return success;
     }
