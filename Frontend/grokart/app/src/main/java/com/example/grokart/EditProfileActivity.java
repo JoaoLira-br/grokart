@@ -56,8 +56,11 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private String tag_string_req = "string_req";
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
-    String item = "null";
-
+    String item = null;
+    final int DISPLAYNAMEINT = 0;
+    final int EMAILADDINT = 1;
+    final int PREFERREDSTOREINT = 2;
+    final String SUCCESSMSG = "{\"message\":\"success\"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,19 +97,28 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(et_name != null) {
-                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "displayName", et_name.getText().toString());
+                msgResponse.setText("");
+                String path;
+                if(!et_name.getText().toString().equals("")) {
+                    msgResponse.append(" Name ");
+                    path = Const.URL_UPDATE_NAME + username + "/" + et_name.getText().toString() + "/";
+                    makeStringReq(path);
                 }
-                //TODO get the other fields updating
-//                if(et_email != null) {
-//                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "emailAdd", et_email.getText().toString());
-//                }
-//                if(item != null) {
-//                    makeGeneralStringReq(Const.URL_UPDATE_NAME + username, "preferredStore", item);
-//                }
+                if(!et_email.getText().toString().equals("") ){
+                    msgResponse.append(" Email ");
+                    path = Const.URL_UPDATE_EMAIL + username + "/" + et_email.getText().toString() + "/";
+                    makeStringReq(path);
+                }
+                if(!storesMenu.getSelectedItem().toString().equals("Select preferred store")) {
+                    msgResponse.append(" Preferred store ");
+                    path = Const.URL_UPDATE_PREFERRED_STORE + username + "/" + storesMenu.getSelectedItem().toString() + "/";
+                    makeStringReq(path);
+                }
             }
         });
     }
+
+
     private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
                 new Response.Listener<JSONArray>() {
@@ -131,40 +143,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_arry);
     }
-    private void makeStringReq() {
-        StringRequest strReq = new StringRequest(Request.Method.PUT, Const.URL_UPDATE_NAME + username, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, response.toString());
-                msgResponse.setText(response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String> ();
-                params.put("displayName", et_name.getText().toString());
-                return params;
-            }
-        };
-
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
-    }
-
 
     /*
     * This method is necessary when creating a toolbar for the edit profile page.
@@ -176,6 +154,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
         return true;
     }
+
     /*
     * This method is similar to an onClickListener.
     * It checks to see if any of the toolbar options were selected,
@@ -193,6 +172,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
@@ -207,20 +187,19 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+    public void onNothingSelected(AdapterView<?> arg0) {}
 
-    }
-
-
-
-
-    private void makeGeneralStringReq(String path, String category, String info) {
+    private void makeStringReq(String path) {
         StringRequest strReq = new StringRequest(Request.Method.PUT, path, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response.toString());
-                msgResponse.setText(response.toString());
+                if(response.toString().equals(SUCCESSMSG)) {
+                    msgResponse.append("updated.");
+                }
+                else {
+                    msgResponse.append("failed to update.");
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -237,13 +216,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
             @Override
             protected Map<String, String> getParams()
             {
-                Map<String, String>  params = new HashMap<String, String> ();
-                params.put(category, info);
-                return params;
+                return new HashMap<String, String>();
             }
         };
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
     }
 }

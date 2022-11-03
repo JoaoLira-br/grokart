@@ -176,20 +176,18 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
+    //TODO: add redirection to store Admin
     public void sendToHomePage(View view, String userName,int privilege) {
         if(privilege == 0){
             Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
             intentBase.putExtra("userName", userName);
             startActivity(intentBase);
-            finish();
         }else if(privilege == 2){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
-            finish();
         }else{
             //TODO if user is store admin send him to store admin home page
         }
-
     }
     //    /**
 //     * Making json array request
