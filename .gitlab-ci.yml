@@ -6,5 +6,5 @@ maven-build:
   tags: 
     - charlie_test_tag
   script: 
-    - cd Backend/"GroKart Backend"/groKart_v3
+    - cd Backend/groKart_v3
     - mvn package
