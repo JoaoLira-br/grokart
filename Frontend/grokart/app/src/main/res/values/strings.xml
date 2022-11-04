@@ -56,4 +56,13 @@
     <string name="temp_list_name">List Name</string>
     <string name="add_btn">add</string>
 
+    <!-- Strings related to Reports Page -->
+    <string name="reports_page_title">Reports</string>
+    <string name="temp_report_title">Report name</string>
+    <string name="create_new_reports">Create report</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="store">Store</string>
+
+
 </resources>
