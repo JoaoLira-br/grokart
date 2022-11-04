@@ -7,15 +7,27 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.grokart.Requests.GetRequest;
+import com.example.grokart.utils.Const;
+import com.example.grokart.utils.KartItemModel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 //    private EditText et_username, et_password;
@@ -30,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         private Button btn_createNewList, btn_viewListHistory;
         private Toolbar myToolbar;
         private String userName;
+        private static final String TAG = CreateNewListActivity.class.getSimpleName();
 
 
 //    
@@ -64,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_main_createNewList:
-                //do something
+              sendCreateNewList(v);
                 break;
             case R.id.btn_main_viewListHistory:
                 Intent intent = new Intent(MainActivity.this, ViewPreviousListsActivity.class);
@@ -102,5 +115,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendCreateNewList(View v){
+        Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
+//        intentCreateNewList.putExtra("username", userName);
+//        intentCreateNewList.putExtra("storeItems",storeItems );
+        intentCreateNewList.putExtra("username", userName);
+        startActivity(intentCreateNewList);
+
     }
 }
