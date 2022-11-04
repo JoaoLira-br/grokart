@@ -16,6 +16,7 @@ public class Const {
     public static final String URL_SAMPLE_READ_USER_GET = "http://coms-309-011.class.las.iastate.edu:8080/user/";
     public static final String URL_SAMPLE_UPDATE_OR_DELETE_USER = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer";
     public static final String URL_SERVER = "http://coms-309-011.class.las.iastate.edu:8080";
+    public static final String URL_USER_INFO = "http://coms-309-011.class.las.iastate.edu:8080/user/";
     public static final String URL_STORE_ITEMS = "http://coms-309-011.class.las.iastate.edu:8080/items/"; //get all items from store
     public static final String URL_WALMART_ITEMS = "http://coms-309-011.class.las.iastate.edu:8080/items/walmart";
     public static final String URL_TARGET_ITEMS = "http://coms-309-011.class.las.iastate.edu:8080/items/target";

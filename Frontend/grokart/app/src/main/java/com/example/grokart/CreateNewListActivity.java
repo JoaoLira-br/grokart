@@ -29,7 +29,7 @@ import java.util.Map;
 
 
 public class CreateNewListActivity extends AppCompatActivity {
-    private String path;
+    private String path, preferredStore, userName;
     private Button btn_viewStoreItems;
     private EditText et_search;
     private RecyclerView itemsRecyclerView;
@@ -37,18 +37,21 @@ public class CreateNewListActivity extends AppCompatActivity {
     private ArrayList<KartItemModel> storeItems;
     private final String TAG = CreateNewListActivity.class.getSimpleName();
     private final Context ct = CreateNewListActivity.this;
-    private final Intent intent = getIntent();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_list);
+        final Intent intentCreateNewList = getIntent();
+        preferredStore = intentCreateNewList.getStringExtra("preferredStore");
+        userName = intentCreateNewList.getStringExtra("username");
         storeItems = new ArrayList<>();
         btn_viewStoreItems = findViewById(R.id.btn_viewStoreItems);
         Log.d(TAG, "onCreate - storeItems"+ storeItems);
         itemsRecyclerView = findViewById(R.id.rv_storeItems);
         et_search = findViewById(R.id.et_searchBar);
-        populateRows("item");
+        populateRows("item", preferredStore);
         btn_viewStoreItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +86,16 @@ public class CreateNewListActivity extends AppCompatActivity {
         return storeItems;
     }
 
-    public void populateRows(String objectToStore) {
-
-        GetRequest getStoreItems = new GetRequest(Const.URL_WALMART_ITEMS, TAG);
+    public void populateRows(String objectToStore, String preferredStore) {
+        GetRequest getStoreItems;
+        if(preferredStore.equals("null")|| preferredStore == null){
+            getStoreItems = new GetRequest(Const.URL_STORE_ITEMS, TAG);
+        }else{
+            getStoreItems = new GetRequest(Const.URL_STORE_ITEMS+preferredStore, TAG);
+        }
         Thread arrayRequest = getStoreItems.createArrayRequestThread(objectToStore);
         Thread handleResponse = getStoreItems.createResponseHandler(() -> {
             HashMap<String, JSONObject> storeItemsHash = getStoreItems.getResponseArrayHM();
-            Log.d(TAG, "InHandleResponseget - StoreItems.getResponseArrayHM(); "+ storeItemsHash);
-            Log.d(TAG, "InHandleResponse - storeItemsHash.size() "+storeItemsHash.size());
-            Log.d(TAG, "InHandleResponse - storeItemsHash.get(\"item1\").entrySet()"+storeItemsHash.get("item1").keys());
             JSONObject itemHash;
             String key;
             String itemName = null;

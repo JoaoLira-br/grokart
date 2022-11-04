@@ -41,19 +41,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         private TextView tv_welcomeUser, tv_appName;
         private Button btn_createNewList, btn_viewListHistory;
         private Toolbar myToolbar;
-        private String userName;
+        private String userName, displayName, preferredStore;
         private static final String TAG = CreateNewListActivity.class.getSimpleName();
 
 
-//    
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        userName = intent.getStringExtra("userName");
+        final Intent intentBase = getIntent();
+
+
+        userName = intentBase.getStringExtra("userName");
+
 
         tv_welcomeUser =  findViewById(R.id.tv_main_welcome);
+        tv_welcomeUser.append(" " + userName + "!");
         tv_appName = findViewById(R.id.tv_main_appTitle);
         btn_createNewList =  findViewById(R.id.btn_main_createNewList);
         btn_viewListHistory = findViewById(R.id.btn_main_viewListHistory);
@@ -62,7 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_appName.setText(groKart);
-        tv_welcomeUser.append(" " + userName + "!");
+
+
+
 
         btn_createNewList.setOnClickListener(this);
         btn_viewListHistory.setOnClickListener(this);
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_main_viewListHistory:
                 Intent intent = new Intent(MainActivity.this, ViewPreviousListsActivity.class);
                 intent.putExtra("userName", userName);
+
                 startActivity(intent);
                 finish();
                 break;
@@ -119,10 +126,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void sendCreateNewList(View v){
         Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
+        String path = Const.URL_USER_INFO+userName+"/";
+        Log.d(TAG, "sendCreateNewList: path"+path);
+        GetRequest getPreferredStore = new GetRequest(path,TAG);
+        getPreferredStore.createRequestThread().start();
+        getPreferredStore.createResponseHandler(()->{
+            Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseHM()"+getPreferredStore.getResponseHM());
+            preferredStore = getPreferredStore.getResponseHM().get("preferredStore");
+            Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseHM().get(\"preferredStore\")"+ getPreferredStore.getResponseHM().get("preferredStore"));
+            intentCreateNewList.putExtra("username", userName);
+            intentCreateNewList.putExtra("preferredStore", preferredStore);
+            startActivity(intentCreateNewList);
+
+        }).start();
+
+
 //        intentCreateNewList.putExtra("username", userName);
 //        intentCreateNewList.putExtra("storeItems",storeItems );
-        intentCreateNewList.putExtra("username", userName);
-        startActivity(intentCreateNewList);
 
     }
 }
