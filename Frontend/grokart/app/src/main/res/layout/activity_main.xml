@@ -53,28 +53,39 @@
     <Button
         android:id="@+id/btn_main_createNewList"
         style="@style/white_button"
+        android:layout_marginBottom="15dp"
         android:text="@string/create_new_list"
         app:cornerRadius="10dp"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_main_viewListHistory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_main_welcome"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_main_viewListHistory"
         style="@style/white_button"
         android:layout_width="317dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/view_list_history"
+        app:cornerRadius="10dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btn_view_reports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_view_reports"
+        style="@style/white_button"
+        android:layout_width="317dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/reports_page_title"
         app:cornerRadius="10dp"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_main_createNewList"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

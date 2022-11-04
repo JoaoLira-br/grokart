@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    // These tags will be used to cancel the requests
 //    private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
         private TextView tv_welcomeUser, tv_appName;
-        private Button btn_createNewList, btn_viewListHistory;
+        private Button btn_createNewList, btn_viewListHistory, btn_viewReports;
         private Toolbar myToolbar;
         private String userName;
 
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_appName = findViewById(R.id.tv_main_appTitle);
         btn_createNewList =  findViewById(R.id.btn_main_createNewList);
         btn_viewListHistory = findViewById(R.id.btn_main_viewListHistory);
+        btn_viewReports = findViewById(R.id.btn_view_reports);
         //setting the style for the App Title
         Spannable groKart = new SpannableString(getString(R.string.groKart));
         groKart.setSpan(new ForegroundColorSpan(Color.GREEN), 0,3,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_createNewList.setOnClickListener(this);
         btn_viewListHistory.setOnClickListener(this);
+        btn_viewReports.setOnClickListener(this);
 
         //adds in updated toolbar
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -62,12 +64,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.btn_main_createNewList:
                 //do something
                 break;
             case R.id.btn_main_viewListHistory:
-                Intent intent = new Intent(MainActivity.this, ViewPreviousListsActivity.class);
+                intent = new Intent(MainActivity.this, ViewPreviousListsActivity.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.btn_view_reports:
+                intent = new Intent(MainActivity.this, ReportsActivity.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
                 finish();
