@@ -58,6 +58,14 @@
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".ReportsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".NewReportActivity"
+            android:exported="true"
+            android:parentActivityName=".ReportsActivity" />
+        <activity
             android:name=".ViewPreviousListsActivity"
             android:exported="true" />
         <meta-data
