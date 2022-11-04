@@ -29,7 +29,8 @@
         android:inputType="textPersonName"
         android:text="@string/what_are_you_looking_for"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/tv_createNewList"
@@ -63,7 +64,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.851"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/search_loop_foreground" />
+            app:srcCompat="@drawable/search_loop_foreground"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/tv_quantityTotal"
@@ -106,9 +108,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
                 android:backgroundTint="@color/white"
+                android:contentDescription="@string/add_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/btn_minus_sign4"
@@ -120,7 +124,8 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_price4"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.457"
-                app:srcCompat="@drawable/ic_baseline_minus" />
+                app:srcCompat="@drawable/ic_baseline_minus"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:layout_width="30dp"
@@ -130,7 +135,8 @@
                 app:layout_constraintStart_toEndOf="@+id/btn_minus_sign4"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.833"
-                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+                app:srcCompat="@drawable/ic_shopping_cart_foreground"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/tv_Item4"
@@ -188,7 +194,8 @@
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/btn_minus_sign3"
@@ -200,7 +207,8 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_price3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.457"
-                app:srcCompat="@drawable/ic_baseline_minus" />
+                app:srcCompat="@drawable/ic_baseline_minus"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:layout_width="30dp"
@@ -210,7 +218,8 @@
                 app:layout_constraintStart_toEndOf="@+id/btn_minus_sign3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.833"
-                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+                app:srcCompat="@drawable/ic_shopping_cart_foreground"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/tv_Item3"
@@ -269,7 +278,8 @@
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/btn_minus_sign"
@@ -281,7 +291,8 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_price"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.457"
-                app:srcCompat="@drawable/ic_baseline_minus" />
+                app:srcCompat="@drawable/ic_baseline_minus"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:layout_width="30dp"
@@ -291,7 +302,8 @@
                 app:layout_constraintStart_toEndOf="@+id/btn_minus_sign"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.833"
-                app:srcCompat="@drawable/ic_shopping_cart_foreground" />
+                app:srcCompat="@drawable/ic_shopping_cart_foreground"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/tv_itemName"
