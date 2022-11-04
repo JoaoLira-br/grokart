@@ -26,15 +26,14 @@
 
             <ImageButton
                 android:id="@+id/btn_plus_sign"
-                android:layout_width="25dp"
-                android:layout_height="37dp"
-                android:layout_marginEnd="12dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="20dp"
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
+                app:srcCompat="@drawable/ic_plus" />
 
             <ImageButton
                 android:layout_width="30dp"
@@ -44,7 +43,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_minus_sign"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintVertical_bias="0.909"
                 app:srcCompat="@drawable/ic_shopping_cart_foreground" />
 
             <TextView
@@ -53,20 +52,20 @@
                 android:layout_height="22dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@+id/btn_plus_sign"
-                app:layout_constraintHorizontal_bias="0.846"
+                app:layout_constraintHorizontal_bias="0.444"
                 app:layout_constraintStart_toEndOf="@+id/btn_minus_sign"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/btn_minus_sign"
-                android:layout_width="35dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="19dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="32dp"
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_quantityAvailableHeading"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_minus" />
+                app:srcCompat="@drawable/ic_minus" />
 
             <TextView
                 android:id="@+id/tv_itemName"
