@@ -50,7 +50,7 @@ public class AdminHomeActivity extends AppCompatActivity {
 
                                                @Override
                                                public void onClick(View v) {
-                                                   //TODO change path to array stores endpoint
+
                                                    JsonArrayRequest jsonArrReqStores = new JsonArrayRequest(Const.URL_SERVER_STORES,
                                                            new Response.Listener<JSONArray>() {
                                                                @Override
@@ -95,7 +95,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                                            });
 
 
-                                               //TODO uncomment and add appropriate path for fetching stores count
+
 
                                                // Cancelling request
                                                // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
