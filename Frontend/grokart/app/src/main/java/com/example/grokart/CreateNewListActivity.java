@@ -1,6 +1,8 @@
 package com.example.grokart;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class CreateNewListActivity extends AppCompatActivity {
@@ -37,6 +42,8 @@ public class CreateNewListActivity extends AppCompatActivity {
     private ArrayList<KartItemModel> storeItems;
     private final String TAG = CreateNewListActivity.class.getSimpleName();
     private final Context ct = CreateNewListActivity.this;
+
+    private Toolbar myToolbar;
 
 
     @Override
@@ -52,6 +59,13 @@ public class CreateNewListActivity extends AppCompatActivity {
         itemsRecyclerView = findViewById(R.id.rv_storeItems);
         et_search = findViewById(R.id.et_searchBar);
         populateRows("item", preferredStore);
+
+        //adds in updated toolbar
+        myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         btn_viewStoreItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +144,36 @@ public class CreateNewListActivity extends AppCompatActivity {
         handleResponse.start();
 
     }
+
+    /*
+     * This method is necessary when creating a toolbar for the edit profile page.
+     * It uses the menu layout stored in res/menu/menu_back_to_main.xml
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
+        return true;
+    }
+
+    /*
+     * This method is similar to an onClickListener.
+     * It checks to see if any of the toolbar options were selected,
+     * and then performs the appropriate action
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // If back button clicked
+        if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
+            Intent intent = new Intent(CreateNewListActivity.this, MainActivity.class);
+            intent.putExtra("userName", userName);
+            startActivity(intent);
+            this.finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
+}
 
 
 

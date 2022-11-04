@@ -64,5 +64,7 @@
     <string name="description">Description</string>
     <string name="store">Store</string>
 
+    <string name="view_store_items">View Store Items</string>
+
 
 </resources>
