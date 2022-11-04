@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
             GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
             Thread loginResponse = getRequest.createResponseHandler(()->{
-                int response = Integer.parseInt(Objects.requireNonNull(getRequest.getResponseHM().get("privilege")));
+                int response = Integer.parseInt(getRequest.getResponseHM().get("privilege"));
                 if(response  != -1){
 
                     sendToHomePage(v, et_username.getText().toString(), response);
