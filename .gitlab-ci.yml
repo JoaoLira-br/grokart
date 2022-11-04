@@ -1,0 +1,10 @@
+stages:
+    - mavenbuild
+
+maven-build:
+  stage: mavenbuild
+  tags: 
+    - charlie_test_tag
+  script: 
+    - cd Backend/"GroKart Backend"/groKart_v3
+    - mvn package
