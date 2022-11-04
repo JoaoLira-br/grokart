@@ -57,6 +57,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
     String item = null;
+    private String displayName, preferredStore;
     final int DISPLAYNAMEINT = 0;
     final int EMAILADDINT = 1;
     final int PREFERREDSTOREINT = 2;
@@ -70,6 +71,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         // gets the user info from the main activity that sent us to this page
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
+        displayName = intent.getStringExtra("displayName");
+        preferredStore = intent.getStringExtra("preferredStore");
         //adds in updated toolbar
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -166,6 +169,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
             intent.putExtra("userName", username);
+            intent.putExtra("displayName", displayName);
+            intent.putExtra("preferredStore", preferredStore);
             startActivity(intent);
             this.finish();
             return true;

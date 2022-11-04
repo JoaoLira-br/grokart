@@ -28,7 +28,7 @@ import java.util.Map;
 public class GetRequest implements RequestITF {
     private String path;
     private final HashMap<String, String> responseHM;
-    private final HashMap<String, HashMap> responseArrayHM;
+    private final HashMap<String, JSONObject> responseArrayHM;
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private String TAG;
@@ -47,7 +47,7 @@ public class GetRequest implements RequestITF {
         return responseHM;
     }
 
-    public HashMap<String, HashMap> getResponseArrayHM() {
+    public HashMap<String, JSONObject> getResponseArrayHM() {
         return responseArrayHM;
     }
 
@@ -130,7 +130,6 @@ public class GetRequest implements RequestITF {
                             @Override
                             public void onResponse(JSONArray response) {
                             storeOnArrayHash(response, objectToStore);
-
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -158,7 +157,7 @@ public class GetRequest implements RequestITF {
             public void run() {
                 //Waits for the Server Response
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -188,19 +187,29 @@ public class GetRequest implements RequestITF {
         }
     }
 
-    //item1, item2, item3, ...
+    //nameOfObject+i, nameOfObject+i+1, nameOfObject+i+2, ...
+    //obs: i tried using hashmap<String, HashMap> and it didn`t work because the values were updating dynamically through getResponseHm, turning all values into the last one acquired
     public void storeOnArrayHash(JSONArray response, String nameOfObject){
+        JSONObject itemHash = new JSONObject();
+        String key;
         int i = 0;
         while(i < response.length()){
             try {
-                storeOnHash(response.getJSONObject(i));
+                Log.d(TAG, "GetRequest/StoreOnArrayHash - jsonObjectFromResponse "+response.getJSONObject(i).toString());
+                itemHash = response.getJSONObject(i);
+                Log.d(TAG, "GetRequest/StoreOnArrayHash - itemHash " + itemHash);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            responseArrayHM.put(nameOfObject+ Integer.toString(i+1), getResponseHM());
-            getResponseHM().clear();
+            key = nameOfObject + (i + 1);
+            Log.d(TAG, "GetRequest/StoreOnArrayHash - key" + " "+ key);
+            Log.d(TAG, "GetRequest/StoreOnArrayHash - getResponseHM(): "+getResponseHM());
+            responseArrayHM.put(key, itemHash);
+            Log.d(TAG, "GetRequest/StoreOnArrayHash - getResponseArrayHM()" + getResponseArrayHM());
+
             i++;
         }
+        Log.d(TAG, "GetRequest/StoreOnArrayHash - HashMapAfterStoreOnArrayHash: "+getResponseArrayHM());
     }
 
 

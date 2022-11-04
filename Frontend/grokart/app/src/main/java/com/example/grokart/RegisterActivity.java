@@ -86,8 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO have REGISTER button send input to backend and proceed to Home page
-                // with response as Intent Extra
+
                 proceedRegister(v);
 
             }
@@ -96,21 +95,25 @@ public class RegisterActivity extends AppCompatActivity {
     private void setPathAddress(){
         String username = et_username.getText().toString();
         String password = et_password.getText().toString();
+
         path = (Const.URL_SERVER_USERS + username + "/" + password).replaceAll("\\s", "");
+        Log.d(TAG, "setPathAddress: "+path);
 
     }
     private void proceedLogin(View v){
+
         if(checkInputs()) {
             setPathAddress();
             GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
             Thread loginResponse = getRequest.createResponseHandler(()->{
-                int response = Integer.parseInt(Objects.requireNonNull(getRequest.getResponseHM().get("privilege")));
+                int response = Integer.parseInt(getRequest.getResponseHM().get("privilege"));
                 if(response  != -1){
+
                     sendToHomePage(v, et_username.getText().toString(), response);
                 }else{
                     //TOAST MAKING THE APP CRASH
-                    msgResponse.setText(response);
+                    msgResponse.setText("Login Failed");
                 }
             });
 
@@ -176,18 +179,33 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
-    //TODO: add redirection to store Admin
-    public void sendToHomePage(View view, String userName,int privilege) {
+
+    public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
-            Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
-            intentBase.putExtra("userName", userName);
-            startActivity(intentBase);
-        }else if(privilege == 2){
+
+            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+"/"+userName+"/", TAG);
+            getDisplayName.createRequestThread().start();
+            getDisplayName.createResponseHandler(()->{
+                String preferredStore = getDisplayName.getResponseHM().get("preferredStore");
+                Log.d(TAG, "sendToHomePage: getDisplayName.getResponseHM().getPreferredStore"+getDisplayName.getResponseHM().get("preferredStore"));
+                String displayName = getDisplayName.getResponseHM().get("displayName");
+                Log.d(TAG, "sendToHomePage: displayName"+displayName);
+                Intent intentBase = new Intent(RegisterActivity.this,MainActivity.class);
+                intentBase.putExtra("userName", userName);
+                intentBase.putExtra("displayName",displayName);
+                intentBase.putExtra("preferredStore", preferredStore);
+                startActivity(intentBase);
+
+            }).start();
+
+            //TODO: remove "|| privilege == 1" afterwards
+        }else if(privilege == 2 || privilege == 1){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
         }else{
             //TODO if user is store admin send him to store admin home page
         }
+
     }
     //    /**
 //     * Making json array request
