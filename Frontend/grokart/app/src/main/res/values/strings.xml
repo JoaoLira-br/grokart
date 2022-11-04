@@ -17,7 +17,8 @@
     <string name="title_activity_login">LoginActivity</string>
 
     <string name="welcome_user">Welcome </string>
-    <string name="create_new_list">Create new list</string>
+    <string name="create_new_list">Create New List</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
     <string name="view_list_history">View List History</string>
     <string name="settings">Settings</string>
     <string name="view_profile">Your Profile</string>
@@ -43,4 +44,16 @@
     <string name="store_count_title">Stores Count</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- Strings related to Create New Lists Page    -->
+
+
+    <!-- Strings related to View Previous Lists Page    -->
+    <string name="view_prev_lists">My List History</string>
+    <string name="info_btn">Kart Info</string>
+    <string name="edit_btn">Edit Kart</string>
+    <string name="delete_btn">Delete Kart</string>
+    <string name="temp_list_name">List Name</string>
+    <string name="add_btn">add</string>
+
 </resources>

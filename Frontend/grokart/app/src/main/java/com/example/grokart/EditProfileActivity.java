@@ -16,12 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -45,16 +47,20 @@ import android.widget.Toast;
 
 public class EditProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText et_name, et_email;
-    private final String TAG = RegisterActivity.class.getSimpleName();
+    private final String TAG = EditProfileActivity.class.getSimpleName();
     private TextView msgResponse;
     private String username = "";
-    private JSONObject user;
     private Toolbar myToolbar;
     // These tags will be used to cancel the requests
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+    private String tag_string_req = "string_req";
     private ArrayList<String> storesArray;
     private Spinner storesMenu;
-
+    String item = null;
+    final int DISPLAYNAMEINT = 0;
+    final int EMAILADDINT = 1;
+    final int PREFERREDSTOREINT = 2;
+    final String SUCCESSMSG = "{\"message\":\"success\"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +81,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         msgResponse = findViewById(R.id.msgResponse);
         storesMenu = findViewById(R.id.spinner);
         storesArray = new ArrayList<String>();
-        //TODO switch out test stores
         storesArray.add("Select preferred store");
-        storesArray.add("Walmart");
-        storesArray.add("Hy-Vee");
-        storesArray.add("Target");
-        //getStores();
+        getStores();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, storesArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         storesMenu.setAdapter(adapter);
@@ -95,10 +97,27 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                user = jsonGetUser();
+                msgResponse.setText("");
+                String path;
+                if(!et_name.getText().toString().equals("")) {
+                    msgResponse.append(" Name ");
+                    path = Const.URL_UPDATE_NAME + username + "/" + et_name.getText().toString() + "/";
+                    makeStringReq(path);
+                }
+                if(!et_email.getText().toString().equals("") ){
+                    msgResponse.append(" Email ");
+                    path = Const.URL_UPDATE_EMAIL + username + "/" + et_email.getText().toString() + "/";
+                    makeStringReq(path);
+                }
+                if(!storesMenu.getSelectedItem().toString().equals("Select preferred store")) {
+                    msgResponse.append(" Preferred store ");
+                    path = Const.URL_UPDATE_PREFERRED_STORE + username + "/" + storesMenu.getSelectedItem().toString() + "/";
+                    makeStringReq(path);
+                }
             }
         });
     }
+
 
     private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
@@ -120,87 +139,9 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
-
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_arry);
-    }
-
-    /*
-     * This method gets the current user logged in by using the username passed by the intent
-     * */
-    private JSONObject jsonGetUser() {
-        String path = Const.URL_SAMPLE_READ_USER_GET + username;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, path, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        user = response;
-                        try {
-                            jsonUpdateUser(user);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        });
-//        {
-//            @Override
-//            public Map<String, String> getHeaders() {
-//                HashMap<String, String> headers = new HashMap<>();
-//                headers.put("Content-Type", "application/json");
-//                return headers;
-//            }
-//            @Override
-//            protected Map<String, String> getParams() {
-//                return new HashMap<>();
-//            }
-//        };
-        AppController.getInstance().addToRequestQueue(request, tag_json_obj);
-        return user;
-    }
-
-    /*
-    * This method sends a Json object put request
-    * to update the user info in the backend.
-    */
-    private void jsonUpdateUser(JSONObject curUser) throws JSONException {
-        String path = Const.URL_SERVER_USERS + username;
-        path = path.replaceAll(" ", "%20");
-        curUser.put("displayName", et_name.getText().toString());
-        curUser.put("emailAdd", et_email.getText().toString());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, path, curUser,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText("Updated successfully");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                msgResponse.setText("Failed to update");
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
-            }
-            @Override
-            protected Map<String, String> getParams() {
-                return new HashMap<>();
-            }
-        };
-        AppController.getInstance().addToRequestQueue(request, tag_json_obj);
     }
 
     /*
@@ -213,6 +154,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         getMenuInflater().inflate(R.menu.menu_back_to_main, menu);
         return true;
     }
+
     /*
     * This method is similar to an onClickListener.
     * It checks to see if any of the toolbar options were selected,
@@ -223,22 +165,61 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+            intent.putExtra("userName", username);
             startActivity(intent);
             this.finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
+        //TODO, if pos 0, then null
+        if(position == 0) {
+            item = null;
+        }
+        else {
+            item = parent.getItemAtPosition(position).toString();
+        }
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+    public void onNothingSelected(AdapterView<?> arg0) {}
 
+    private void makeStringReq(String path) {
+        StringRequest strReq = new StringRequest(Request.Method.PUT, path, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                if(response.toString().equals(SUCCESSMSG)) {
+                    msgResponse.append("updated.");
+                }
+                else {
+                    msgResponse.append("failed to update.");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return new HashMap<String, String>();
+            }
+        };
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }

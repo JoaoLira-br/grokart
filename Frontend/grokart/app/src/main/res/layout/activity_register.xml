@@ -40,7 +40,7 @@
     <EditText
         android:id="@+id/et_password"
         android:layout_width="305dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="71dp"
@@ -48,6 +48,7 @@
         android:backgroundTint="#D9D9D9"
         android:backgroundTintMode="src_in"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -57,7 +58,7 @@
     <EditText
         android:id="@+id/et_username"
         android:layout_width="305dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="71dp"
@@ -65,6 +66,7 @@
         android:backgroundTint="#D9D9D9"
         android:backgroundTintMode="src_in"
         android:ems="10"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

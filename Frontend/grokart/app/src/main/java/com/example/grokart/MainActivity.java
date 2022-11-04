@@ -67,7 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //do something
                 break;
             case R.id.btn_main_viewListHistory:
-                //do something
+                Intent intent = new Intent(MainActivity.this, ViewPreviousListsActivity.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
+                finish();
                 break;
             default:
                 break;
