@@ -4,6 +4,7 @@ import groKart_app.Items.Item;
 import groKart_app.Reports.Report;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import groKart_app.Karts.Kart;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes="User ID", name="userID", value="1")
     private int id;
 
     // owned karts
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
+    @ApiModelProperty(notes="App User Owned Karts", name="ownedKarts")
     private List<Kart> ownedKarts;
 
     /**
@@ -30,16 +33,23 @@ public class User {
     @JsonIgnore
 //    @JsonIgnore
     private List<User> friends;
+    @ApiModelProperty(notes="Username", name="userName", required = true,value="bbg")
     private String userName;
+    @ApiModelProperty(notes="Email Address", name="emailAdd", value="bbg@iastate.edu")
     private String emailAdd;
+    @ApiModelProperty(notes="Password", name="password",required = true, value="bbg1234")
     private String password;
+    @ApiModelProperty(notes="Display Name", name="displayName", value="Baga")
     private String displayName;
 
     //privilege --> base_user = 0, store_admin = 1, app-admin = 2
+    @ApiModelProperty(notes="Privilege", name="privilege", value="0")
     private int privilege;
+    @ApiModelProperty(notes="Preferred Store", name="preferredStore", value="Walmart")
     private String preferredStore;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ApiModelProperty(notes="Reports", name="reports")
     private List<Report> reports;
 
     public User(String userName, String emailAdd, String password, String displayName, int privilege, String preferredStore) {
