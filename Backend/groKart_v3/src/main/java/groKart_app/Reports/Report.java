@@ -1,6 +1,7 @@
 package groKart_app.Reports;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
@@ -13,13 +14,16 @@ public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes="Report ID", name="reportId", value="1")
     private int id;
-
+    @ApiModelProperty(notes="Report Title", name="reportTitle", value="Wrong Store Pricing")
     private String reportTitle;
+    @ApiModelProperty(notes="Report Description", name="description", value="<Full Description of the Report>")
     private String description;
+    @ApiModelProperty(notes="StoreName of the Report being launched on", name="storeName", value="Walmart")
     private String storeName;
+    @ApiModelProperty(notes="Report Status", name="reportStatus", value="Under Review")
     private String reportStatus;
-    private int count;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -66,14 +70,6 @@ public class Report {
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public User getUser() {

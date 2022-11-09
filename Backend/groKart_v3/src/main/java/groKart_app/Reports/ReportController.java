@@ -40,13 +40,7 @@ public class ReportController {
      */
     @PostMapping(path = "/reports")
     String createReport(@RequestBody Report report){
-        if(report == null){
-            return failure;
-        } else if (reportRepository.existsByReportTitleAndStoreName(report.getReportTitle(),report.getStoreName())) {
-            report.setCount(report.getCount()+1);
-            reportRepository.save(report);
-            return success;
-        }
+        if(report == null){return failure;}
         reportRepository.save(report);
         return success;
     }

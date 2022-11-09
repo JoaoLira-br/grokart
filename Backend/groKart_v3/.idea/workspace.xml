@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4773d4ad-6aba-4f7b-8932-f83b15fdf188" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Stores/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log.2022-10-28.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log.2022-10-30.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Items/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Items/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="groKartApplication" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="groKart_app.Main" />
