@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(notes="User ID", name="userID", value="1")
+    @ApiModelProperty(notes="User ID", name="userId", value="1")
     private int id;
 
     // owned karts
