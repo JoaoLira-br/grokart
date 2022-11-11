@@ -22,6 +22,7 @@ public class Report {
     private String description;
     @ApiModelProperty(notes="StoreName of the Report being launched on", name="storeName", value="Walmart")
     private String storeName;
+    //TODO: need some work done on report status
     @ApiModelProperty(notes="Report Status", name="reportStatus", value="Under Review")
     private String reportStatus;
 

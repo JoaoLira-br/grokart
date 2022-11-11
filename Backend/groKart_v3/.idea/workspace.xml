@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4773d4ad-6aba-4f7b-8932-f83b15fdf188" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Karts/Kart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Karts/Kart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Karts/KartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Karts/KartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Reports/Report.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

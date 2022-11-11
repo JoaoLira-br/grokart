@@ -33,6 +33,7 @@ public class Item {
     private String name;
     @ApiModelProperty(notes="Item Price",required = true, name="itemPrice", value="$0.70")
     private double price;
+    //TODO: we might not need storeName anymore
     @ApiModelProperty(notes="Store Name",required = true, name="storeName", value="Walmart")
     private String storeName;
     @ApiModelProperty(notes="Item Quantity",required = true, name="itemQuantity", value="100")
