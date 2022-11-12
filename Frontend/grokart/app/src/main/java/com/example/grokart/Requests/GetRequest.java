@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**@author Joao Victor Lira
+ * */
 public class GetRequest implements RequestITF {
     private String path;
     private final HashMap<String, String> responseHM;
@@ -43,10 +45,13 @@ public class GetRequest implements RequestITF {
 //
     }
 
+/**@return The Hashmap with the response from the volleyResquests
+ * */
     public HashMap<String, String> getResponseHM() {
         return responseHM;
     }
 
+/**@return Hashmap with the response from the volleyArrayRequest*/
     public HashMap<String, JSONObject> getResponseArrayHM() {
         return responseArrayHM;
     }
@@ -63,7 +68,8 @@ public class GetRequest implements RequestITF {
         return reqThread;
     }
 
-    //TODO: remove this function
+
+    /** @return A thread that runs the volley getRequest. */
     @Override
     public Thread createRequestThread() {
        this.reqThread = new Thread( new Runnable() {
@@ -121,6 +127,10 @@ public class GetRequest implements RequestITF {
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     };
 
+    /**@param objectToStore is the name of the objects the response sends. The name is of the developer`s choice.
+     *The name will reflect later when the developer decides to make Models out of it
+     *
+     * @return A thread that runs the volley Array request*/
     public Thread createArrayRequestThread(String objectToStore){
         this.reqThread = new Thread(new Runnable() {
             @Override
@@ -150,6 +160,8 @@ public class GetRequest implements RequestITF {
         return reqThread;
     };
 
+    /**@param hdlResponse the lambda function or interface implementation which handles the response
+     * @return a thread that runs the response handler after 500ms (enough so that the response is received by the client)*/
     public Thread createResponseHandler(ResponseHandlerITF hdlResponse){
         return new Thread(new Runnable(){
 
@@ -168,7 +180,10 @@ public class GetRequest implements RequestITF {
     }
 
 
-    //TODO: identify problem: null HASH MAP response in GET response
+
+    /**@param response JSON object sent by the server
+     *   stores response in a Hashmap
+     * */
     @Override
     public void storeOnHash(JSONObject response) {
 
@@ -187,8 +202,11 @@ public class GetRequest implements RequestITF {
         }
     }
 
-    //nameOfObject+i, nameOfObject+i+1, nameOfObject+i+2, ...
-    //obs: i tried using hashmap<String, HashMap> and it didn`t work because the values were updating dynamically through getResponseHm, turning all values into the last one acquired
+    /**@param nameOfObject is the name of the objects the response sends. The name is of the developer`s choice.
+     *The name will reflect later when the developer decides to make Models out of it
+     * @param response: the JSONArray response sent by the server
+     *
+     * */
     public void storeOnArrayHash(JSONArray response, String nameOfObject){
         JSONObject itemHash = new JSONObject();
         String key;

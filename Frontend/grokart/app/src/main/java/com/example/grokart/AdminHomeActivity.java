@@ -38,6 +38,8 @@ public class AdminHomeActivity extends AppCompatActivity {
     private TextView usersCount, storesCount;
     private final String TAG = AdminHomeActivity.class.getSimpleName();
 
+    /**@Author Joao Victor Lira
+     * this activity allow the admin to see app info*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

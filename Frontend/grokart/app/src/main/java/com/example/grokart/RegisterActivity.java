@@ -100,6 +100,11 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d(TAG, "setPathAddress: "+path);
 
     }
+
+    /**@Author Joao Victor Lira
+     * @param v: the View clicked by the user
+     * check if user input is correct and matches an existing user in the database, if yes proceeds to Main, otherwise stay in RegisterActivity
+     * */
     private void proceedLogin(View v){
 
         if(checkInputs()) {
@@ -126,6 +131,10 @@ public class RegisterActivity extends AppCompatActivity {
             loginResponse.start();
         }
     };
+    /**@Author Joao Victor Lira
+     * @param v: the View clicked by the user
+     * check if user input is correct, if yes creates a new user in the DB and proceeds to Main, otherwise stay in RegisterActivity
+     * */
     private void proceedRegister(View v){
         if(checkInputs()) {
             user = createUser();
@@ -151,6 +160,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     };
 
+    /**@Author Joao Victor Lira
+     * @return true if user inputs correctly, i.e password.length > 7, false otherwise*/
     private Boolean checkInputs() {
         int invalidCounter = 0;
         if (et_username.length() == 0) {
@@ -179,7 +190,11 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
-
+    /**@Author Joao Victor Lira
+     * @param userName is the user`s username input
+     * @param privilege is 0 if the user is base user, 1 if store admin, 2 if app admin, -1 otherwise.
+     * Allow proper home page redirection for different types of users
+     * */
     public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
 
@@ -207,34 +222,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
-    //    /**
-//     * Making json array request
-//     * */
-    private void makeJsonArrayReq() {
-//        showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_USERS,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, Const.URL_SERVER_USERS);
-                        Log.d(TAG, response.toString());
-//                        msgResponse.setText(response.toString());
-//                        hideProgressDialog();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-            }
-        });
 
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req,
-                tag_json_arry);
-
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
-    }
 
 }

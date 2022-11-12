@@ -133,6 +133,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    /**@Author Joao Victor Lira
+     * @param v: the view which the user has clicked
+     * sends the user to CreateNewList page, along with the user`s username and
+     * preferred store, which is then used to populate the recycler view of the next page
+     * */
     public void sendCreateNewList(View v){
         Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
         String path = Const.URL_USER_INFO+userName+"/";

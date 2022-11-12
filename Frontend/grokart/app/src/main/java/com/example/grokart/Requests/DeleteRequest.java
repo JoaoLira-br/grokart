@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
+/**@author Joao Victor Lira
+ * */
 public class DeleteRequest implements RequestITF{
     private String path;
     private final HashMap<String, String> responseHM;
@@ -36,7 +39,8 @@ public class DeleteRequest implements RequestITF{
         this.TAG = TAG;
 //
     }
-
+    /**@return The Hashmap with the response from the volleyResquests
+     * */
     public HashMap<String, String> getResponseHM() {
         return responseHM;
     }
@@ -53,7 +57,8 @@ public class DeleteRequest implements RequestITF{
         return reqThread;
     }
 
-    //TODO: remove this function
+
+    /** @return A thread that runs the volley deleteRequest. */
     @Override
     public Thread createRequestThread() {
         this.reqThread = new Thread( new Runnable() {
@@ -112,6 +117,8 @@ public class DeleteRequest implements RequestITF{
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     };
 
+    /**@param hdlResponse the lambda function or interface implementation which handles the response
+     * @return a thread that runs the response handler after 500ms (enough so that the response is received by the client)*/
     public Thread createResponseHandler(ResponseHandlerITF hdlResponse){
         return new Thread(new Runnable(){
 
@@ -130,7 +137,10 @@ public class DeleteRequest implements RequestITF{
     }
 
 
-    //TODO: identify problem: null HASH MAP response in GET response
+
+    /**@param response JSON object sent by the server
+     *  stores response in a Hashmap
+     * */
     @Override
     public void storeOnHash(JSONObject response) {
 

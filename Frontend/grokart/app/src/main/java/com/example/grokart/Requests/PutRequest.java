@@ -28,6 +28,10 @@ public class PutRequest implements RequestITF {
     private Thread reqThread;
     private JSONObject toPut;
 
+
+
+    /**@author Joao Victor Lira
+     * */
     public PutRequest(String path, String TAG, JSONObject toPut) {
         this.path = path;
         this.responseHM = new HashMap<>();
@@ -86,6 +90,8 @@ public class PutRequest implements RequestITF {
 //
     }
 
+    /**@return The Hashmap with the response from the volleyResquests
+     * */
     public HashMap<String, String> getResponseHM() {
         return responseHM;
     }
@@ -102,7 +108,8 @@ public class PutRequest implements RequestITF {
         return reqThread;
     }
 
-    //TODO: remove this function
+
+    /** @return A thread that runs the volley putRequest. */
     @Override
     public Thread createRequestThread() {
         return new Thread( new Runnable() {
@@ -159,6 +166,8 @@ public class PutRequest implements RequestITF {
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     };
 
+    /**@param hdlResponse the lambda function or interface implementation which handles the response
+     * @return a thread that runs the response handler after 500ms (enough so that the response is received by the client)*/
     public Thread createResponseHandler(ResponseHandlerITF hdlResponse){
         return new Thread(new Runnable(){
 
@@ -177,7 +186,9 @@ public class PutRequest implements RequestITF {
     }
 
 
-    //TODO: identify problem: null HASH MAP response in GET response
+    /**@param response JSON object sent by the server
+     *  stores response in a Hashmap
+     * */
     @Override
     public void storeOnHash(JSONObject response) {
 

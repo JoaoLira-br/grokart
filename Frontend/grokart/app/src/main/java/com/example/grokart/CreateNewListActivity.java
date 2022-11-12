@@ -39,6 +39,7 @@ public class CreateNewListActivity extends AppCompatActivity {
     private final Context ct = CreateNewListActivity.this;
 
 
+    /**@Author Joao Victor Lira*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class CreateNewListActivity extends AppCompatActivity {
         itemsRecyclerView = findViewById(R.id.rv_storeItems);
         et_search = findViewById(R.id.et_searchBar);
         populateRows("item", preferredStore);
+
+        /**on click fills the fills the recycler views with the items from the ArrayList storeItems by attaching an adapter with kartItemModels*/
         btn_viewStoreItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +89,12 @@ public class CreateNewListActivity extends AppCompatActivity {
         return storeItems;
     }
 
+
+    /**@param objectToStore is the name of the objects the response sends. The name is of the developer`s choice.
+     *The name will reflect later when the developer decides to make Models out of it
+     * @param preferredStore is the user`s preferred store, used to properly populate the recycler view`s rows with the items from the respective store
+     * it fills the ArrayList storeItems which is then used to fill the recycler view
+     *                     */
     public void populateRows(String objectToStore, String preferredStore) {
         GetRequest getStoreItems;
         if(preferredStore.equals("null")|| preferredStore == null){

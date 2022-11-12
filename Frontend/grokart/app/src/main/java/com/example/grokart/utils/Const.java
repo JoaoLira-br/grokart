@@ -12,7 +12,7 @@ public class Const {
     public static final String URL_SAMPLE_LOGIN_GET_1 = "http://coms-309-011.class.las.iastate.edu:8080/users/mrm/hello123";
     public static final String URL_SAMPLE_LOGIN_GET_2 = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer/ex_pass";
     public static final String URL_SAMPLE_CREATE_USER_POST = "http://coms-309-011.class.las.iastate.edu:8080/users";
-    //TODO backend must change last endpoint of URL_SAMPLE_READ_USER_GET from /users/{id} to /users/{username}
+
     public static final String URL_SAMPLE_READ_USER_GET = "http://coms-309-011.class.las.iastate.edu:8080/user/";
     public static final String URL_SAMPLE_UPDATE_OR_DELETE_USER = "http://coms-309-011.class.las.iastate.edu:8080/users/fareway_customer";
     public static final String URL_SERVER = "http://coms-309-011.class.las.iastate.edu:8080";
