@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-
+/**@author Joao Victor Lira*/
 public class CreateNewListActivity extends AppCompatActivity {
     private String path, preferredStore, userName;
     private Button btn_viewStoreItems;
@@ -42,7 +42,7 @@ public class CreateNewListActivity extends AppCompatActivity {
     private Toolbar myToolbar;
 
 
-    /**@Author Joao Victor Lira*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

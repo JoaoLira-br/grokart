@@ -1,11 +1,13 @@
 package com.example.grokart;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -14,11 +16,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.grokart.vRequests.GetRequest;
 import com.example.grokart.utils.Const;
+import com.example.grokart.utils.KartItemModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+/*
+* @author Joao Victor Lira
+* */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 //    private EditText et_username, et_password;
 //
@@ -123,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    /**@Author Joao Victor Lira
+    /**
      * @param v: the view which the user has clicked
      * sends the user to CreateNewList page, along with the user`s username and
      * preferred store, which is then used to populate the recycler view of the next page

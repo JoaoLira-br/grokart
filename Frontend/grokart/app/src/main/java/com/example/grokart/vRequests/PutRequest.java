@@ -30,6 +30,9 @@ public class PutRequest implements RequestITF {
 
 
     /**@author Joao Victor Lira
+     * @param path the path on the server to which the post we`ll be made
+     * @param TAG the tag for debugging on the class which the constructor was called
+     * @param toPut  the JSONObject to be put
      * */
     public PutRequest(String path, String TAG, JSONObject toPut) {
         this.path = path;

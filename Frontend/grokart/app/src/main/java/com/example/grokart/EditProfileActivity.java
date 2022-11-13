@@ -22,27 +22,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import android.widget.Spinner;
 import android.widget.Toast;
-/*
-* Reminder: to get store name, use
-*       stores.getJSONObject(indexNum).get("storeName").toString()
+
+/**
+* This class controls the app when a user wants to edit their profile.
+* It allows them to change their display name, their email, and their preferred store.
+* @author Mattie McGovern
 */
 
 public class EditProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -92,11 +90,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
 
         Button btn_editProfile = findViewById(R.id.btn_editProfile);
 
-        /*
-        * This sets what happens if the edit profile button is clicked.
-        * When clicked, it calls the jsonUpdateUser method,
-        * which updates the info kept on the user in the backend.
-        */
         btn_editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,8 +113,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
             }
         });
     }
-
-
+    /**
+    * This method gets all available store names from the backend.
+    * It uses a JSONArray request and then puts the names of each store into a string array.
+    */
     private void getStores() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
                 new Response.Listener<JSONArray>() {
@@ -147,7 +142,7 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 tag_json_arry);
     }
 
-    /*
+    /**
     * This method is necessary when creating a toolbar for the edit profile page.
     * It uses the menu layout stored in res/menu/menu_back_to_main.xml
     */
@@ -158,10 +153,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         return true;
     }
 
-    /*
-    * This method is similar to an onClickListener.
-    * It checks to see if any of the toolbar options were selected,
-    * and then performs the appropriate action
+    /**
+    * This method checks to see if any of the toolbar options were selected,
+    * and then performs the appropriate action.
+     * @param item is the selected MenuItem
     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -178,10 +173,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        //TODO, if pos 0, then null
         if(position == 0) {
             item = null;
         }
@@ -194,6 +189,10 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
 
     public void onNothingSelected(AdapterView<?> arg0) {}
 
+    /**
+     * This method makes a string put request to the backend to update an aspect of the user profile.
+     * @param path is the url that the string request uses
+     */
     private void makeStringReq(String path) {
         StringRequest strReq = new StringRequest(Request.Method.PUT, path, new Response.Listener<String>() {
             @Override

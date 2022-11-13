@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import static java.lang.Thread.sleep;
 
-/**@Author  Joao Victor Lira
+/**@author  Joao Victor Lira
  * Interface for implementing common request methods
  * */
 public interface RequestITF {

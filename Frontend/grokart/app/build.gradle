@@ -30,7 +30,6 @@ android {
     }
     buildToolsVersion '33.0.0'
 }
-
 task javadoc(type: Javadoc) {
 
     doFirst {

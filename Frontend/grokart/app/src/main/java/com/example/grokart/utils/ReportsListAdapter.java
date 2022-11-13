@@ -7,14 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.grokart.R;
+import com.example.grokart.*;
 
 import java.util.List;
 
-public class ReportsListAdapter extends RecyclerView.Adapter<com.example.grokart.utils.ReportsListAdapter.ViewHolder>{
+public class ReportsListAdapter extends RecyclerView.Adapter<ReportsListAdapter.ViewHolder>{
         // Provide a direct reference to each of the views within a data item
         // Used to cache the views within the item layout for fast access
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,7 +43,7 @@ public class ReportsListAdapter extends RecyclerView.Adapter<com.example.grokart
 
         // Usually involves inflating a layout from XML and returning the holder
         @Override
-        public com.example.grokart.utils.ReportsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ReportsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -52,14 +51,14 @@ public class ReportsListAdapter extends RecyclerView.Adapter<com.example.grokart
             View contactView = inflater.inflate(R.layout.item_report, parent, false);
 
             // Return a new holder instance
-            com.example.grokart.utils.ReportsListAdapter.ViewHolder viewHolder = new com.example.grokart.utils.ReportsListAdapter.ViewHolder(contactView);
+            ReportsListAdapter.ViewHolder viewHolder = new ReportsListAdapter.ViewHolder(contactView);
             return viewHolder;
         }
 
 
     // Involves populating data into the item through holder
         @Override
-        public void onBindViewHolder(com.example.grokart.utils.ReportsListAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(ReportsListAdapter.ViewHolder holder, int position) {
             // Get the data model based on position
             String reportName = userReports.get(position);
 

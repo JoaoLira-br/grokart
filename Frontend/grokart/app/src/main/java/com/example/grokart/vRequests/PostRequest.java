@@ -28,7 +28,13 @@ public class PostRequest implements RequestITF{
     private Thread reqThread;
     private JSONObject toPost;
 
+
+
+
     /**@author Joao Victor Lira
+     * @param path the path on the server to which the post we`ll be made
+     * @param TAG the tag for debugging on the class which the constructor was called
+     * @param toPost the JSONObject to be posted
      * */
     public PostRequest(String path, String TAG, JSONObject toPost) {
         this.path = path;
