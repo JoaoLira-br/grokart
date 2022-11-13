@@ -1,4 +1,5 @@
-package com.example.grokart.Requests;
+package com.example.grokart.vRequests;
+
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -8,8 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.grokart.RegisterActivity;
-import com.example.grokart.Responses.ResponseHandlerITF;
+import com.example.grokart.vResponses.ResponseHandlerITF;
 import com.example.grokart.app.AppController;
 
 import org.json.JSONException;
@@ -19,77 +19,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class PutRequest implements RequestITF {
+
+/**@author Joao Victor Lira
+ * */
+public class DeleteRequest implements RequestITF{
     private String path;
     private final HashMap<String, String> responseHM;
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private String TAG;
     private Thread reqThread;
-    private JSONObject toPut;
+    private JSONObject response;
 
-
-
-    /**@author Joao Victor Lira
-     * */
-    public PutRequest(String path, String TAG, JSONObject toPut) {
+    public DeleteRequest(String path, String TAG) {
         this.path = path;
         this.responseHM = new HashMap<>();
         this.TAG = TAG;
-        this.toPut = toPut;
-        this.reqThread = new Thread( new Runnable() {
-            @Override
-            public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPut,
-                        new Response.Listener<JSONObject>()  {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                storeOnHash(response);
-                                Log.d(TAG, "onResponse: "+getResponseHM());
-                            }
-//                        hideProgressDialog();
-                        }
-                        , new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        VolleyLog.d("Volley Error:", "Unfortunately we got an error");
-                        VolleyLog.d("Volley Error:", "Error: " + error.getMessage());
-//                hideProgressDialog();
-
-                    }
-                }) {
-
-                    /**
-                     * Passing some request headers
-                     * */
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json");
-                        return headers;
-                    }
-
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", "Androidhive");
-//                params.put("email", "abc@androidhive.info");
-//                params.put("pass", "password123");
-
-                        return params;
-                    }
-                };
-
-                // Adding request to request queue
-                AppController.getInstance().addToRequestQueue(jsonObjReq,
-                        tag_json_obj);
-            }
-        });
 //
     }
-
     /**@return The Hashmap with the response from the volleyResquests
      * */
     public HashMap<String, String> getResponseHM() {
@@ -109,13 +56,13 @@ public class PutRequest implements RequestITF {
     }
 
 
-    /** @return A thread that runs the volley putRequest. */
+    /** @return A thread that runs the volley deleteRequest. */
     @Override
     public Thread createRequestThread() {
-        return new Thread( new Runnable() {
+        this.reqThread = new Thread( new Runnable() {
             @Override
             public void run() {
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.PUT,path,toPut,
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.DELETE,path,null,
                         new Response.Listener<JSONObject>()  {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -161,7 +108,9 @@ public class PutRequest implements RequestITF {
                 AppController.getInstance().addToRequestQueue(jsonObjReq,
                         tag_json_obj);
             }
+
         });
+        return reqThread;
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     };
@@ -184,6 +133,7 @@ public class PutRequest implements RequestITF {
             }
         });
     }
+
 
 
     /**@param response JSON object sent by the server

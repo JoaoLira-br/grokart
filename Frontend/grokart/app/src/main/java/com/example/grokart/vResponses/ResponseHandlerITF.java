@@ -1,4 +1,4 @@
-package com.example.grokart.Responses;
+package com.example.grokart.vResponses;
 
 /**@Author Joao Victor Lira
  * Interface for implementing a response handler:

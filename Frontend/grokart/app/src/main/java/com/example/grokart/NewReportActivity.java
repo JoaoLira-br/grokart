@@ -18,14 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.example.grokart.Requests.PostRequest;
+import com.example.grokart.vRequests.PostRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -34,8 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class NewReportActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

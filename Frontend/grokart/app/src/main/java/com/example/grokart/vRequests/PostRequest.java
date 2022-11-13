@@ -1,4 +1,4 @@
-package com.example.grokart.Requests;
+package com.example.grokart.vRequests;
 
 import android.util.Log;
 
@@ -9,8 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.grokart.RegisterActivity;
-import com.example.grokart.Responses.ResponseHandlerITF;
+import com.example.grokart.vResponses.ResponseHandlerITF;
 import com.example.grokart.app.AppController;
 
 import org.json.JSONException;
