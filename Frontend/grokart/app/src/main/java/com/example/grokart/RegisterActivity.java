@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    /**@Author Joao Victor Lira
+    /**@author Joao Victor Lira
      * @param v: the View clicked by the user
      * check if user input is correct and matches an existing user in the database, if yes proceeds to Main, otherwise stay in RegisterActivity
      * */
@@ -131,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
             loginResponse.start();
         }
     };
-    /**@Author Joao Victor Lira
+    /**@author Joao Victor Lira
      * @param v: the View clicked by the user
      * check if user input is correct, if yes creates a new user in the DB and proceeds to Main, otherwise stay in RegisterActivity
      * */
@@ -160,8 +160,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     };
 
-    /**@Author Joao Victor Lira
-     * @return true if user inputs correctly, i.e password.length > 7, false otherwise*/
+    /**@author Joao Victor Lira
+     * @return true if user inputs correctly, i.e password.length longer than 7, false otherwise*/
     private Boolean checkInputs() {
         int invalidCounter = 0;
         if (et_username.length() == 0) {
@@ -190,7 +190,9 @@ public class RegisterActivity extends AppCompatActivity {
         return user;
     }
 
-    /**@Author Joao Victor Lira
+    //TODO update the description for view param
+    /**@author Joao Victor Lira
+     * @param view the view
      * @param userName is the user`s username input
      * @param privilege is 0 if the user is base user, 1 if store admin, 2 if app admin, -1 otherwise.
      * Allow proper home page redirection for different types of users

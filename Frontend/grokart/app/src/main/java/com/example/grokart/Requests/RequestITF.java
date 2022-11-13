@@ -12,7 +12,7 @@ import static java.lang.Thread.sleep;
 
 import android.content.Intent;
 
-/**@Author  Joao Victor Lira
+/**@author  Joao Victor Lira
  * Interface for implementing common request methods
  * */
 public interface RequestITF {

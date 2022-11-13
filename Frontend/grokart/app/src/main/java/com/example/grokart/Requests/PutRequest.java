@@ -29,8 +29,11 @@ public class PutRequest implements RequestITF {
     private JSONObject toPut;
 
 
-
+    //TODO update param descriptions
     /**@author Joao Victor Lira
+     * @param path path
+     * @param TAG tag
+     * @param toPut  toput
      * */
     public PutRequest(String path, String TAG, JSONObject toPut) {
         this.path = path;

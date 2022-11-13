@@ -30,6 +30,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+* This class controls the app when the user wants to see their reports.
+* @author Mattie McGovern
+*/
 public class ReportsActivity extends AppCompatActivity {
 
         RecyclerView reportsRV;
@@ -75,6 +79,11 @@ public class ReportsActivity extends AppCompatActivity {
             });
         }
 
+        /**
+         * This method gets all previous reports from the backend.
+         * It makes a get request that recieves a JSONArray of the data,
+         * then adds the title of the report to a string array.
+        */
         private void getReports() {
             JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS,
                     new Response.Listener<JSONArray>() {
@@ -130,6 +139,5 @@ public class ReportsActivity extends AppCompatActivity {
             }
             return super.onOptionsItemSelected(item);
         }
-
     }
 

@@ -36,6 +36,10 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class controls the app when the user wants to see their previous karts.
+ * @author Mattie McGovern
+*/
 public class ViewPreviousListsActivity extends AppCompatActivity {
     RecyclerView kartRV;
     ArrayList<String> karts;
@@ -68,6 +72,11 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         kartRV.addItemDecoration(itemDecoration);
     }
 
+    /**
+     * This method retrieves all previous karts from the backend.
+     * To do this, it sends a get request that returns a JSONArray of the karts.
+     * Then, it adds the names of the karts to a string array.
+     */
     private void getKarts() {
         JsonArrayRequest req = new JsonArrayRequest(Const.URL_USERS_KARTS + username,
                 new Response.Listener<JSONArray>() {

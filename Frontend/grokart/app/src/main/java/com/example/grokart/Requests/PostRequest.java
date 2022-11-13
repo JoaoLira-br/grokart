@@ -29,7 +29,11 @@ public class PostRequest implements RequestITF{
     private Thread reqThread;
     private JSONObject toPost;
 
+    //TODO update param descriptions
     /**@author Joao Victor Lira
+     * @param path the path
+     * @param TAG the tag
+     * @param toPost to post
      * */
     public PostRequest(String path, String TAG, JSONObject toPost) {
         this.path = path;
