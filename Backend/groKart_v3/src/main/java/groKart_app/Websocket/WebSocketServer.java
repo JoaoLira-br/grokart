@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnError;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
@@ -35,6 +33,32 @@ public class WebSocketServer {
         broadcast(message);
     }
 
+    @OnMessage
+    public void onMessage(Session session, String message) throws IOException{
+        //Handles new messages
+        logger.info("Entered into MessageL Got Message:"+message);
+        String username = sessionUsernameMap.get(session);
+
+        if(message.startsWith("@")) { //directs the message to the particular user (DM message)
+            String destUsername = message.split(" ")[0].substring(1); ///must not do this in our code
+            sendMessagetoAnUser(destUsername, "[DM] "+username+": "+message);
+            sendMessagetoAnUser(username, "[DM] "+username+": "+message);
+        }else{
+            broadcast(username+ ": "+message);
+        }
+    }
+
+    @OnClose
+    public void onClose(Session session) throws IOException{
+        logger.info("Entered into Close");
+
+        String username = sessionUsernameMap.get(session);
+        sessionUsernameMap.remove(session);
+        userNameSessionMap.remove(username);
+
+        String message = username + " disconnected";
+        broadcast(message);
+    }
     @OnError
     public void onError(Session session, Throwable throwable){
         //TODO: Error Handling need to be done here
