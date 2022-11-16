@@ -64,6 +64,11 @@ android-build:
   artifacts: 
    paths: 
    - Android_test/app/build/outputs
+  only: 
+    refs: 
+      - main 
+    changes: 
+      - Frontend/grokart/**/* etc etc
 
 android-test:
   image: gjandres/android-ci:latest
@@ -76,3 +81,8 @@ android-test:
   script:
     - cd Frontend/grokart/
     - ./gradlew test
+  only: 
+    refs: 
+      - main 
+    changes: 
+      - Frontend/grokart/**/* etc etc
