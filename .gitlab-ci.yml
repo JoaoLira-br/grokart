@@ -61,11 +61,6 @@ android-build:
   script: 
     - cd Frontend/grokart/
     - ./gradlew build 
-  only: 
-    refs: 
-      - main 
-    changes: 
-      - Frontend/grokart/**/* etc etc
   artifacts: 
    paths: 
    - Android_test/app/build/outputs
@@ -81,8 +76,3 @@ android-test:
   script:
     - cd Frontend/grokart/
     - ./gradlew test
-  only: 
-    refs: 
-      - main 
-    changes: 
-      - Frontend/grokart/**/* etc etc
