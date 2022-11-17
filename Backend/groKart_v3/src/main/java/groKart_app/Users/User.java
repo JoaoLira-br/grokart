@@ -61,11 +61,11 @@ public class User {
         ownedKarts = new ArrayList<Kart>();
         friends = new ArrayList<User>();
         this.preferredStore = preferredStore;
-        reports = new ArrayList<>();
+        reports = new ArrayList<Report>();
     }
 
     public User() {
-        reports = new ArrayList<>();
+        reports = new ArrayList<Report>();
         ownedKarts = new ArrayList<Kart>();
         friends = new ArrayList<User>();
     }
@@ -112,11 +112,11 @@ public class User {
 
     public void setPreferredStore(String preferredStore) {this.preferredStore = preferredStore;}
 
-    public List<Report> getReports(){return reports;}
+    public List<Report> getReports(){return this.reports;}
 
-    public void setReports(List<Report> reports) {this.reports = reports;}
+    public void addReports(Report report) {reports.add(report);}
 
-    public void removeReports(Report reports){this.reports.remove(reports);}
+    public void removeReports(Report report){reports.remove(report);}
 
     public List<Kart> getOwnedKarts() { return this.ownedKarts; }
 

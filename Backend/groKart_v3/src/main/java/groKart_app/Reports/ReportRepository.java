@@ -8,6 +8,7 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 
     Report findByReportTitle(String reportTitle);
 
+
     boolean existsByReportTitleAndStoreName(String reportTitle, String storeName);
 
     @Transactional

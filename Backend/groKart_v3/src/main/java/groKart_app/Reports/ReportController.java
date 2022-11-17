@@ -47,6 +47,38 @@ public class ReportController {
     List<Report> getAllReports() { return reportRepository.findAll(); }
 
     /**
+     * GET REPORT BY TITLE
+     * @return
+     */
+    @GetMapping(path = "/reports/{reportTitle}")
+    Report getSpecificReport (@PathVariable String reportTitle){
+        return reportRepository.findByReportTitle(reportTitle);
+    }
+
+    /**
+     * GET REPORTS OF AN USER
+     * @return
+     */
+    @GetMapping(path = "/reports/{userName}")
+    List <Report> getAllUserReports(@PathVariable String userName){
+        User owner = userRepository.findByUserName(userName);
+        return owner.getReports();
+    }
+
+    /**
+     * ASSIGN REPORT TO AN USER
+     * @return
+     */
+    @PutMapping(path = "/reports/{userName}/{reportTitle}")
+    String assignReport(@PathVariable String userName, @PathVariable String reportTitle){
+        User owner = userRepository.findByUserName(userName);
+        Report report = reportRepository.findByReportTitle(reportTitle);
+        owner.addReports(report);
+        userRepository.save(owner);
+        return success;
+    }
+
+    /**
      * CREATE REPORT
      * @param report
      * @return

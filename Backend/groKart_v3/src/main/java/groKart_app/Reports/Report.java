@@ -31,11 +31,12 @@ public class Report {
     @JsonIgnore
     private User user;
 
-    public Report(int id, String reportTitle, String description, String storeName) {
+    public Report(int id, String reportTitle, String description, String storeName, String reportStatus) {
         this.id = id;
         this.reportTitle = reportTitle;
         this.description = description;
         this.storeName = storeName;
+        this.reportStatus = reportStatus;
     }
 
     public Report() {
