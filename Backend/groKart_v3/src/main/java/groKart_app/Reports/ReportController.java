@@ -47,7 +47,7 @@ public class ReportController {
     List<Report> getAllReports() { return reportRepository.findAll(); }
 
     /**
-     * GET REPORT BY TITLE
+     * GET REPORT BY TITLE AND STORENAME
      * @return
      */
     @GetMapping(path = "/reports/{reportTitle}/{storeName}")
@@ -69,12 +69,14 @@ public class ReportController {
      * ASSIGN REPORT TO AN USER
      * @return
      */
-    @PutMapping(path = "/reports/{userName}/{reportTitle}")
-    String assignReport(@PathVariable String userName, @PathVariable String reportTitle){
+    @PutMapping(path = "/reports/{userName}/{reportTitle}/{storeName}")
+    String assignReport(@PathVariable String userName, @PathVariable String reportTitle, @PathVariable String storeName){
         User owner = userRepository.findByUserName(userName);
-        Report report = reportRepository.findByReportTitle(reportTitle);
+        Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
         owner.addReports(report);
         userRepository.save(owner);
+        report.setUser(owner);
+        reportRepository.save(report);
         return success;
     }
 
