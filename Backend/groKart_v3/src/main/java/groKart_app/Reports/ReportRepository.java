@@ -9,7 +9,7 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
     Report findByReportTitle(String reportTitle);
 
 
-    boolean existsByReportTitleAndStoreName(String reportTitle, String storeName);
+    Report findByReportTitleAndStoreName(String reportTitle, String storeName);
 
     @Transactional
     void deleteByReportTitleAndId(String reportTitle, int id);
