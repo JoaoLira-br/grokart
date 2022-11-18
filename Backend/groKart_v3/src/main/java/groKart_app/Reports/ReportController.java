@@ -51,7 +51,7 @@ public class ReportController {
      * @return
      */
     @GetMapping(path = "/reports/{reportTitle}")
-    Report getSpecificReport (@PathVariable String reportTitle){
+    Report getSpecificReport(@PathVariable String reportTitle){
         return reportRepository.findByReportTitle(reportTitle);
     }
 
