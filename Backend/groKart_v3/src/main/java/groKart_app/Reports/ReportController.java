@@ -47,7 +47,7 @@ public class ReportController {
     List<Report> getAllReports() { return reportRepository.findAll(); }
 
     /**
-     * GET REPORT BY TITLE AND STORENAME
+     * GET REPORT BY TITLE AND STORE NAME
      * @return
      */
     @GetMapping(path = "/reports/{reportTitle}/{storeName}")
@@ -95,13 +95,15 @@ public class ReportController {
 
     /**
      * DELETE REPORT
-     * @param reportId
+     * @param reportTitle
+     * @param storeName
      * @return
      */
     @ApiOperation(value="Delete a Report", response=Iterable.class, tags="ReportController")
-    @DeleteMapping(path = "/reports/{reportTitle}/{reportId}")
-    String deleteReport(@PathVariable int reportId, @PathVariable String reportTitle) {
-        reportRepository.deleteByReportTitleAndId(reportTitle,reportId);
+    @DeleteMapping(path = "/reports/{reportTitle}/{storeName}")
+    String deleteReport(@PathVariable String storeName, @PathVariable String reportTitle) {
+        Report delReport = reportRepository.findByReportTitleAndStoreName(reportTitle,storeName);
+        reportRepository.deleteByReportTitleAndId(reportTitle,delReport.getId());
         return success;
     }
 
