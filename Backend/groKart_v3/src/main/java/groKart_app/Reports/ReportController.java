@@ -33,46 +33,53 @@ public class ReportController {
 
     /**
      * GET ALL REPORTS
+     *
      * @return
      */
-    @ApiOperation(value="Get List of All Reports in Database", response=Iterable.class, tags="ReportController")
+    @ApiOperation(value = "Get List of All Reports in Database", response = Iterable.class, tags = "ReportController")
     @ApiResponses(value = {
-            @ApiResponse(code=200, message = "Success|OK"),
-            @ApiResponse(code=401, message = "Not Authorized"),
-            @ApiResponse(code=403, message = "Forbidden!"),
-            @ApiResponse(code=404, message = "Error!"),
-            @ApiResponse(code=500, message = "Server Not Found")
+            @ApiResponse(code = 200, message = "Success|OK"),
+            @ApiResponse(code = 401, message = "Not Authorized"),
+            @ApiResponse(code = 403, message = "Forbidden!"),
+            @ApiResponse(code = 404, message = "Error!"),
+            @ApiResponse(code = 500, message = "Server Not Found")
     })
     @GetMapping(path = "/reports")
-    List<Report> getAllReports() { return reportRepository.findAll(); }
+    List<Report> getAllReports() {
+        return reportRepository.findAll();
+    }
 
     /**
      * GET REPORT BY TITLE AND STORE NAME
+     *
      * @return
      */
     @GetMapping(path = "/reports/{reportTitle}/{storeName}")
-    Report getSpecificReport(@PathVariable String reportTitle, @PathVariable String storeName){
+    Report getSpecificReport(@PathVariable String reportTitle, @PathVariable String storeName) {
         return reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
     }
 
     /**
      * GET REPORTS OF AN USER
+     *
      * @return
      */
     @GetMapping(path = "/reports/{userName}")
-    List <Report> getAllUserReports(@PathVariable String userName){
+    List<Report> getAllUserReports(@PathVariable String userName) {
         User owner = userRepository.findByUserName(userName);
         return owner.getReports();
     }
 
     /**
      * ASSIGN REPORT TO AN USER
+     *
      * @return
      */
     @PutMapping(path = "/reports/{userName}/{reportTitle}/{storeName}")
-    String assignReport(@PathVariable String userName, @PathVariable String reportTitle, @PathVariable String storeName){
+    String assignReport(@PathVariable String userName, @PathVariable String reportTitle, @PathVariable String storeName) {
         User owner = userRepository.findByUserName(userName);
         Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
+        if (report == null || owner == null) {return failure;}
         owner.addReports(report);
         userRepository.save(owner);
         report.setUser(owner);
@@ -82,40 +89,70 @@ public class ReportController {
 
     /**
      * CREATE REPORT
+     *
      * @param report
      * @return
      */
-    @ApiOperation(value="Create a New Report", response=Iterable.class, tags="ReportController")
+    @ApiOperation(value = "Create a New Report", response = Iterable.class, tags = "ReportController")
     @PostMapping(path = "/reports")
-    String createReport(@RequestBody Report report){
-        if(report == null){return failure;}
+    String createReport(@RequestBody Report report) {
+        if (report == null) {
+            return failure;
+        }
         reportRepository.save(report);
         return success;
     }
 
     /**
      * DELETE REPORT
+     *
      * @param reportTitle
      * @param storeName
      * @return
      */
-    @ApiOperation(value="Delete a Report", response=Iterable.class, tags="ReportController")
+    @ApiOperation(value = "Delete a Report", response = Iterable.class, tags = "ReportController")
     @DeleteMapping(path = "/reports/{reportTitle}/{storeName}")
     String deleteReport(@PathVariable String storeName, @PathVariable String reportTitle) {
-        Report delReport = reportRepository.findByReportTitleAndStoreName(reportTitle,storeName);
-        reportRepository.deleteByReportTitleAndId(reportTitle,delReport.getId());
+        Report delReport = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
+        if (delReport == null) {
+            return failure;
+        }
+        reportRepository.deleteByReportTitleAndId(reportTitle, delReport.getId());
         return success;
     }
 
     /**
      * GET REPORT STATUS
-     * @param reportId
+     *
+     * @param reportTitle
+     * @param storeName
      * @return
      */
-    @ApiOperation(value="Get the Report Status", response=Iterable.class, tags="ReportController")
-    @GetMapping(path = "/reports/{reportId}/status")
-    String getStatus(@PathVariable int reportId){
-        Report report = reportRepository.findById(reportId);
+    @ApiOperation(value = "Get the Report Status", response = Iterable.class, tags = "ReportController")
+    @GetMapping(path = "/reports/{reportTitle}/{storeName}/status")
+    String getStatus(@PathVariable String reportTitle, @PathVariable String storeName) {
+        Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
+        if (report == null) {
+            return failure;
+        }
+        return report.getReportStatus();
+    }
+
+    /**
+     * ALTER REPORT STATUS
+     *
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "Alter the Report Status", response = Iterable.class, tags = "ReportController")
+    @PutMapping(path = "/reports/{reportTitle}/{storeName}/{status}")
+    String alterStatus(@PathVariable String reportTitle, @PathVariable String storeName, @PathVariable String status) {
+        Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
+        if (report == null) {
+            return failure;
+        }
+        report.setReportStatus(status);
+        reportRepository.save(report);
         return report.getReportStatus();
     }
 
