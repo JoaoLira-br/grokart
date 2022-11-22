@@ -25,6 +25,20 @@ public class WebSocketServer {
     public void onOpen(Session session, @PathParam("username") String username) throws IOException{
         logger.info("Entered on Open");
 
+        /*
+            (Session session, @PathParam("itemName") Item item) throws IOException{
+                //Map the itemName into their respective sessions
+                sessioItemNameMap.put(session,item);
+                ItemNameSessionMap.put(item,session);
+
+                String success = "Item:" + item+ "is ready for update";
+                broadcast(success);
+
+
+                //TODO: need to create a method that handles the PUT controller for item
+            }
+
+         */
         //Map the username into their respective sessions
         sessionUsernameMap.put(session,username);
         userNameSessionMap.put(username,session);
@@ -82,6 +96,19 @@ public class WebSocketServer {
             }
         });
     }
+
+    //TODO: need to create a method that handles the PUT controller for item
+    /**
+     * private void updateItem(int price){
+     *     try{
+     *         itemNameSessionMap.get(item).setPrice(price);
+     *         itemRepo.save(item);
+     *     }catch (IOException e){
+     *         logger.info("Exception: "+e.getMessage().toString());
+     *         e.printStackTrace();
+     *     }
+     * }
+     */
 
 
 }
