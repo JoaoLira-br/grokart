@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
-@ServerEndpoint("/websocket/{username}")
+@ServerEndpoint("/websocket")
 @Component
 public class WebSocketServer {
 
