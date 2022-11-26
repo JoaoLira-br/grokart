@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grokart.utils.OnItemsClickListener;
 import com.example.grokart.vRequests.*;
 import com.example.grokart.utils.Const;
 import com.example.grokart.utils.ItemsAdapter;
@@ -20,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,12 +33,15 @@ import java.util.Objects;
 
 /**@author Joao Victor Lira*/
 public class CreateNewListActivity extends AppCompatActivity {
-    private String path, preferredStore, userName;
+    private String path, preferredStore, userName, kartName;
     private Button btn_viewStoreItems;
-    private EditText et_search;
+    private ImageButton imgBtn_viewKart;
+    private EditText et_nameYourKart;
+    private TextView tv_totalPrice;
+    private double totalPrice;
     private RecyclerView itemsRecyclerView;
     private ItemsAdapter itemsAdapter;
-    private ArrayList<KartItemModel> storeItems;
+    private ArrayList<KartItemModel> storeItems, userKartItems;
     private final String TAG = CreateNewListActivity.class.getSimpleName();
     private final Context ct = CreateNewListActivity.this;
 
@@ -51,9 +57,18 @@ public class CreateNewListActivity extends AppCompatActivity {
         preferredStore = intentCreateNewList.getStringExtra("preferredStore");
         userName = intentCreateNewList.getStringExtra("username");
         storeItems = new ArrayList<>();
+        userKartItems = new ArrayList<>();
         btn_viewStoreItems = findViewById(R.id.btn_viewStoreItems);
-        Log.d(TAG, "onCreate - storeItems"+ storeItems);
         itemsRecyclerView = findViewById(R.id.rv_storeItems);
+        imgBtn_viewKart = findViewById(R.id.imgBtn_viewKart);
+        et_nameYourKart = findViewById(R.id.et_nameYourKart);
+        tv_totalPrice = findViewById(R.id.tv_totalPrice);
+        totalPrice = 0.0;
+        tv_totalPrice.append(" " + totalPrice);
+
+
+        Log.d(TAG, "onCreate - storeItems"+ storeItems);
+
 
         populateRows("item", preferredStore);
 
@@ -70,18 +85,78 @@ public class CreateNewListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 itemsAdapter = new ItemsAdapter(ct, getStoreItems(), TAG);
                 itemsRecyclerView.setAdapter(itemsAdapter);
+//                OnItemsClickListener listenerOnPlus = new OnItemsClickListener() {
+//                    @Override
+//                    public void onItemClick(KartItemModel kartItemModel) {
+//
+//                    }
+//                };
+//                OnItemsClickListener listenerOnMinus = new OnItemsClickListener() {
+//                    @Override
+//                    public void onItemClick(KartItemModel kartItemModel) {
+//
+//                    }
+//                };
+                itemsAdapter.setWhenClickListener(new OnItemsClickListener() {
+                    @Override
+                    public void onItemClick(KartItemModel kartItemModel) {
+                        totalPrice += Double.parseDouble(kartItemModel.getItemPrice());
+                        tv_totalPrice.setText("$ " + Double.toString(totalPrice));
+
+                    }
+                }, new OnItemsClickListener() {
+                    @Override
+                    public void onItemClick(KartItemModel kartItemModel) {
+                        totalPrice -= Double.parseDouble(kartItemModel.getItemPrice());
+                        tv_totalPrice.setText("$ " + Double.toString(totalPrice));
+                    }
+                });
                 itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ct));
+
+            }
+        });
+        imgBtn_viewKart.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if(et_nameYourKart.getText().toString().equals(null)){
+                    et_nameYourKart.setError("Enter a name for your kart");
+                }else{
+                    fillUserKart();
+                    navigateToViewList();
+                }
             }
         });
     }
 
-    public void setPath() {
 
-        path = et_search.getText().toString();
-    }
 
     public ArrayList<KartItemModel> getStoreItems() {
         return storeItems;
+    }
+    public void fillUserKart(){
+        for (int i = 0; i < itemsRecyclerView.getChildCount(); i++) {
+            ItemsAdapter.ItemViewHolder holder = (ItemsAdapter.ItemViewHolder) itemsRecyclerView.findViewHolderForAdapterPosition(i);
+            assert holder != null;
+            if(holder.getQuantityToBuy()>0){
+                userKartItems.add(getRowItem(holder));
+            }
+        }
+        Log.d(TAG, "imgBtn_viewKart onClick: "+userKartItems);
+    }
+    public void navigateToViewList(){
+        //todo: create ViewListActivity class
+//         Intent intent = new Intent(this, ViewListActivity.class);
+//         intent.putExtra("kartName",et_nameYourKart.getText().toString());
+//         intent.putExtra("kartItems",userKartItems );
+//         startActivity(intent);
+    }
+    public KartItemModel getRowItem(ItemsAdapter.ItemViewHolder holder){
+        String quantityToBuy = String.valueOf(holder.getQuantityToBuy());
+        String itemName = holder.getItemName();
+        String price = holder.getPrice();
+        String maxQuantity = holder.getMaxQuantity();
+        return new KartItemModel(itemName, price, quantityToBuy, maxQuantity);
     }
 
 

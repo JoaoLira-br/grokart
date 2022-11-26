@@ -47,7 +47,7 @@
                 app:srcCompat="@drawable/ic_final_shopping_cart_foreground" />
 
             <TextView
-                android:id="@+id/tv_quantity"
+                android:id="@+id/tv_quantityToBuy"
                 android:layout_width="31dp"
                 android:layout_height="22dp"
                 android:textAlignment="center"

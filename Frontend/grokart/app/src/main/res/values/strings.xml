@@ -46,6 +46,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- Strings related to Create New Lists Page    -->
+        <string name="name_your_kart">Name your Kart</string>
+        <string name="view_your_kart">View your Kart</string>
 
 
     <!-- Strings related to View Previous Lists Page    -->
@@ -65,6 +67,7 @@
     <string name="store">Store</string>
 
     <string name="view_store_items">View Store Items</string>
+    <string name="total_Price">$</string>
 
 
 </resources>
