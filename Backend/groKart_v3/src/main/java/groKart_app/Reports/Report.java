@@ -2,7 +2,6 @@ package groKart_app.Reports;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
-import jdk.internal.vm.compiler.collections.EconomicMap;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
@@ -22,7 +21,6 @@ public class Report {
     @ApiModelProperty(notes="Report Description", name="description", value="<Full Description of the Report>")
     private String description;
     @ApiModelProperty(notes="StoreName of the Report being launched on", name="storeName", value="Walmart")
-    @Column(name = "storeName")
     private String storeName;
 
     @ApiModelProperty(notes="Report Status", name="reportStatus", value="Under Review")

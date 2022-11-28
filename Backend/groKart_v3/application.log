@@ -1,84 +1,25 @@
-2022-11-22 14:13:43.004  INFO 46352 --- [main] groKart_app.Main                         : Starting Main using Java 11.0.14.1 on baga.student.iastate.edu with PID 46352 (/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3/target/classes started by bagab in /Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3)
-2022-11-22 14:13:43.014  INFO 46352 --- [main] groKart_app.Main                         : No active profile set, falling back to default profiles: default
-2022-11-22 14:13:43.866  INFO 46352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-11-22 14:13:43.924  INFO 46352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 5 JPA repository interfaces.
-2022-11-22 14:13:44.548  INFO 46352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-11-22 14:13:44.559  INFO 46352 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-11-22 14:13:44.559  INFO 46352 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
-2022-11-22 14:13:44.630  INFO 46352 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-11-22 14:13:44.631  INFO 46352 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1522 ms
-2022-11-22 14:13:44.820  INFO 46352 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-22 14:13:44.882  INFO 46352 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-22 14:13:45.047  INFO 46352 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-22 14:13:45.165  INFO 46352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-22 14:13:45.665  INFO 46352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-22 14:13:45.713  INFO 46352 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
-2022-11-22 14:13:46.668  INFO 46352 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-22 14:13:46.676  INFO 46352 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:13:47.337  WARN 46352 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-22 14:13:47.521  INFO 46352 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:13:47.679  INFO 46352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-22 14:13:48.058  INFO 46352 --- [main] groKart_app.Main                         : Started Main in 5.516 seconds (JVM running for 6.035)
-2022-11-22 14:13:53.238  INFO 46352 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-11-22 14:13:53.238  INFO 46352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2022-11-22 14:13:53.240  INFO 46352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2022-11-22 14:13:58.940  INFO 46352 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:13:58.946  INFO 46352 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:13:58.949  INFO 46352 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-22 14:13:58.972  INFO 46352 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-22 14:14:10.450  INFO 46365 --- [main] groKart_app.Main                         : Starting Main using Java 11.0.14.1 on baga.student.iastate.edu with PID 46365 (/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3/target/classes started by bagab in /Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3)
-2022-11-22 14:14:10.453  INFO 46365 --- [main] groKart_app.Main                         : No active profile set, falling back to default profiles: default
-2022-11-22 14:14:11.209  INFO 46365 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-11-22 14:14:11.263  INFO 46365 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 5 JPA repository interfaces.
-2022-11-22 14:14:11.851  INFO 46365 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-11-22 14:14:11.861  INFO 46365 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-11-22 14:14:11.861  INFO 46365 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
-2022-11-22 14:14:11.920  INFO 46365 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-11-22 14:14:11.920  INFO 46365 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1394 ms
-2022-11-22 14:14:12.078  INFO 46365 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-22 14:14:12.128  INFO 46365 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-22 14:14:12.247  INFO 46365 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-22 14:14:12.334  INFO 46365 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-22 14:14:12.510  INFO 46365 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-22 14:14:12.535  INFO 46365 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
-2022-11-22 14:14:13.331  INFO 46365 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-22 14:14:13.339  INFO 46365 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:14:13.976  WARN 46365 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-22 14:14:14.149  INFO 46365 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:14:14.292  INFO 46365 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-22 14:14:14.673  INFO 46365 --- [main] groKart_app.Main                         : Started Main in 4.651 seconds (JVM running for 5.083)
-2022-11-22 14:14:21.868  INFO 46365 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-11-22 14:14:21.869  INFO 46365 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2022-11-22 14:14:21.870  INFO 46365 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2022-11-22 14:16:04.549  INFO 46365 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:16:04.552  INFO 46365 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:16:04.555  INFO 46365 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-22 14:16:04.567  INFO 46365 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-22 14:17:07.520  INFO 46385 --- [main] groKart_app.Main                         : Starting Main using Java 11.0.14.1 on baga.student.iastate.edu with PID 46385 (/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3/target/classes started by bagab in /Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3)
-2022-11-22 14:17:07.523  INFO 46385 --- [main] groKart_app.Main                         : No active profile set, falling back to default profiles: default
-2022-11-22 14:17:08.277  INFO 46385 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-11-22 14:17:08.333  INFO 46385 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 5 JPA repository interfaces.
-2022-11-22 14:17:08.969  INFO 46385 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-11-22 14:17:08.979  INFO 46385 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-11-22 14:17:08.980  INFO 46385 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
-2022-11-22 14:17:09.042  INFO 46385 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-11-22 14:17:09.042  INFO 46385 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1444 ms
-2022-11-22 14:17:09.219  INFO 46385 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-22 14:17:09.275  INFO 46385 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-22 14:17:09.405  INFO 46385 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-22 14:17:09.502  INFO 46385 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-22 14:17:09.700  INFO 46385 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-22 14:17:09.734  INFO 46385 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
-2022-11-22 14:17:10.590  INFO 46385 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-22 14:17:10.602  INFO 46385 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:17:11.276  WARN 46385 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-22 14:17:11.459  INFO 46385 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:17:11.604  INFO 46385 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-22 14:17:11.978  INFO 46385 --- [main] groKart_app.Main                         : Started Main in 4.887 seconds (JVM running for 5.385)
-2022-11-22 14:17:24.809  INFO 46385 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-11-22 14:17:24.810  INFO 46385 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2022-11-22 14:17:24.811  INFO 46385 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2022-11-22 14:18:22.652  INFO 46385 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-22 14:18:22.655  INFO 46385 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-22 14:18:22.657  INFO 46385 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-22 14:18:22.666  INFO 46385 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-28 16:16:53.993  INFO 63210 --- [main] groKart_app.Main                         : Starting Main using Java 11.0.14.1 on Baganesras-MacBook-Pro.local with PID 63210 (/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3/target/classes started by bagab in /Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3)
+2022-11-28 16:16:54.002  INFO 63210 --- [main] groKart_app.Main                         : No active profile set, falling back to default profiles: default
+2022-11-28 16:16:54.967  INFO 63210 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-28 16:16:55.056  INFO 63210 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 5 JPA repository interfaces.
+2022-11-28 16:16:55.829  INFO 63210 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-28 16:16:55.839  INFO 63210 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-28 16:16:55.839  INFO 63210 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-28 16:16:55.906  INFO 63210 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-28 16:16:55.906  INFO 63210 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1829 ms
+2022-11-28 16:16:56.080  INFO 63210 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-28 16:16:56.147  INFO 63210 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-28 16:16:56.281  INFO 63210 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-28 16:16:56.393  INFO 63210 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-28 16:16:56.864  INFO 63210 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-28 16:16:56.910  INFO 63210 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-11-28 16:16:58.989  INFO 63210 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-28 16:16:58.998  INFO 63210 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-28 16:16:59.692  WARN 63210 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-28 16:16:59.885  INFO 63210 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-28 16:17:00.044  INFO 63210 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-28 16:17:00.427  INFO 63210 --- [main] groKart_app.Main                         : Started Main in 7.182 seconds (JVM running for 7.738)
+2022-11-28 16:17:12.190  INFO 63210 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-28 16:17:12.195  INFO 63210 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-28 16:17:12.198  INFO 63210 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-28 16:17:12.212  INFO 63210 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
