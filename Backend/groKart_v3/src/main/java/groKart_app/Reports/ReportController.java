@@ -85,7 +85,7 @@ public class ReportController {
      *
      * @return
      */
-    @PutMapping(path = "/reports/{userName}/{reportTitle}/{storeName}")
+    @PutMapping(path = "/reports/{reportTitle}/{storeName}/assignTo/{userName}")
     String assignReport(@PathVariable String userName, @PathVariable String reportTitle, @PathVariable String storeName) {
         User owner = userRepository.findByUserName(userName);
         Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
