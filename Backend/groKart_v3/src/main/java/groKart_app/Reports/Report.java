@@ -2,6 +2,7 @@ package groKart_app.Reports;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import jdk.internal.vm.compiler.collections.EconomicMap;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
@@ -22,21 +23,25 @@ public class Report {
     private String description;
     @ApiModelProperty(notes="StoreName of the Report being launched on", name="storeName", value="Walmart")
     private String storeName;
-    //TODO: need some work done on report status
+
     @ApiModelProperty(notes="Report Status", name="reportStatus", value="Under Review")
     private String reportStatus;
+
+    @ApiModelProperty(notes="Report Comment", name="comments", value="Problem Solved")
+    private String comments;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    public Report(int id, String reportTitle, String description, String storeName, String reportStatus) {
+    public Report(int id, String reportTitle, String description, String storeName, String reportStatus, String comments) {
         this.id = id;
         this.reportTitle = reportTitle;
         this.description = description;
         this.storeName = storeName;
         this.reportStatus = reportStatus;
+        this.comments = comments;
     }
 
     public Report() {
@@ -90,4 +95,8 @@ public class Report {
     public void setReportStatus(String reportStatus) {
         this.reportStatus = reportStatus;
     }
+
+    public String getComments() {return comments;}
+
+    public void setComments(String comments) {this.comments = comments;}
 }

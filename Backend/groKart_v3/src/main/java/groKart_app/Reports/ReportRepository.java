@@ -8,6 +8,8 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 
     Report findByReportTitle(String reportTitle);
 
+    Report findByStoreName(String storeName);
+
 
     Report findByReportTitleAndStoreName(String reportTitle, String storeName);
 

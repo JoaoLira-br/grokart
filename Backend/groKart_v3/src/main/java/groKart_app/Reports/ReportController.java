@@ -71,6 +71,17 @@ public class ReportController {
     }
 
     /**
+     * GET REPORTS FOR A STORE
+     * //under review
+     * @return
+     */
+    @GetMapping(path = "/reports/{storeName}")
+    Report getAllStoreReports(@PathVariable String storeName) {
+        return reportRepository.findByStoreName(storeName);
+    }
+
+
+    /**
      * ASSIGN REPORT TO AN USER
      *
      * @return
@@ -155,5 +166,25 @@ public class ReportController {
         reportRepository.save(report);
         return report.getReportStatus();
     }
+
+    /**
+     * ALTER COMMENTS FOR REPORT
+     *
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "Alter the Comments for Report", response = Iterable.class, tags = "ReportController")
+    @PutMapping(path = "/reports/{reportTitle}/{storeName}/{comments}")
+    String alterComments(@PathVariable String reportTitle, @PathVariable String storeName, @PathVariable String comments){
+        Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
+        if (report == null) {
+            return failure;
+        }
+        report.setComments(comments);
+        reportRepository.save(report);
+        return success;
+    }
+
+
 
 }
