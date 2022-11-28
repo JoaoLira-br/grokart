@@ -60,7 +60,7 @@ public class ReportController {
     }
 
     /**
-     * GET REPORTS OF AN USER - under review
+     * GET REPORTS OF AN USER
      *
      * @return
      */
@@ -81,7 +81,7 @@ public class ReportController {
 
 
     /**
-     * ASSIGN REPORT TO AN USER - under review
+     * ASSIGN REPORT TO AN USER
      *
      * @return
      */
@@ -149,7 +149,7 @@ public class ReportController {
     }
 
     /**
-     * ALTER REPORT STATUS - under review
+     * ALTER REPORT STATUS
      *
      * @param
      * @return
@@ -167,7 +167,7 @@ public class ReportController {
     }
 
     /**
-     * ALTER COMMENTS FOR REPORT - under review
+     * ALTER COMMENTS FOR REPORT
      *
      * @param
      * @return
