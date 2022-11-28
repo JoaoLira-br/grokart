@@ -155,7 +155,7 @@ public class ReportController {
      * @return
      */
     @ApiOperation(value = "Alter the Report Status", response = Iterable.class, tags = "ReportController")
-    @PutMapping(path = "/reports/{reportTitle}/{storeName}/{status}")
+    @PutMapping(path = "/reports/{reportTitle}/{storeName}/status/{status}")
     String alterStatus(@PathVariable String reportTitle, @PathVariable String storeName, @PathVariable String status) {
         Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
         if (report == null) {
@@ -173,7 +173,7 @@ public class ReportController {
      * @return
      */
     @ApiOperation(value = "Alter the Comments for Report", response = Iterable.class, tags = "ReportController")
-    @PutMapping(path = "/reports/{reportTitle}/{storeName}/{comments}")
+    @PutMapping(path = "/reports/{reportTitle}/{storeName}/comments/{comments}")
     String alterComments(@PathVariable String reportTitle, @PathVariable String storeName, @PathVariable String comments){
         Report report = reportRepository.findByReportTitleAndStoreName(reportTitle, storeName);
         if (report == null) {
