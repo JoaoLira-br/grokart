@@ -22,6 +22,7 @@ public class Report {
     @ApiModelProperty(notes="Report Description", name="description", value="<Full Description of the Report>")
     private String description;
     @ApiModelProperty(notes="StoreName of the Report being launched on", name="storeName", value="Walmart")
+    @Column(name = "storeName")
     private String storeName;
 
     @ApiModelProperty(notes="Report Status", name="reportStatus", value="Under Review")
