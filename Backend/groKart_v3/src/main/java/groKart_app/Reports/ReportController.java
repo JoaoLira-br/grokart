@@ -60,7 +60,7 @@ public class ReportController {
     }
 
     /**
-     * GET REPORTS OF AN USER
+     * GET REPORTS OF AN USER - under review
      *
      * @return
      */
@@ -72,17 +72,16 @@ public class ReportController {
 
     /**
      * GET REPORTS FOR A STORE
-     * //under review
      * @return
      */
     @GetMapping(path = "/reports/{storeName}")
-    Report getAllStoreReports(@PathVariable String storeName) {
-        return reportRepository.findByStoreName(storeName);
+    List<Report> getAllStoreReports(@PathVariable String storeName) {
+        return reportRepository.findAllByStoreName(storeName);
     }
 
 
     /**
-     * ASSIGN REPORT TO AN USER
+     * ASSIGN REPORT TO AN USER - under review
      *
      * @return
      */
@@ -150,7 +149,7 @@ public class ReportController {
     }
 
     /**
-     * ALTER REPORT STATUS
+     * ALTER REPORT STATUS - under review
      *
      * @param
      * @return
@@ -168,7 +167,7 @@ public class ReportController {
     }
 
     /**
-     * ALTER COMMENTS FOR REPORT
+     * ALTER COMMENTS FOR REPORT - under review
      *
      * @param
      * @return
