@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,7 +25,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/k2d_bold"
-        android:text="@string/reports_page_title"
+        android:text="@string/report_details_page_title"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +51,7 @@
         android:layout_marginTop="25dp"
         android:layout_weight=".25"
         android:lineSpacingExtra="-9sp"
-        android:text="Title:"
+        android:text="@string/title_heading"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_weight=".75"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,23 +77,39 @@
         android:layout_marginTop="15dp"
         android:layout_weight=".25"
         android:lineSpacingExtra="-9sp"
-        android:text="Status:"
+        android:text="@string/status_heading"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_report_title" />
 
-    <TextView
-        android:id="@+id/tv_report_status"
+    <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_weight=".75"
-        android:text="TextView"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_report_status_heading" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_report_status_heading">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            android:contentDescription="@string/status_icon" />
+
+        <TextView
+            android:id="@+id/tv_report_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_report_description_heading"
@@ -103,11 +118,11 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="15dp"
         android:lineSpacingExtra="-9sp"
-        android:text="Description:"
+        android:text="@string/description_heading"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_report_status" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <TextView
         android:id="@+id/tv_report_description"
@@ -115,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_weight=".75"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_report_description_heading" />
@@ -127,7 +142,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="15dp"
         android:lineSpacingExtra="-9sp"
-        android:text="Messages:"
+        android:text="@string/messages_heading"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

@@ -65,6 +65,12 @@
     <string name="store">Store</string>
 
     <string name="view_store_items">View Store Items</string>
+    <string name="description_heading">Description:</string>
+    <string name="status_icon">Status icon</string>
+    <string name="status_heading">Status:</string>
+    <string name="title_heading">Title:</string>
+    <string name="report_details_page_title">Report Details</string>
+    <string name="messages_heading">Messages:</string>
 
 
 </resources>
