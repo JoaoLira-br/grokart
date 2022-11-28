@@ -74,7 +74,7 @@ public class ReportController {
      * GET REPORTS FOR A STORE
      * @return
      */
-    @GetMapping(path = "/reports/{storeName}")
+    @GetMapping(path = "/reports/store/{storeName}")
     List<Report> getAllStoreReports(@PathVariable String storeName) {
         return reportRepository.findAllByStoreName(storeName);
     }
