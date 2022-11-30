@@ -142,14 +142,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * */
     public void sendCreateNewList(View v){
         Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
-        String path = Const.URL_USER_INFO+userName+"/";
-        Log.d(TAG, "sendCreateNewList: path"+path);
+        String path = Const.URL_SAMPLE_READ_USER_GET+userName+"/preferredStore/";
+        Log.d(TAG, "sendCreateNewList: path: "+path);
         GetRequest getPreferredStore = new GetRequest(path,TAG);
-        getPreferredStore.createRequestThread().start();
+        getPreferredStore.createStringRequestThread().start();
+
         getPreferredStore.createResponseHandler(()->{
-            Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseHM()"+getPreferredStore.getResponseHM());
-            preferredStore = getPreferredStore.getResponseHM().get("preferredStore");
-            Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseHM().get(\"preferredStore\")"+ getPreferredStore.getResponseHM().get("preferredStore"));
+            preferredStore = getPreferredStore.getResponseString();
+            Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseString(): "+ getPreferredStore.getResponseString());
             intentCreateNewList.putExtra("username", userName);
             intentCreateNewList.putExtra("preferredStore", preferredStore);
             startActivity(intentCreateNewList);

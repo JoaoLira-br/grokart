@@ -40,11 +40,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_storeItems"
         android:layout_width="0dp"
-        android:layout_height="430dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_viewStoreItems" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_viewStoreItems"
+        app:layout_constraintVertical_bias="0.666" />
 
     <Button
         android:id="@+id/btn_viewStoreItems"
@@ -89,12 +91,11 @@
         android:layout_height="37dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="6dp"
         android:backgroundTint="@color/grey_white"
-        app:layout_constraintBottom_toTopOf="@+id/rv_storeItems"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btn_viewStoreItems"
+        app:layout_constraintTop_toBottomOf="@+id/tv_totalPrice"
         app:srcCompat="@drawable/ic_shopping_cart_whole" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -106,15 +107,14 @@
 
     <TextView
         android:id="@+id/tv_totalPrice"
-        android:layout_width="35dp"
-        android:layout_height="17dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="51dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/total_Price"
-        app:layout_constraintBottom_toTopOf="@+id/imgBtn_viewKart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.971"
-        app:layout_constraintStart_toEndOf="@+id/btn_viewStoreItems" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_viewStoreItems"
+        app:layout_constraintTop_toBottomOf="@+id/et_nameYourKart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,14 +100,14 @@ public class CreateNewListActivity extends AppCompatActivity {
                 itemsAdapter.setWhenClickListener(new OnItemsClickListener() {
                     @Override
                     public void onItemClick(KartItemModel kartItemModel) {
-                        totalPrice += Double.parseDouble(kartItemModel.getItemPrice());
+                        totalPrice += Double.parseDouble(kartItemModel.getItemPrice().substring(2));
                         tv_totalPrice.setText("$ " + Double.toString(totalPrice));
 
                     }
                 }, new OnItemsClickListener() {
                     @Override
                     public void onItemClick(KartItemModel kartItemModel) {
-                        totalPrice -= Double.parseDouble(kartItemModel.getItemPrice());
+                        totalPrice -= Double.parseDouble(kartItemModel.getItemPrice().substring(2));
                         tv_totalPrice.setText("$ " + Double.toString(totalPrice));
                     }
                 });
@@ -119,7 +119,7 @@ public class CreateNewListActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(et_nameYourKart.getText().toString().equals(null)){
+                if(et_nameYourKart.getText().toString().isEmpty()){
                     et_nameYourKart.setError("Enter a name for your kart");
                 }else{
                     fillUserKart();
@@ -139,9 +139,10 @@ public class CreateNewListActivity extends AppCompatActivity {
             ItemsAdapter.ItemViewHolder holder = (ItemsAdapter.ItemViewHolder) itemsRecyclerView.findViewHolderForAdapterPosition(i);
             assert holder != null;
             if(holder.getQuantityToBuy()>0){
-                userKartItems.add(getRowItem(holder));
+                userKartItems.add(getItemInfo(holder));
             }
         }
+
         Log.d(TAG, "imgBtn_viewKart onClick: "+userKartItems);
     }
     public void navigateToViewList(){
@@ -151,7 +152,7 @@ public class CreateNewListActivity extends AppCompatActivity {
 //         intent.putExtra("kartItems",userKartItems );
 //         startActivity(intent);
     }
-    public KartItemModel getRowItem(ItemsAdapter.ItemViewHolder holder){
+    public KartItemModel getItemInfo(ItemsAdapter.ItemViewHolder holder){
         String quantityToBuy = String.valueOf(holder.getQuantityToBuy());
         String itemName = holder.getItemName();
         String price = holder.getPrice();
@@ -167,7 +168,7 @@ public class CreateNewListActivity extends AppCompatActivity {
      *                     */
     public void populateRows(String objectToStore, String preferredStore) {
         GetRequest getStoreItems;
-        if(preferredStore.equals("null")|| preferredStore == null){
+        if(preferredStore == null){
             getStoreItems = new GetRequest(Const.URL_STORE_ITEMS, TAG);
         }else{
             getStoreItems = new GetRequest(Const.URL_STORE_ITEMS+preferredStore, TAG);

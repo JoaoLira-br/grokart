@@ -74,8 +74,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
         holder.btn_plusSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.isWithinLimit(kartItemModel)){
-                    holder.incrementQuantity(kartItemModel);
+                if(holder.isWithinLimit(kartItemModel, v)){
+                    holder.incrementQuantity(holder);
                     if(listenerPlus != null){
                         listenerPlus.onItemClick(kartItemModel);
                     }
@@ -87,8 +87,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
         holder.btn_minusSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.isWithinLimit(kartItemModel)){
-                holder.decrementQuantity(kartItemModel);
+                if(holder.isWithinLimit(kartItemModel, v)){
+                holder.decrementQuantity(holder);
                     if(listenerMinus != null){
                         listenerMinus.onItemClick(kartItemModel);
                     }
@@ -113,8 +113,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            
-            quantity = 0;
+
+//            quantity = Integer.parseInt(tv_quantityToBuy.getText().toString());
 
             tv_maxQuantity = itemView.findViewById(R.id.tv_quantityAvailable);
 
@@ -123,29 +123,50 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
             tv_quantityToBuy = itemView.findViewById(R.id.tv_quantityToBuy);
             btn_minusSign = itemView.findViewById(R.id.btn_minus_sign);
             btn_plusSign = itemView.findViewById(R.id.btn_plus_sign);
+
+            if(tv_quantityToBuy.getText().toString().equals("")){
+                quantity = 0;
+            }else{
+                quantity = Integer.parseInt(tv_quantityToBuy.getText().toString());
+            }
+
         }
 
 
 
         public int getQuantityToBuy(){ return Integer.parseInt(this.tv_quantityToBuy.getText().toString());}
 
-        public boolean isWithinLimit(KartItemModel kartItemModel){
+        public boolean isWithinLimit(KartItemModel kartItemModel, View v){
+            Log.d(TAG, "isWithinLimit: quantity" + quantity);
+            Boolean isWithinLimit = false;
             int maxItemQuantity = Integer.parseInt(kartItemModel.getMaxQuantity());
-            if(quantity < maxItemQuantity &&  quantity > 0){
-                return true;
-            }else{
-                return false;
+            Log.d(TAG, "isWithinLimit: v.getId(): "+ v.getId() + " "+R.id.btn_minus_sign + " "+ R.id.btn_plus_sign);
+            switch(v.getId()){
+                case R.id.btn_minus_sign:
+                    if(quantity > 0){
+                        isWithinLimit = true;
+                    };
+                    break;
+                case R.id.btn_plus_sign:
+                    if(quantity < maxItemQuantity){
+                        isWithinLimit = true;
+                    }
+                    break;
             }
+            return isWithinLimit;
         }
-        public void incrementQuantity(KartItemModel kartItemModel){
+        public void incrementQuantity(ItemViewHolder holder){
                 quantity++;
-                this.tv_quantityToBuy.setText(this.quantity.toString());
-                kartItemModel.setQuantityToBuy(quantity.toString());
+                holder.tv_quantityToBuy.setText(this.quantity.toString());
+
         }
-        public void decrementQuantity(KartItemModel kartItemModel){
+        public void decrementQuantity(ItemViewHolder holder){
                 quantity--;
-                this.tv_quantityToBuy.setText(this.quantity.toString());
-                kartItemModel.setQuantityToBuy(quantity.toString());
+                if(quantity==-1){
+                    quantity=0;
+                }
+                holder.tv_quantityToBuy.setText(this.quantity.toString());
+
         }
         public String getItemName(){
             return tv_itemName.getText().toString();
