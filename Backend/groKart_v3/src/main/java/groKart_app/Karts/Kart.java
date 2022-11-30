@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import groKart_app.Items.Item;
 import groKart_app.Users.User;
 import groKart_app.Users.UserRepository;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,21 +29,27 @@ public class Kart {
 //    UserRepository userRepository;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes="Kart ID", name="KartId", value="1")
     private int id;
 
     // TODO: one to one kart-store relation
 //    private Store store;
+    @ApiModelProperty(notes="Kart Name", name="kartName", value="List1")
     private String kartName;
 
+    @ApiModelProperty(notes="Publicity", name="publicity", value=" ")
     private boolean publicity;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @ApiModelProperty(notes="Kart Owner", name="owner", value="User1")
     private User owner;
 
     @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ApiModelProperty(notes="Items in Karts", name="items", value="Banana, Apple, etc.")
     private List<Item> items;
 
+    @ApiModelProperty(notes="Items Total Quantity", name="quantities", value="100")
     private HashMap<Integer, Integer> quantities;
 
     public Kart(User owner, String kartName) {

@@ -1,6 +1,7 @@
 package groKart_app.Stores;
 
 import groKart_app.Items.Item;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
@@ -16,12 +17,15 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes="Store ID", name="storeId", value="2")
     private int id;
 
+    @ApiModelProperty(notes="Store Name", name="storeName", required = true, value="Walmart")
     private String storeName;
 
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ApiModelProperty(notes="List of Items", name="items")
     private List<Item> items;
 
 

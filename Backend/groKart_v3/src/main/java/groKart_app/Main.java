@@ -11,9 +11,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import groKart_app.Users.UserRepository;
 import groKart_app.Items.ItemRepository;
 import groKart_app.Karts.KartRepository;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableJpaRepositories
+@EnableSwagger2
 class Main {
     private static int BASE_USER = 0;
     private static int STORE_ADMIN = 1;
@@ -36,5 +42,18 @@ class Main {
 
         };
     }
+
+    /**
+     * This Bean creates the API documentation for all the entities in the project
+     */
+    @Bean
+    public Docket apiDocs(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+
 
 }
