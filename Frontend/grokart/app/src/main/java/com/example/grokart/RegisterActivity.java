@@ -207,12 +207,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             }).start();
 
-            //TODO: remove "|| privilege == 1" afterwards
-        }else if(privilege == 2 || privilege == 1){
+        }else if(privilege == 2 ){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
         }else{
-            //TODO if user is store admin send him to store admin home page
+            Intent intentStoreAdmin = new Intent(RegisterActivity.this, StoreAdminHomeActivity.class);
+            startActivity(intentStoreAdmin);
         }
 
     }

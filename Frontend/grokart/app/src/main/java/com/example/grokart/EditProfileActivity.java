@@ -56,9 +56,6 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private Spinner storesMenu;
     String item = null;
     private String displayName, preferredStore;
-    final int DISPLAYNAMEINT = 0;
-    final int EMAILADDINT = 1;
-    final int PREFERREDSTOREINT = 2;
     final String SUCCESSMSG = "{\"message\":\"success\"}";
 
     /**

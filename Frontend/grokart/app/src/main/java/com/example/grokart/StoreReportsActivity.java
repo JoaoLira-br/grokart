@@ -61,6 +61,7 @@ public class StoreReportsActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(StoreReportsActivity.this, MainActivity.class);
                         intent.putExtra("userName", username);
+                        //TODO put report name and store name into intent extra
                         startActivity(intent);
                     }
 
