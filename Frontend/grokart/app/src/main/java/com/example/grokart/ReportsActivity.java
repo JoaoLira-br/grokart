@@ -81,11 +81,11 @@ public class ReportsActivity extends AppCompatActivity {
 
         /**
          * This method gets all previous reports from the backend.
-         * It makes a get request that recieves a JSONArray of the data,
+         * It makes a get request that receives a JSONArray of the data,
          * then adds the title of the report to a string array.
         */
         private void getReports() {
-            JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS,
+            JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS + username,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
