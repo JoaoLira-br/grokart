@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import groKart_app.Karts.Kart;
+import groKart_app.Stores.Store;
+import groKart_app.Stores.StoreRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    StoreRepository storeRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -136,8 +141,9 @@ public class UserController {
     @PutMapping("/preferredStore/{userName}/{preferredStore}")
     String updatePreferredStore(@PathVariable String userName, @PathVariable String preferredStore){
         User user = userRepository.findByUserName(userName);
-        if (user == null)
-            return failure;
+        if (user == null) return "{\"message\":\"User does not exist.\"}";
+        Store store = storeRepository.findByStoreName(preferredStore);
+        if (store == null) return "{\"message\":\"Store does not exist.\"}";
         user.setPreferredStore(preferredStore);
         userRepository.save(user);
         return success;
@@ -180,7 +186,8 @@ public class UserController {
     @GetMapping(path = "/user/{userName}/preferredStore")
     String getPreferredStore( @PathVariable String userName){
         User user = userRepository.findByUserName(userName);
-        return user.getPreferredStore();
+
+        return "{\"storeName\":\"" + user.getPreferredStore() + "\"}";
     }
 
     /**
