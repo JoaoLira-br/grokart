@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 import com.example.grokart.utils.RecyclerItemClickListener;
@@ -26,6 +27,7 @@ import com.example.grokart.utils.ReportsListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -38,7 +40,8 @@ public class StoreReportsActivity extends AppCompatActivity {
     ReportsListAdapter adapter;
     private Toolbar myToolbar;
     private final String TAG = com.example.grokart.ReportsActivity.class.getSimpleName();
-    private final String tag_json_arry = "jarray_req";
+    private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+    private String store;
     private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class StoreReportsActivity extends AppCompatActivity {
                     }
                 })
         );
+        getStore();
         getReports();
         adapter = new ReportsListAdapter(reports);
         reportsRV.setAdapter(adapter);
@@ -79,6 +83,30 @@ public class StoreReportsActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         reportsRV.addItemDecoration(itemDecoration);
         msgResponse = findViewById(R.id.reportsMsgResponse);
+
+    }
+
+    protected void getStore() {
+        JsonObjectRequest req = new JsonObjectRequest(Const.URL_USER + username,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        try {
+                            store = response.getString("preferredStore").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req,
+                tag_json_obj);
     }
 
     /**
@@ -88,7 +116,7 @@ public class StoreReportsActivity extends AppCompatActivity {
      */
     private void getReports() {
         //TODO update url to add the /store/storename
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS ,
+        JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS +"store/" + store,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
