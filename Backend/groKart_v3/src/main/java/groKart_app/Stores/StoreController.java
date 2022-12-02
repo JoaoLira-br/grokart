@@ -2,6 +2,8 @@ package groKart_app.Stores;
 
 import groKart_app.Items.Item;
 import groKart_app.Items.ItemRepository;
+import groKart_app.Users.User;
+import groKart_app.Users.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,6 +20,9 @@ public class StoreController {
     StoreRepository storeRepository;
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -77,6 +82,19 @@ public class StoreController {
     List<Item> returnStoreItems(@PathVariable String storeName){
         Store store = storeRepository.findByStoreName(storeName);
         return store.getItems();
+    }
+
+    /**
+     * GET count of users with a particular preferred store
+     *
+     */
+    @GetMapping(path = "/stores/{storeName}/countUsers")
+    String getNumUsersByStore(@PathVariable String storeName) {
+        Store store = storeRepository.findByStoreName(storeName);
+        if (store == null) return "{\"message\":\"Store does not exist.\"}";
+        List<User> users = userRepository.findAllByPreferredStore((storeName));
+        int count = users.size();
+        return "{\"numUsers\":\"" + count + "\"}";
     }
 
     /**
