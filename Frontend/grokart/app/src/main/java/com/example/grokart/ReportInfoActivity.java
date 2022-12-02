@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,25 +29,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class ReportInfoActivity extends AppCompatActivity {
+public class ReportInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private TextView tv_page_title;
     private TextView msgResponse;
     private TextView tv_report_title_heading;
     private TextView tv_report_title;
     private TextView tv_status_heading;
-    private TextView tv_status;
     private ImageView iv_status;
     private TextView tv_description_heading;
     private TextView tv_description;
-    private TextView tv_message_heading;
-    private TextView tv_message;
     private Toolbar myToolbar;
     private String username;
     private String reportName;
     private String storeName;
     private JSONObject report;
+    private ArrayList<String> statusArray;
+    private Spinner statusMenu;
+    private final int INPROGRESS = 0;
+    private final int COMPLETE = 1;
+    private final int DECLINED = 2;
+    String item = null;
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     private final String TAG = ReportInfoActivity.class.getSimpleName();
 
@@ -67,11 +76,17 @@ public class ReportInfoActivity extends AppCompatActivity {
         tv_report_title = findViewById(R.id.tv_report_title);
         tv_status_heading = findViewById(R.id.tv_report_status_heading);
         iv_status = findViewById(R.id.imageView);
-        tv_status = findViewById(R.id.tv_report_status);
         tv_description_heading = findViewById(R.id.tv_report_description_heading);
         tv_description = findViewById(R.id.tv_report_description);
-        tv_message_heading = findViewById(R.id.tv_report_message_heading);
-        tv_message = findViewById(R.id.tv_report_message);
+
+        statusMenu = findViewById(R.id.spinner2);
+        statusArray = new ArrayList<String>();
+        statusArray.add("In progress");
+        statusArray.add("Complete");
+        statusArray.add("Declined");
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statusArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusMenu.setAdapter(adapter);
         getReport();
         tv_report_title.setText(reportName);
 
@@ -85,9 +100,11 @@ public class ReportInfoActivity extends AppCompatActivity {
                         Log.d(TAG, response.toString());
                         report = response;
                         try {
-                            tv_status.setText(report.getString("reportStatus").toString());
+                            //TODO set status based on backend data
+                            //tv_status.setText(report.getString("reportStatus").toString());
                             tv_description.setText(report.getString("description").toString());
-                            tv_message.setText(report.getString("comments").toString());
+                            
+                            statusMenu.setSelection(0);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -130,4 +147,19 @@ public class ReportInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    /**
+     * This method sets what happens when an item is selected in the stores dropdown.
+     * Item is set to whatever was selected.
+     * @param parent the adapter view where the selection happened
+     * @param view the view within the adapter view where the selection happened
+     * @param position the position of the selected item in the array
+     * @param id the row of the selected item
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        item = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {}
 }

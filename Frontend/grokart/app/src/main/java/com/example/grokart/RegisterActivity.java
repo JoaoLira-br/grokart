@@ -192,7 +192,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
 
-            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+"/"+userName+"/", TAG);
+            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+userName+"/", TAG);
             getDisplayName.createRequestThread().start();
             getDisplayName.createResponseHandler(()->{
                 String preferredStore = getDisplayName.getResponseHM().get("preferredStore");
@@ -210,7 +210,7 @@ public class RegisterActivity extends AppCompatActivity {
         }else if(privilege == 2 ){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
-        }else{
+        }else if(privilege == 1){
             Intent intentStoreAdmin = new Intent(RegisterActivity.this, StoreAdminHomeActivity.class);
             startActivity(intentStoreAdmin);
         }

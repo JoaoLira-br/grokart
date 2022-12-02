@@ -23,21 +23,4 @@
         android:contentDescription="@string/info_btn"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-    <ImageButton
-        android:id="@+id/ib_edit_kart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/edit_btn"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="ImageContrastCheck" />
-
-    <ImageButton
-        android:id="@+id/ib_delete_kart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/delete_btn"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        tools:ignore="ImageContrastCheck" />
 </LinearLayout>
