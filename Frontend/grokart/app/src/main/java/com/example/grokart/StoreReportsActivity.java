@@ -62,9 +62,10 @@ public class StoreReportsActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, reportsRV ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(StoreReportsActivity.this, MainActivity.class);
+                        Intent intent = new Intent(StoreReportsActivity.this, ReportInfoActivity.class);
                         intent.putExtra("userName", username);
-                        //TODO put report name and store name into intent extra
+                        intent.putExtra("store", store);
+                        intent.putExtra("title", reports.get(position));
                         startActivity(intent);
                     }
 
@@ -74,12 +75,11 @@ public class StoreReportsActivity extends AppCompatActivity {
                     }
                 })
         );
-        getStore();
-        getReports();
+
         adapter = new ReportsListAdapter(reports);
         reportsRV.setAdapter(adapter);
         reportsRV.setLayoutManager(new LinearLayoutManager(this));
-
+        getStore();
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         reportsRV.addItemDecoration(itemDecoration);
         msgResponse = findViewById(R.id.reportsMsgResponse);
@@ -87,13 +87,15 @@ public class StoreReportsActivity extends AppCompatActivity {
     }
 
     protected void getStore() {
-        JsonObjectRequest req = new JsonObjectRequest(Const.URL_USER + username,
+        JsonObjectRequest req = new JsonObjectRequest(Const.URL_USER_INFO + username,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
+                        System.out.println(response.toString());
                         try {
                             store = response.getString("preferredStore").toString();
+                            getReports();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -107,6 +109,8 @@ public class StoreReportsActivity extends AppCompatActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_obj);
+        System.out.println(store);
+
     }
 
     /**
@@ -115,8 +119,9 @@ public class StoreReportsActivity extends AppCompatActivity {
      * then adds the title of the report to a string array.
      */
     private void getReports() {
-        //TODO update url to add the /store/storename
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_REPORTS +"store/" + store,
+        String url = Const.URL_REPORTS +"store/" + store;
+        System.out.println(url);
+        JsonArrayRequest req = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

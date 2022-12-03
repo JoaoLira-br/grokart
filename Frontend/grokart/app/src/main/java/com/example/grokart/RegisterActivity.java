@@ -212,6 +212,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(intentAdmin);
         }else if(privilege == 1){
             Intent intentStoreAdmin = new Intent(RegisterActivity.this, StoreAdminHomeActivity.class);
+            intentStoreAdmin.putExtra("userName", userName);
             startActivity(intentStoreAdmin);
         }
 

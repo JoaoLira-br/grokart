@@ -59,11 +59,10 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_info);
-        // gets the user info from the main activity that sent us to this page
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
-        reportName = intent.getStringExtra("reportName");
-        storeName = intent.getStringExtra("storeName");
+        reportName = intent.getStringExtra("title");
+        storeName = intent.getStringExtra("store");
         //adds in updated toolbar
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
