@@ -45,12 +45,10 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
     private String username;
     private String reportName;
     private String storeName;
+    private int privilege;
     private JSONObject report;
     private ArrayList<String> statusArray;
     private Spinner statusMenu;
-    private final int INPROGRESS = 0;
-    private final int COMPLETE = 1;
-    private final int DECLINED = 2;
     String item = null;
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     private final String TAG = ReportInfoActivity.class.getSimpleName();
@@ -63,6 +61,7 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         username = intent.getStringExtra("userName");
         reportName = intent.getStringExtra("title");
         storeName = intent.getStringExtra("store");
+        privilege = intent.getIntExtra("privilege",0);
         //adds in updated toolbar
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -83,11 +82,17 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         statusArray.add("In progress");
         statusArray.add("Complete");
         statusArray.add("Declined");
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statusArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.status_item, statusArray);
+        adapter.setDropDownViewResource(android.R.layout.status_item);
         statusMenu.setAdapter(adapter);
         getReport();
         tv_report_title.setText(reportName);
+        if(privilege == 1){
+            statusMenu.setEnabled(true);
+        }
+        else {
+            statusMenu.setEnabled(false);
+        }
 
 
     }
@@ -99,11 +104,20 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
                         Log.d(TAG, response.toString());
                         report = response;
                         try {
-                            //TODO set status based on backend data
-                            //tv_status.setText(report.getString("reportStatus").toString());
+                            String status = report.getString("reportStatus").toString();
                             tv_description.setText(report.getString("description").toString());
-                            
-                            statusMenu.setSelection(0);
+                            if(status.equals(statusArray.get(0))) {
+                                statusMenu.setSelection(0);
+                                System.out.println("pending");
+                            }
+                            else if(status.equals(statusArray.get(1))) {
+                                statusMenu.setSelection(1);
+                                System.out.println("done");
+                            }
+                            else {
+                                statusMenu.setSelection(2);
+                                System.out.println("no");
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -118,6 +132,7 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_obj);
     }
+
     /**
      * This method is necessary when creating a toolbar for the edit profile page.
      * It uses the menu layout stored in res/menu/menu_back_to_main.xml
@@ -147,7 +162,7 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         return super.onOptionsItemSelected(item);
     }
     /**
-     * This method sets what happens when an item is selected in the stores dropdown.
+     * This method sets what happens when an item is selected in the status dropdown.
      * Item is set to whatever was selected.
      * @param parent the adapter view where the selection happened
      * @param view the view within the adapter view where the selection happened

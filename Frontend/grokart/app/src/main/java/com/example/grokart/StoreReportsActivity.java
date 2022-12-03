@@ -66,6 +66,7 @@ public class StoreReportsActivity extends AppCompatActivity {
                         intent.putExtra("userName", username);
                         intent.putExtra("store", store);
                         intent.putExtra("title", reports.get(position));
+                        intent.putExtra("privilege", 1);
                         startActivity(intent);
                     }
 
