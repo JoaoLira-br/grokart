@@ -72,6 +72,8 @@
     <string name="report_details_page_title">Report Details</string>
     <string name="messages_heading">Messages:</string>
     <string name="report_status_default">report status</string>
+    <string name="update">Update</string>
+    <string name="comment">Comment</string>
 
 
 </resources>

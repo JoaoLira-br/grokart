@@ -82,9 +82,10 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         statusArray.add("In progress");
         statusArray.add("Complete");
         statusArray.add("Declined");
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.status_item, statusArray);
-        adapter.setDropDownViewResource(android.R.layout.status_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statusArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statusMenu.setAdapter(adapter);
+        statusMenu.setOnItemSelectedListener(this);
         getReport();
         tv_report_title.setText(reportName);
         if(privilege == 1){
@@ -105,19 +106,8 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
                         report = response;
                         try {
                             String status = report.getString("reportStatus").toString();
+                            updateStatusImage(status);
                             tv_description.setText(report.getString("description").toString());
-                            if(status.equals(statusArray.get(0))) {
-                                statusMenu.setSelection(0);
-                                System.out.println("pending");
-                            }
-                            else if(status.equals(statusArray.get(1))) {
-                                statusMenu.setSelection(1);
-                                System.out.println("done");
-                            }
-                            else {
-                                statusMenu.setSelection(2);
-                                System.out.println("no");
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -132,7 +122,23 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
         AppController.getInstance().addToRequestQueue(req,
                 tag_json_obj);
     }
-
+    private void updateStatusImage(String status) {
+        if(status.equals(statusArray.get(0))) {
+            statusMenu.setSelection(0);
+            iv_status.setImageResource(R.drawable.ic_pending);
+            System.out.println("pending");
+        }
+        else if(status.equals(statusArray.get(1))) {
+            statusMenu.setSelection(1);
+            iv_status.setImageResource(R.drawable.ic_complete);
+            System.out.println("done");
+        }
+        else {
+            statusMenu.setSelection(2);
+            iv_status.setImageResource(R.drawable.ic_canceled);
+            System.out.println("no");
+        }
+    }
     /**
      * This method is necessary when creating a toolbar for the edit profile page.
      * It uses the menu layout stored in res/menu/menu_back_to_main.xml
@@ -172,7 +178,8 @@ public class ReportInfoActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        updateStatusImage(statusArray.get(position));
+
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {}
