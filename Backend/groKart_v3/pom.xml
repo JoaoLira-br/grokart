@@ -88,14 +88,21 @@
       <artifactId>rest-assured</artifactId>
       <version>5.3.0</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.groovy</groupId>
+          <artifactId>groovy-xml</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
-    <!-- Hamcrest to perform assertions -->
     <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest</artifactId>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>xml-path</artifactId>
+      <version>5.3.0</version>
       <scope>test</scope>
     </dependency>
+
 
     <!-- J-UNit Dependency -->
     <dependency>

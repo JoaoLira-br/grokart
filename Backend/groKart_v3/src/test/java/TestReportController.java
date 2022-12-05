@@ -1,5 +1,9 @@
+import static io.restassured.RestAssured.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import groKart_app.Reports.Report;
+import groKart_app.Reports.ReportController;
+import groKart_app.Reports.ReportRepository;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -11,7 +15,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Report.class, ReportController.class, ReportRepository.class})
 
 @RunWith(SpringRunner.class)
 public class TestReportController {
@@ -25,6 +29,7 @@ public class TestReportController {
     @Test
     public void reportStatusTest(){
         //Send report status request and receive a response of null or string
-        //Response response
+        when().request("GET","/reports/abcd/Walmart/status").then().statusCode(200);
     }
+
 }

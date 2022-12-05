@@ -50,7 +50,7 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(Session session, String message) throws IOException{
         //Handles new messages
-        logger.info("Entered into MessageL Got Message:"+message);
+        logger.info("Entered into Message Got Message:"+message);
         String username = sessionUsernameMap.get(session);
 
         if(message.startsWith("@")) { //directs the message to the particular user (DM message)
