@@ -16,6 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByPreferredStore(String storeName);
 
+    List<User> findAllByPrivilege(int privilege);
+
     @Transactional
     void deleteByUserName(String userName);
 }
