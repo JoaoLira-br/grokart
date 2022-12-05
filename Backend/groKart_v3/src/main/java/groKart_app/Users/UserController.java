@@ -332,4 +332,19 @@ public class UserController {
     }
 
 
+    /**
+     * Get StoreAdmin of a PreferredStore by Username for Chat Support
+     */
+    @ApiOperation(value="Get StoreAdmin", response=Iterable.class, tags="UserController")
+    @GetMapping(path = "/users/chat/{userName}")
+    String getStoreAdmin(@PathVariable String userName){
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {return failure;}
+        String preferredStore = user.getPreferredStore();
+        User storeAdmin = userRepository.findByPrivilegeAndPreferredStore(1,preferredStore);
+        if (storeAdmin == null) {return failure;}
+        return storeAdmin.getUserName();
+    }
+
+
 }
