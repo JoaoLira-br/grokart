@@ -39,7 +39,7 @@ public class StoreReportsActivity extends AppCompatActivity {
     ArrayList<String> reports;
     ReportsListAdapter adapter;
     private Toolbar myToolbar;
-    private final String TAG = com.example.grokart.ReportsActivity.class.getSimpleName();
+    private final String TAG = com.example.grokart.StoreReportsActivity.class.getSimpleName();
     private final String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     private String store;
     private String username;
