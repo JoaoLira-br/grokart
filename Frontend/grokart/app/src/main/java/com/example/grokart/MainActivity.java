@@ -141,17 +141,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * preferred store, which is then used to populate the recycler view of the next page
      * */
     public void sendCreateNewList(View v){
+
         Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
         String path = Const.URL_SAMPLE_READ_USER_GET+userName+"/preferredStore/";
-        Log.d(TAG, "sendCreateNewList: path: "+path);
+        Log.d(TAG, "sendCreateNewList: path"+ path);
+        Log.d(TAG, "sendCreateNewList: path: "+ path);
         GetRequest getPreferredStore = new GetRequest(path,TAG);
-        getPreferredStore.createStringRequestThread().start();
+        //TODO:  HANDLE PATH TO JSON INSTEAD OF STRING
+        getPreferredStore.createRequestThread().start();
 
         getPreferredStore.createResponseHandler(()->{
-            preferredStore = getPreferredStore.getResponseString();
+            preferredStore = getPreferredStore.getResponseHM().get("preferredStore");
             Log.d(TAG, "sendCreateNewList: getPreferredStore.getResponseString(): "+ getPreferredStore.getResponseString());
             intentCreateNewList.putExtra("username", userName);
             intentCreateNewList.putExtra("preferredStore", preferredStore);
+            Log.d(TAG, "sendCreateNewList: preferredStore"+ preferredStore);
             startActivity(intentCreateNewList);
 
         }).start();

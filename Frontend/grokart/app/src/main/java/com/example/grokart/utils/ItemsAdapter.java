@@ -71,6 +71,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
         holder.tv_price.setText(kartItemModel.getItemPrice());
         holder.tv_quantityToBuy.setText(kartItemModel.getQuantityToBuy());
         holder.tv_maxQuantity.setText(kartItemModel.getMaxQuantity());
+        holder.setQuantity(holder, Integer.parseInt(kartItemModel.getQuantityToBuy()) );
+        Log.d(TAG, "onBindViewHolder: holder.getQuantityToBuy()" + holder.getQuantityToBuy());
         holder.btn_plusSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,8 +110,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
         TextView tv_itemName, tv_price, tv_quantityToBuy, tv_maxQuantity;
         ImageButton btn_minusSign, btn_plusSign;
         Integer quantity, quantityAvailable;
-
-
+        Boolean wasZero = true;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,16 +125,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
             btn_minusSign = itemView.findViewById(R.id.btn_minus_sign);
             btn_plusSign = itemView.findViewById(R.id.btn_plus_sign);
 
+            //TODO: Possibly redundant code, remove it afterwards
             if(tv_quantityToBuy.getText().toString().equals("")){
                 quantity = 0;
+                Log.d(TAG, "ItemViewHolder: quantity = 0");
             }else{
                 quantity = Integer.parseInt(tv_quantityToBuy.getText().toString());
+                Log.d(TAG, "ItemViewHolder: quantity = outra coisa "+quantity);
             }
-
+            //
         }
-
-
-
         public int getQuantityToBuy(){ return Integer.parseInt(this.tv_quantityToBuy.getText().toString());}
 
         public boolean isWithinLimit(KartItemModel kartItemModel, View v){
@@ -155,7 +156,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
             }
             return isWithinLimit;
         }
+        public void setQuantity(ItemViewHolder holder, int quantity){
+            holder.quantity = quantity;
+        }
         public void incrementQuantity(ItemViewHolder holder){
+            if(quantity == 0){
+                wasZero = true;
+            }
                 quantity++;
                 holder.tv_quantityToBuy.setText(this.quantity.toString());
 

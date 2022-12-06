@@ -46,8 +46,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- Strings related to Create New Lists Page    -->
-        <string name="name_your_kart">Name your Kart</string>
-        <string name="view_your_kart">View your Kart</string>
+    <string name="name_your_kart">Name your Kart</string>
+    <string name="view_your_kart">View your Kart</string>
 
 
     <!-- Strings related to View Previous Lists Page    -->
@@ -65,9 +65,14 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="store">Store</string>
-
     <string name="view_store_items">View Store Items</string>
     <string name="total_Price">$</string>
+
+    <!-- String related to View List Details Page -->
+    <string name="view_kart_items">View Your Items</string>
+    <string name="total_items_bought">Total Items: </string>
+    <string name="total_price">Total Price: $</string>
+    <string name="confirm_kart_creation">Confirm Kart Creation</string>
 
 
 </resources>

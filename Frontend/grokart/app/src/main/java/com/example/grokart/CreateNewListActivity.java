@@ -27,6 +27,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -39,6 +40,7 @@ public class CreateNewListActivity extends AppCompatActivity {
     private EditText et_nameYourKart;
     private TextView tv_totalPrice;
     private double totalPrice;
+    private int numberItems;
     private RecyclerView itemsRecyclerView;
     private ItemsAdapter itemsAdapter;
     private ArrayList<KartItemModel> storeItems, userKartItems;
@@ -55,6 +57,7 @@ public class CreateNewListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_list);
         final Intent intentCreateNewList = getIntent();
         preferredStore = intentCreateNewList.getStringExtra("preferredStore");
+        Log.d(TAG, "onCreate: preferredStore" + preferredStore);
         userName = intentCreateNewList.getStringExtra("username");
         storeItems = new ArrayList<>();
         userKartItems = new ArrayList<>();
@@ -69,8 +72,9 @@ public class CreateNewListActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate - storeItems"+ storeItems);
 
-
+        Log.d(TAG, "Before populateRows: storeItems "+ storeItems);
         populateRows("item", preferredStore);
+        Log.d(TAG, "After populateRows: storeItems "+ storeItems);
 
         //adds in updated toolbar
         myToolbar = findViewById(R.id.toolbar);
@@ -84,7 +88,9 @@ public class CreateNewListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 itemsAdapter = new ItemsAdapter(ct, getStoreItems(), TAG);
+                Log.d(TAG, "onClick: getStoreItems(): "+getStoreItems());
                 itemsRecyclerView.setAdapter(itemsAdapter);
+                itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ct));
 //                OnItemsClickListener listenerOnPlus = new OnItemsClickListener() {
 //                    @Override
 //                    public void onItemClick(KartItemModel kartItemModel) {
@@ -109,9 +115,11 @@ public class CreateNewListActivity extends AppCompatActivity {
                     public void onItemClick(KartItemModel kartItemModel) {
                         totalPrice -= Double.parseDouble(kartItemModel.getItemPrice().substring(2));
                         tv_totalPrice.setText("$ " + Double.toString(totalPrice));
+
+
                     }
                 });
-                itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ct));
+
 
             }
         });
@@ -122,6 +130,7 @@ public class CreateNewListActivity extends AppCompatActivity {
                 if(et_nameYourKart.getText().toString().isEmpty()){
                     et_nameYourKart.setError("Enter a name for your kart");
                 }else{
+                    kartName = et_nameYourKart.getText().toString();
                     fillUserKart();
                     navigateToViewList();
                 }
@@ -140,14 +149,23 @@ public class CreateNewListActivity extends AppCompatActivity {
             assert holder != null;
             if(holder.getQuantityToBuy()>0){
                 userKartItems.add(getItemInfo(holder));
+                numberItems++;
             }
         }
 
         Log.d(TAG, "imgBtn_viewKart onClick: "+userKartItems);
     }
     public void navigateToViewList(){
-        //todo: create ViewListActivity class
-//         Intent intent = new Intent(this, ViewListActivity.class);
+
+        Intent intent = new Intent(this, ViewListDetailsActivity.class);
+        intent.putParcelableArrayListExtra("kartItems", userKartItems);
+        intent.putExtra("kartName", kartName);
+        intent.putExtra("kartPrice", Double.toString(totalPrice));
+        intent.putExtra("numberOfItems", Integer.toString(numberItems));
+//        intent.putExtra("BUNDLE",args);
+        startActivity(intent);
+
+////         TODO: send intents through a bundle and using serializable to retrieve it later
 //         intent.putExtra("kartName",et_nameYourKart.getText().toString());
 //         intent.putExtra("kartItems",userKartItems );
 //         startActivity(intent);
@@ -155,13 +173,13 @@ public class CreateNewListActivity extends AppCompatActivity {
     public KartItemModel getItemInfo(ItemsAdapter.ItemViewHolder holder){
         String quantityToBuy = String.valueOf(holder.getQuantityToBuy());
         String itemName = holder.getItemName();
-        String price = holder.getPrice();
+        String price = holder.getPrice().substring(2);
         String maxQuantity = holder.getMaxQuantity();
         return new KartItemModel(itemName, price, quantityToBuy, maxQuantity);
     }
 
 
-    /**@param objectToStore is the name of the objects the response sends. The name is of the developer`s choice.
+    /**@param objectToStore is the name of the objects which the response sends. The name is of the developer`s choice.
      *The name will reflect later when the developer decides to make Models out of it
      * @param preferredStore is the user`s preferred store, used to properly populate the recycler view`s rows with the items from the respective store
      * it fills the ArrayList storeItems which is then used to fill the recycler view
@@ -170,8 +188,11 @@ public class CreateNewListActivity extends AppCompatActivity {
         GetRequest getStoreItems;
         if(preferredStore == null){
             getStoreItems = new GetRequest(Const.URL_STORE_ITEMS, TAG);
+            Log.d(TAG, "populateRows: parei no null");
         }else{
             getStoreItems = new GetRequest(Const.URL_STORE_ITEMS+preferredStore, TAG);
+            Log.d(TAG, "populateRows: path "+Const.URL_STORE_ITEMS+preferredStore);
+            Log.d(TAG, "populateRows: parei no else not null");
         }
         Thread arrayRequest = getStoreItems.createArrayRequestThread(objectToStore);
         Thread handleResponse = getStoreItems.createResponseHandler(() -> {
