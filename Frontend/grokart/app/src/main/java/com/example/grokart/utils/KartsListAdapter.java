@@ -21,8 +21,6 @@ public class KartsListAdapter extends RecyclerView.Adapter<KartsListAdapter.View
         // for any view that will be set as you render a row
         public TextView kartName;
         public ImageButton kartInfoBtn;
-        public ImageButton editKartBtn;
-        public ImageButton deleteKartBtn;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -33,8 +31,6 @@ public class KartsListAdapter extends RecyclerView.Adapter<KartsListAdapter.View
 
             kartName = (TextView) itemView.findViewById(R.id.tv_kart_name);
             kartInfoBtn = (ImageButton) itemView.findViewById(R.id.ib_kart_info);
-            editKartBtn = (ImageButton) itemView.findViewById(R.id.ib_edit_kart);
-            deleteKartBtn = (ImageButton) itemView.findViewById(R.id.ib_delete_kart);
         }
     }
     // Store a member variable for the contacts
@@ -69,8 +65,6 @@ public class KartsListAdapter extends RecyclerView.Adapter<KartsListAdapter.View
         TextView textView = holder.kartName;
         textView.setText(kartName);
         ImageButton kartInfoBtn = holder.kartInfoBtn;
-        ImageButton editKartBtn = holder.editKartBtn;
-        ImageButton deleteKartBtn = holder.deleteKartBtn;
     }
 
     // Returns the total count of items in the list
