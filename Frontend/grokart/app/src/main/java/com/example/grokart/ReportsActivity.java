@@ -22,12 +22,14 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
+import com.example.grokart.utils.RecyclerItemClickListener;
 import com.example.grokart.utils.ReportsListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -42,6 +44,7 @@ public class ReportsActivity extends AppCompatActivity {
         ReportsListAdapter adapter;
         TextView msgReponse;
         Button createReportBtn;
+        private HashMap<String, String> reportsHM;
         private Toolbar myToolbar;
         private final String TAG = com.example.grokart.ReportsActivity.class.getSimpleName();
         private final String tag_json_arry = "jarray_req";
@@ -57,6 +60,7 @@ public class ReportsActivity extends AppCompatActivity {
             setSupportActionBar(myToolbar);
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            reportsHM = new HashMap<>();
             //sets up the report stuff
             reports = new ArrayList<String>();
             reportsRV = (RecyclerView) findViewById(R.id.rv_reports);
@@ -66,6 +70,25 @@ public class ReportsActivity extends AppCompatActivity {
             reportsRV.setLayoutManager(new LinearLayoutManager(this));
             RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
             reportsRV.addItemDecoration(itemDecoration);
+            reportsRV.addOnItemTouchListener(
+                    new RecyclerItemClickListener(this, reportsRV ,new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(ReportsActivity.this, ReportInfoActivity.class);
+                            intent.putExtra("userName", username);
+                            intent.putExtra("title", reports.get(position));
+                            intent.putExtra("privilege", 0);
+                            //todo send store info
+                            intent.putExtra("store", reportsHM.get(reports.get(position)));
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onLongItemClick(View view, int position) {
+                            onItemClick(view, position);
+                        }
+                    })
+            );
             msgReponse = findViewById(R.id.reportsMsgResponse);
             createReportBtn = findViewById(R.id.btn_new_report);
             createReportBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +113,16 @@ public class ReportsActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONArray response) {
                             Log.d(TAG, response.toString());
+
                             if(response.length() == 0) {
                                 msgReponse.setText("No reports");
                             }
                             for(int i = 0; i < response.length(); i++) {
                                 try {
-                                    reports.add(response.getJSONObject(i).get("reportTitle").toString());
+                                    String reportTitle = response.getJSONObject(i).get("reportTitle").toString();
+                                    reports.add(reportTitle);
+                                    String reportStore = response.getJSONObject(i).get("storeName").toString();
+                                    reportsHM.put(reportTitle, reportStore);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

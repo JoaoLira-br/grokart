@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
             loginResponse.start();
         }
-    };
+    }
     /**
      * @param v: the View clicked by the user
      * check if user input is correct, if yes creates a new user in the DB and proceeds to Main, otherwise stay in RegisterActivity

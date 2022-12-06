@@ -74,6 +74,7 @@
     <string name="report_status_default">report status</string>
     <string name="update">Update</string>
     <string name="comment">Comment</string>
+    <string name="delete">Delete</string>
 
 
 </resources>
