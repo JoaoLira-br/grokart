@@ -15,7 +15,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Report.class, ReportController.class, ReportRepository.class})
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
 @RunWith(SpringRunner.class)
 public class TestReportController {
@@ -29,7 +29,11 @@ public class TestReportController {
     @Test
     public void reportStatusTest(){
         //Send report status request and receive a response of null or string
-        when().request("GET","/reports/abcd/Walmart/status").then().statusCode(200);
+        RestAssured.given().log().all().pathParam("reportTitle","abcd")
+                .when()
+                .get("http://coms-309-011.class.las.iastate.edu/reports/{reportTitle}/{storeName}/status","Walmart")
+                .then()
+                .log().all();
     }
 
 }
