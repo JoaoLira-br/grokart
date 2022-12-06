@@ -5,31 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4773d4ad-6aba-4f7b-8932-f83b15fdf188" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application.log.2022-11-30.0.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.log.2022-11-22.0.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/Kart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/Kart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/Report.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groKartApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/groKartApplication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +77,16 @@
       <updated>1667326224977</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-websocket" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate:hibernate-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

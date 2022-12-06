@@ -286,4 +286,65 @@ public class UserController {
         userRepository.save(user2);
         return 0;
     }
+
+    /**
+     * Create App administrator - request should only be sent when the app admin is logged in
+     * @param storeName
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping(path = "/appAdmin/createStoreAdmin/{storeName}/{username}/{password}")
+    String createStoreAdmin(@PathVariable String storeName, @PathVariable String username, @PathVariable String password) {
+        Store store = storeRepository.findByStoreName(storeName);
+        if (store == null) return "{\"error\":\"Store " + storeName + " does not exist\"}";
+        User user = userRepository.findByUserName(username);
+        if (user != null) return "{\"error\":\"User " + username + " already exists\"}";
+
+        user = new User();
+        user.setUserName(username);
+        user.setPreferredStore(storeName);
+        user.setPassword(password);
+        user.setPrivilege(1);
+        user.setDisplayName(storeName + " Administrator");
+
+        userRepository.save(user);
+
+        return success;
+    }
+
+    /**
+     * GET all base users
+     * @return
+     */
+    @GetMapping(path = "baseUsers")
+    List<User> getBaseUsers() {
+        return userRepository.findAllByPrivilege(0);
+    }
+
+    /**
+     * GET all store administrators
+     * @return
+     */
+    @GetMapping(path = "storeAdmins")
+    List<User> getStoreAdmins() {
+        return userRepository.findAllByPrivilege(1);
+    }
+
+
+    /**
+     * Get StoreAdmin of a PreferredStore by Username for Chat Support
+     */
+    @ApiOperation(value="Get StoreAdmin", response=Iterable.class, tags="UserController")
+    @GetMapping(path = "/users/chat/{userName}")
+    String getStoreAdmin(@PathVariable String userName){
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {return failure;}
+        String preferredStore = user.getPreferredStore();
+        User storeAdmin = userRepository.findByPrivilegeAndPreferredStore(1,preferredStore);
+        if (storeAdmin == null) {return failure;}
+        return storeAdmin.getUserName();
+    }
+
+
 }
