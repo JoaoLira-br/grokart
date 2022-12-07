@@ -10,8 +10,14 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Api(value="KartController", description = "REST APIs for the entire Kart class controllers")
 @RestController
@@ -63,6 +69,75 @@ public class KartController {
         return 0;
     }
 
+    /**
+     * {"kartName": String, "kartPrice": String, "kartItems": JsonArray}
+     * @param obj
+     * @return
+     */
+    @PostMapping(path = "karts/create/{userName}")
+    int createKartAtOnce(@RequestBody JSONObject obj, @PathVariable String userName) {
+        String kartName = (String) obj.get("kartName");
+
+        if(kartRepository.existsByKartName(kartName)) return 1;
+        if(!userRepository.existsByUserName(userName)) return 2;
+
+        Kart kart = new Kart(kartName);
+        User user = userRepository.findByUserName(userName);
+        kart.setOwner(user);
+
+        double kartPrice = (double) obj.get("kartPrice");
+
+        Iterator<Map.Entry> itr1;
+        ArrayList<JSONObject> jsonKartItems = (ArrayList<JSONObject>) obj.get("kartItems");
+        Iterator itr2 = jsonKartItems.iterator();
+
+        while (itr2.hasNext()) {
+            itr1 = ((Map) itr2.next()).entrySet().iterator();
+            while(itr1.hasNext()) {
+                Map.Entry pair = itr1.next();
+                Item i = itemRepository.findByStoreNameAndName(user.getPreferredStore(), (String) pair.getValue());
+                pair = itr1.next();
+                kart.addItem(i);
+                i.addKart(kart);
+                kart.setQuantity(i, new Integer((int) pair.getValue()));
+                kartRepository.save(kart);
+                itemRepository.save(i);
+            }
+        }
+
+        /*
+        ArrayList<JSONObject> jItems = (ArrayList<JSONObject>) obj.get("kartItems");
+        for (JSONObject jItem : jItems) {
+            Item i = itemRepository.findByStoreNameAndName(user.getPreferredStore(), XXXX);
+            kart.setQuantity(i, new Integer((int) jItem.get("quantity")));
+            i.addKart(kart);
+            itemRepository.save(i);
+        }
+         */
+
+        /*
+        JSONArray jItems = (JSONArray) obj.get("kartItems");
+        Iterator itr = jItems.iterator();
+        ArrayList<Item> items = new ArrayList<Item>();
+
+        while (itr.hasNext()) {
+            JSONObject jItem = (JSONObject) itr.next();
+            Item i = itemRepository.findByName((String) jItem.get("itemName"));
+            // if quantityToBuy < available quantity???
+            kart.setQuantity(i, new Integer(Integer.parseInt((String) jItem.get("quantity"))));
+            i.addKart(kart);
+            itemRepository.save(i);
+        }
+         */
+        kartRepository.save(kart);
+
+        return 0;
+    }
+    /**
+     * Delete a kart
+     * @param kartName
+     * @return
+     */
     @ApiOperation(value="Delete A Kart", response=Iterable.class, tags="KartController")
     @DeleteMapping(path = "/karts/{kartName}")
     int deleteKart(@PathVariable String kartName) {
