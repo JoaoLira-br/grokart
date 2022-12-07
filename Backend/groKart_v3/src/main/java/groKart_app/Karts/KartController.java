@@ -50,6 +50,12 @@ public class KartController {
     }
 
 
+    /**
+     * Get specific kart by kartname
+     * @param userName
+     * @param kartName
+     * @return
+     */
     @GetMapping(path = "/karts/{userName}/{kartName}")
     Kart getSpecificKart(@PathVariable String userName, @PathVariable String kartName) {
         return kartRepository.findByKartName(kartName);
