@@ -70,8 +70,23 @@ public class KartController {
     }
 
     /**
-     * {"kartName": String, "kartPrice": String, "kartItems": JsonArray}
+     * Create a kart in one request.
+     * Format of body ex:
+     *  {
+     *     "kartName": "adam_kart",
+     *     "kartItems": [
+     *         {
+     *             "itemName": "apple",
+     *             "quantityToBuy": 5
+     *         },
+     *         {
+     *             "itemName": "peach",
+     *             "quantityToBuy": 5
+     *         }
+     *     ]
+     * }
      * @param obj
+     * @param userName
      * @return
      */
     @PostMapping(path = "karts/create/{userName}")
@@ -85,8 +100,6 @@ public class KartController {
         User user = userRepository.findByUserName(userName);
         kart.setOwner(user);
 
-        double kartPrice = (double) obj.get("kartPrice");
-
         Iterator<Map.Entry> itr1;
         ArrayList<JSONObject> jsonKartItems = (ArrayList<JSONObject>) obj.get("kartItems");
         Iterator itr2 = jsonKartItems.iterator();
@@ -96,6 +109,7 @@ public class KartController {
             while(itr1.hasNext()) {
                 Map.Entry pair = itr1.next();
                 Item i = itemRepository.findByStoreNameAndName(user.getPreferredStore(), (String) pair.getValue());
+                if (i == null) return 1;
                 pair = itr1.next();
                 kart.addItem(i);
                 i.addKart(kart);
@@ -105,34 +119,11 @@ public class KartController {
             }
         }
 
-        /*
-        ArrayList<JSONObject> jItems = (ArrayList<JSONObject>) obj.get("kartItems");
-        for (JSONObject jItem : jItems) {
-            Item i = itemRepository.findByStoreNameAndName(user.getPreferredStore(), XXXX);
-            kart.setQuantity(i, new Integer((int) jItem.get("quantity")));
-            i.addKart(kart);
-            itemRepository.save(i);
-        }
-         */
-
-        /*
-        JSONArray jItems = (JSONArray) obj.get("kartItems");
-        Iterator itr = jItems.iterator();
-        ArrayList<Item> items = new ArrayList<Item>();
-
-        while (itr.hasNext()) {
-            JSONObject jItem = (JSONObject) itr.next();
-            Item i = itemRepository.findByName((String) jItem.get("itemName"));
-            // if quantityToBuy < available quantity???
-            kart.setQuantity(i, new Integer(Integer.parseInt((String) jItem.get("quantity"))));
-            i.addKart(kart);
-            itemRepository.save(i);
-        }
-         */
         kartRepository.save(kart);
 
         return 0;
     }
+    
     /**
      * Delete a kart
      * @param kartName
@@ -143,6 +134,12 @@ public class KartController {
     int deleteKart(@PathVariable String kartName) {
         Kart kart = kartRepository.findByKartName(kartName);
         kart.getOwner().removeKart(kart);
+        List<Item> items = kart.getItems();
+        for (Item i : items) {
+            i.removeKart(kart);
+            itemRepository.save(i);
+        }
+        kartRepository.save(kart);
         kartRepository.deleteByKartName(kartName);
         return 0;
     }
