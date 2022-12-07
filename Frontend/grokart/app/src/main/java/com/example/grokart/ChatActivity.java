@@ -67,9 +67,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         // gets the user info from the main activity that sent us to this page
         Intent intent = getIntent();
-        //username = intent.getStringExtra("userName");
-        //TODO switch username back
-        username = "mrm";
+        username = intent.getStringExtra("userName");
         // sets up stuff from xml file
         et_message = findViewById(R.id.edit_message);
         btn_send = findViewById(R.id.button_send);
@@ -176,7 +174,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
-            Intent intent = new Intent(ChatActivity.this, StoreAdminHomeActivity.class);
+            Intent intent = new Intent(ChatActivity.this, SupportActivity.class);
             intent.putExtra("userName", username);
             startActivity(intent);
             this.finish();

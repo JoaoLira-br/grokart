@@ -53,7 +53,7 @@ public class StoreAdminHomeActivity extends AppCompatActivity {
             public void onClick (View view) {
                 Intent intent = new Intent(StoreAdminHomeActivity.this, SupportActivity.class);
                 intent.putExtra("userName", username);
-                intent.putExtra("privilege", 0);
+                intent.putExtra("privilege", 1);
                 startActivity(intent);
                 finish();
             }
