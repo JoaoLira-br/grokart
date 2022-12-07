@@ -17,10 +17,8 @@ public class Item {
     @ApiModelProperty(notes="Item ID", name="itemId", value="1")
     private int id;
 
-    @ManyToMany
-    @JoinColumn(name = "kart_id")
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
-    @ApiModelProperty(notes="Karts that the Item are added", name="karts", value="List2")
     private List<Kart> karts;
 
     @ManyToOne
