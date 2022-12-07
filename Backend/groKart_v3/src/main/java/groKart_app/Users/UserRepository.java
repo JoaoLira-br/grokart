@@ -11,6 +11,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserNameAndPassword(String userName, String password);
 
+    User findByPrivilegeAndPreferredStore(int privilege, String preferredStore);
+
     boolean existsByUserName(String userName);
 
     @Transactional

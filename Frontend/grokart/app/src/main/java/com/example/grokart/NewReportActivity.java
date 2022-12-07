@@ -18,14 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.example.grokart.Requests.PostRequest;
+import com.example.grokart.vRequests.PostRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
@@ -34,10 +31,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-
+/**
+* This class controls the app when a user wants to make a new report.
+ * @author Mattie McGovern
+*/
 public class NewReportActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
         private EditText et_title, et_description;
         private final String TAG = com.example.grokart.NewReportActivity.class.getSimpleName();
@@ -85,7 +83,9 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
                 }
             });
         }
-
+        /**
+        * This method sends the user report to the backend using a post request.
+         */
     private void sendReport() {
         if(checkInputs()) {
             JSONObject report = createReport();
@@ -105,6 +105,11 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
             reportResponse.start();
         }
     }
+    /**
+    * This method checks that all of the report fields have been appropriately filled out.
+     * If so, it returns true. If not, it returns false and prompts the user to correct their inputs.
+     * @return boolean that is true if all inputs are valid and false otherwise.
+    */
     private boolean checkInputs(){
         int invalidCounter = 0;
         if (et_title.length() == 0) {
@@ -122,6 +127,10 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
         // after all validation return true.
     }
 
+    /**
+    * This method takes the user inputs and creates a JSONObject holding that data
+    * @return JSONObject holding the report data
+    */
     private JSONObject createReport(){
         JSONObject report = new JSONObject();
         try {
@@ -134,6 +143,10 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
         return report;
     }
 
+    /**
+     * This method gets all available store names from the backend.
+     * It uses a JSONArray request and then puts the names of each store into a string array.
+     */
     private void getStores() {
             JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_STORES,
                     new Response.Listener<JSONArray>() {
@@ -199,6 +212,4 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {}
-
-
 }

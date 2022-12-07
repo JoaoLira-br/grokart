@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.grokart.Requests.GetRequest;
+import com.example.grokart.vRequests.GetRequest;
 import com.example.grokart.utils.Const;
 import com.example.grokart.utils.KartItemModel;
 
@@ -28,7 +28,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/*
+* @author Joao Victor Lira
+* */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 //    private EditText et_username, et_password;
 //
@@ -133,6 +135,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * @param v: the view which the user has clicked
+     * sends the user to CreateNewList page, along with the user`s username and
+     * preferred store, which is then used to populate the recycler view of the next page
+     * */
     public void sendCreateNewList(View v){
         Intent intentCreateNewList = new Intent(MainActivity.this, CreateNewListActivity.class);
         String path = Const.URL_USER_INFO+userName+"/";

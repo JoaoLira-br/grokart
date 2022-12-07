@@ -13,6 +13,7 @@ maven-build:
     - cd Backend/groKart_v3
     - mvn package
 
+
 maven-test: 
   stage: maventest
   tags: 
@@ -24,6 +25,7 @@ maven-test:
     paths: 
       - Backend/groKart_v3/target/*.jar 
 
+
 autoDeploy:
   stage: mavenDeploy
   tags:
@@ -34,6 +36,12 @@ autoDeploy:
     - sudo mv target/*.jar /target/web-demo.jar
     - sudo systemctl stop system-web-demo
     - sudo systemctl start system-web-demo
+  only: 
+    refs: 
+      - main 
+    changes: 
+      - Backend/groKart_v3/**/* etc etc
+
 
 android-build:
   image: gjandres/android-ci:latest
@@ -45,7 +53,7 @@ android-build:
     - android_tag
   script: 
     - cd Frontend/grokart/
-    - ./gradlew build
+    - ./gradlew build 
   artifacts: 
    paths: 
    - Android_test/app/build/outputs

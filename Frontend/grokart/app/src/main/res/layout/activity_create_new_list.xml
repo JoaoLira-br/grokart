@@ -23,53 +23,41 @@
             app:popupTheme="@style/Theme.Grokart.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <EditText
-        android:id="@+id/et_searchBar"
-        android:layout_width="273dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="68dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/what_are_you_looking_for"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList" />
 
     <TextView
         android:id="@+id/tv_createNewList"
         android:layout_width="270dp"
         android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="56dp"
         android:text="@string/create_new_list"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_storeItems"
-        android:layout_width="408dp"
-        android:layout_height="396dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="499dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_searchBar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_viewStoreItems"
         android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/view_store_items"
+        android:layout_height="41dp"
+        android:layout_marginBottom="10dp"
+        android:text="view store items"
         android:textSize="12sp"
         android:theme="@style/green_button"
+        app:layout_constraintBottom_toTopOf="@+id/rv_storeItems"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_createNewList"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

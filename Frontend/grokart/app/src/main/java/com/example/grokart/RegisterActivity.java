@@ -11,26 +11,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.grokart.Requests.PostRequest;
-import com.example.grokart.app.AppController;
+import com.example.grokart.vRequests.PostRequest;
 import com.example.grokart.utils.Const;
-import com.example.grokart.Requests.GetRequest;
-import org.json.JSONArray;
+import com.example.grokart.vRequests.GetRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
-
+/**@author Joao Victor Lira
+ * */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_username, et_password;
@@ -100,6 +92,11 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d(TAG, "setPathAddress: "+path);
 
     }
+
+    /**
+     * @param v: the View clicked by the user
+     * check if user input is correct and matches an existing user in the database, if yes proceeds to Main, otherwise stay in RegisterActivity
+     * */
     private void proceedLogin(View v){
 
         if(checkInputs()) {
@@ -126,6 +123,10 @@ public class RegisterActivity extends AppCompatActivity {
             loginResponse.start();
         }
     };
+    /**
+     * @param v: the View clicked by the user
+     * check if user input is correct, if yes creates a new user in the DB and proceeds to Main, otherwise stay in RegisterActivity
+     * */
     private void proceedRegister(View v){
         if(checkInputs()) {
             user = createUser();
@@ -151,6 +152,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * @return true if user inputs correctly, i.e password.length longer than 7, false otherwise*/
     private Boolean checkInputs() {
         int invalidCounter = 0;
         if (et_username.length() == 0) {
@@ -180,6 +183,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * @param view the view clicked by the user
+     * @param userName is the user`s username input
+     * @param privilege is 0 if the user is base user, 1 if store admin, 2 if app admin, -1 otherwise.
+     * Allow proper home page redirection for different types of users
+     * */
     public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
 
@@ -207,34 +216,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
-    //    /**
-//     * Making json array request
-//     * */
-    private void makeJsonArrayReq() {
-//        showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(Const.URL_SERVER_USERS,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, Const.URL_SERVER_USERS);
-                        Log.d(TAG, response.toString());
-//                        msgResponse.setText(response.toString());
-//                        hideProgressDialog();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                hideProgressDialog();
-            }
-        });
 
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req,
-                tag_json_arry);
-
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
-    }
 
 }

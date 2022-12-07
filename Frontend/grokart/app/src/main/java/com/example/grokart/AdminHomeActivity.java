@@ -1,33 +1,21 @@
 package com.example.grokart;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-
 
 
 public class AdminHomeActivity extends AppCompatActivity {
@@ -38,6 +26,8 @@ public class AdminHomeActivity extends AppCompatActivity {
     private TextView usersCount, storesCount;
     private final String TAG = AdminHomeActivity.class.getSimpleName();
 
+    /**@author Joao Victor Lira
+     * this activity allow the admin to see app info*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
