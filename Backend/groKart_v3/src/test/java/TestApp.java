@@ -7,13 +7,21 @@ import groKart_app.Reports.ReportRepository;
 import io.restassured.RestAssured;
 
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Main.class})
@@ -85,6 +93,52 @@ public class TestApp {
     //Test to Create A Report
     @Test
     public void createReportTest(){
+        //Send the post request
+        Map<String, String> request = new HashMap<>();
+        request.put("reportTitle", "testBaga");
+        request.put("description", "Testing for systemTest for reportController");
+        request.put("storeName", "Target");
+        request.put("reportStatus", "Declined");
+
+        Response response = RestAssured.given().log().all()
+                .header("Content-Type", "application/json")
+                .body(request)
+                .when()
+                .post("http://coms-309-011.class.las.iastate.edu/reports");
+
+        //Check status code
+        int statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        //Checking response back
+        String returnString = response.getBody().asString();
+        try{
+            assertEquals(returnString,success);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        //Checking wrong path for creating report
+        response = RestAssured.given().log().all()
+                .header("Content-Type", "application/json")
+                .body(request)
+                .when()
+                .post("http://coms-309-011.class.las.iastate.edu/reports/id");
+
+        //Check status code
+        statusCode = response.getStatusCode();
+        assertEquals(405, statusCode);
+
+        //Retrieve response body and validate
+        ResponseBody body = response.getBody();
+        String responseBody = body.asString();
+        Assert.assertTrue(responseBody.contains("Method Not Allowed"));
+
+    }
+
+    //Delete testing and delete the report created earlier
+    @Test
+    public void deleteReportTest(){
         
     }
 
