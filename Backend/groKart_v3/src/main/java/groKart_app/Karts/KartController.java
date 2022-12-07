@@ -49,6 +49,12 @@ public class KartController {
         return kartRepository.findAll();
     }
 
+
+    @GetMapping(path = "/karts/{userName}/{kartName}")
+    Kart getSpecificKart(@PathVariable String userName, @PathVariable String kartName) {
+        return kartRepository.findByKartName(kartName);
+    }
+
     /**
      * Create new Kart -- Requires only the name of the kart. This alternative might be useful
      *  if the frontend would find it easier to create an empty kart and then add items to it
@@ -193,12 +199,14 @@ public class KartController {
         return item + "\n" + kart;
     }
 
+
     @ApiOperation(value="Get Total Price of a Kart", response=Iterable.class, tags="KartController")
     @GetMapping(path = "karts/total/{kartName}")
     double getTotal(@PathVariable String kartName) {
         Kart kart = kartRepository.findByKartName(kartName);
         return kart.getTotalPrice();
     }
+
     /**
      * SET PUBLICITY
      * @param kartName
