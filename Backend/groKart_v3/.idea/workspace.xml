@@ -1,15 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4773d4ad-6aba-4f7b-8932-f83b15fdf188" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ant.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.launching.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.discovery.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.urischeme.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/javaLikeNames.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.2.0.0.20220705-1221.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.oomph.setup/workspace.setup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.tips.ide/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Websocket/.metadata/version.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/libs/java_websocket.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groKartApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/groKartApplication.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groKart_app/Users/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Items/ItemRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/Kart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/Kart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Karts/KartRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/Report.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Reports/ReportRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/Store.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Stores/StoreRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Users/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groKart_app/Websocket/WebSocketServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/groKartApplication-1.0.0.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/ChatActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/BaseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/BaseMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/MessageListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/java/com/example/grokart/utils/MessageListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/activity_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/activity_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/item_chat_me.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/item_chat_me.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/item_chat_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/layout/item_chat_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/grokart/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,14 +127,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/mattie/Documents/tutorials/WebSocket2/Server_Springboot/WebSocketServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "71b0d35e4c05b95a762c33d1a029efea",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="groKartApplication" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="groKart_app.Main" />
@@ -75,8 +158,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667326224977</updated>
+      <workItem from="1670385738814" duration="345000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />

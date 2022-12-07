@@ -131,6 +131,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             return true;
         }
+        else if(id == R.id.action_support) {
+            Intent intent = new Intent(MainActivity.this, SupportActivity.class);
+            intent.putExtra("userName", userName);
+            intent.putExtra("privilege", 0);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

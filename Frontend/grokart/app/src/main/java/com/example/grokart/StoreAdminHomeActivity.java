@@ -17,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class StoreAdminHomeActivity extends AppCompatActivity {
     private Button btn_storeItems;
-    private Button btn_reports;
+    private Button btn_support;
     private TextView tv_title;
     private TextView tv_welcome;
     private Toolbar myToolbar;
@@ -32,7 +32,7 @@ public class StoreAdminHomeActivity extends AppCompatActivity {
 
         tv_title = findViewById(R.id.tv_store_admin_home_title);
         tv_welcome = findViewById(R.id.tv_main_welcome2);
-        btn_reports = findViewById(R.id.btn_reports);
+        btn_support = findViewById(R.id.btn_support);
         btn_storeItems = findViewById(R.id.btn_storeItems);
 
         //setting the style for the App Title
@@ -41,9 +41,6 @@ public class StoreAdminHomeActivity extends AppCompatActivity {
         groKart.setSpan(new ForegroundColorSpan(Color.RED),3,groKart.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         tv_title.setText(groKart);
 
-        //adds in updated toolbar
-        myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
 
         btn_storeItems.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,41 +48,15 @@ public class StoreAdminHomeActivity extends AppCompatActivity {
                 //TODO code button functionality
             }
         });
-        btn_reports.setOnClickListener(new View.OnClickListener() {
+        btn_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                Intent intent = new Intent(StoreAdminHomeActivity.this, StoreReportsActivity.class);
+                Intent intent = new Intent(StoreAdminHomeActivity.this, SupportActivity.class);
                 intent.putExtra("userName", username);
+                intent.putExtra("privilege", 0);
                 startActivity(intent);
                 finish();
             }
         });
-    }
-
-    //adds in methods for toolbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(StoreAdminHomeActivity.this, EditProfileActivity.class);
-            intent.putExtra("userName", username);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

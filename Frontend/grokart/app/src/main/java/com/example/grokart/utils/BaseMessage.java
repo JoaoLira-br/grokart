@@ -37,4 +37,10 @@ public class BaseMessage {
             return 2;
         }
     }
+
+    @Override
+    public String toString() {
+        String ans = "{\"sendingUser\":\"" + username + "\",\"message\":\"" + message + "\",\"date\":\"" + date + "\",\"time\":\"" + time + "\"}";
+        return ans;
+    }
 }

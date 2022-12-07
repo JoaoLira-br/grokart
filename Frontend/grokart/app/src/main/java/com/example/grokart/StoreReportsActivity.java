@@ -168,8 +168,9 @@ public class StoreReportsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
-            Intent intent = new Intent(StoreReportsActivity.this, StoreAdminHomeActivity.class);
+            Intent intent = new Intent(StoreReportsActivity.this, SupportActivity.class);
             intent.putExtra("userName", username);
+            intent.putExtra("privilege", 1);
             startActivity(intent);
             this.finish();
             return true;

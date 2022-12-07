@@ -76,9 +76,9 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
-            messageText = (TextView) itemView.findViewById(R.id.text_gchat_user_other);
+            nameText = (TextView) itemView.findViewById(R.id.text_gchat_user_other);
             timeText = (TextView) itemView.findViewById(R.id.text_gchat_timestamp_other);
-            nameText = (TextView) itemView.findViewById(R.id.text_gchat_message_other);
+            messageText = (TextView) itemView.findViewById(R.id.text_gchat_message_other);
         }
 
         void bind(BaseMessage message) {
