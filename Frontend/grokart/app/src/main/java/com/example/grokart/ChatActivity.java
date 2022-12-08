@@ -100,9 +100,8 @@ public class ChatActivity extends AppCompatActivity {
                 public void onMessage(String message) {
                     Log.d("", "run() returned: " + message);
                     String sender;
-                    //todo get correct sender
-                    if(message.contains("mrm")) {
-                        sender = "mrm";
+                    if(message.contains(username)) {
+                        sender = username;
                     }
                     else {
                         sender = "other";
