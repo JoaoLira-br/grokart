@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
             loginResponse.start();
         }
-    };
+    }
     /**
      * @param v: the View clicked by the user
      * check if user input is correct, if yes creates a new user in the DB and proceeds to Main, otherwise stay in RegisterActivity
@@ -192,7 +192,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
 
-            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+"/"+userName+"/", TAG);
+            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+userName+"/", TAG);
             getDisplayName.createRequestThread().start();
             getDisplayName.createResponseHandler(()->{
                 String preferredStore = getDisplayName.getResponseHM().get("preferredStore");
@@ -207,12 +207,13 @@ public class RegisterActivity extends AppCompatActivity {
 
             }).start();
 
-            //TODO: remove "|| privilege == 1" afterwards
-        }else if(privilege == 2 || privilege == 1){
+        }else if(privilege == 2 ){
             Intent intentAdmin = new Intent(RegisterActivity.this, AdminHomeActivity.class);
             startActivity(intentAdmin);
-        }else{
-            //TODO if user is store admin send him to store admin home page
+        }else if(privilege == 1){
+            Intent intentStoreAdmin = new Intent(RegisterActivity.this, StoreAdminHomeActivity.class);
+            intentStoreAdmin.putExtra("userName", userName);
+            startActivity(intentStoreAdmin);
         }
 
     }

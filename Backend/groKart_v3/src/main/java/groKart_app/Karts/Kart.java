@@ -45,8 +45,13 @@ public class Kart {
     @ApiModelProperty(notes="Kart Owner", name="owner", value="User1")
     private User owner;
 
+    /*
     @ManyToMany(mappedBy = "karts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ApiModelProperty(notes="Items in Karts", name="items", value="Banana, Apple, etc.")
+    private List<Item> items;
+     */
+    @ManyToMany
+    @JoinColumn(name = "item_id")
     private List<Item> items;
 
     @ApiModelProperty(notes="Items Total Quantity", name="quantities", value="100")
