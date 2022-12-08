@@ -66,7 +66,7 @@ public class TestApp {
         //Checking response body for the correct response
         String returnString = response.getBody().asString();
         try{
-            assertEquals(returnString,reportRepository.findByReportTitleAndStoreName("abcd","Walmart").getReportStatus());
+            assertEquals(returnString,failure);
         }catch(Exception e){
             e.printStackTrace();
         }

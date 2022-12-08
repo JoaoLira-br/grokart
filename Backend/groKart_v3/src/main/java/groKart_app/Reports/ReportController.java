@@ -106,7 +106,7 @@ public class ReportController {
     @ApiOperation(value = "Create a New Report", response = Iterable.class, tags = "ReportController")
     @PostMapping(path = "/reports")
     String createReport(@RequestBody Report report) {
-        if (report == null) {
+        if (report == null || reportRepository.existsByReportTitle(report.getReportTitle())) {
             return failure;
         }
         reportRepository.save(report);
