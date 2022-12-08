@@ -29911,3 +29911,28 @@ Caused by: java.net.ConnectException: Connection refused (Connection refused)
 2022-12-07 18:46:24.456  INFO 8566 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-12-07 18:46:24.458  INFO 8566 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-12-07 18:46:24.471  INFO 8566 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-07 18:51:21.923  INFO 8659 --- [main] TestApp                                  : Starting TestApp using Java 11.0.14.1 on Baganesras-MacBook-Pro.local with PID 8659 (started by bagab in /Users/bagab/Desktop/COMS 309/1_cw_3/Backend/groKart_v3)
+2022-12-07 18:51:21.926  INFO 8659 --- [main] TestApp                                  : No active profile set, falling back to default profiles: default
+2022-12-07 18:51:22.895  INFO 8659 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-07 18:51:22.953  INFO 8659 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 5 JPA repository interfaces.
+2022-12-07 18:51:23.770  INFO 8659 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2022-12-07 18:51:23.782  INFO 8659 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-07 18:51:23.783  INFO 8659 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-12-07 18:51:23.865  INFO 8659 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-07 18:51:23.865  INFO 8659 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1628 ms
+2022-12-07 18:51:24.129  INFO 8659 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-07 18:51:24.202  INFO 8659 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-12-07 18:51:24.405  INFO 8659 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-07 18:51:24.595  INFO 8659 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-07 18:51:25.059  INFO 8659 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-07 18:51:25.104  INFO 8659 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-12-07 18:51:27.572  INFO 8659 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-07 18:51:27.586  INFO 8659 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-07 18:51:28.505  WARN 8659 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-07 18:51:28.863  INFO 8659 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-12-07 18:51:29.308  INFO 8659 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54469 (http) with context path ''
+2022-12-07 18:51:29.763  INFO 8659 --- [main] TestApp                                  : Started TestApp in 8.185 seconds (JVM running for 9.613)
+2022-12-07 18:51:34.103  INFO 8659 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-12-07 18:51:34.108  INFO 8659 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-07 18:51:34.111  INFO 8659 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-07 18:51:34.125  INFO 8659 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

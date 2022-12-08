@@ -95,7 +95,7 @@ public class TestApp {
     public void createReportTest(){
         //Send the post request
         Map<String, String> request = new HashMap<>();
-        request.put("reportTitle", "testBaga");
+        request.put("reportTitle", "testBaga2");
         request.put("description", "Testing for systemTest for reportController");
         request.put("storeName", "Target");
         request.put("reportStatus", "Declined");
