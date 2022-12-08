@@ -23,6 +23,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.BaseMessage;
+import com.example.grokart.utils.Const;
 import com.example.grokart.utils.MessageListAdapter;
 
 import org.json.JSONArray;
@@ -90,8 +91,7 @@ public class ChatActivity extends AppCompatActivity {
          * computer, and change the ip address to that of your computer.
          * If running on the emulator, you can use localhost.
          */
-        //todo get correct path
-        String w = "ws://10.0.2.2:8080/websocket/" + username;
+        String w = Const.WS_PATH + username;
 
         try {
             Log.d("Socket:", "Trying socket");

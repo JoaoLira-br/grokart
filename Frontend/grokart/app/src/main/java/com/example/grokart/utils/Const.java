@@ -31,6 +31,8 @@ public class Const {
 
     public static final String URL_REPORTS = "http://coms-309-011.class.las.iastate.edu:8080/reports/";
 
+    public static final String WS_PATH = "ws://coms-309-011.class.las.iastate.edu:8080/websocket/";
+
 
     //    Test urls
     public static final String URL_USER_SAMPLE = "https://48bbbd75-a948-45d5-8711-721c89526c8c.mock.pstmn.io/user/?username=johnrickman&password=12345678";
