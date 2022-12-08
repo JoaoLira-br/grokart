@@ -11,7 +11,7 @@ maven-build:
     - springboot_tag
   script: 
     - cd Backend/groKart_v3
-    - mvn package
+    - mvn -DskipTest=true package
 
 
 maven-test: 
