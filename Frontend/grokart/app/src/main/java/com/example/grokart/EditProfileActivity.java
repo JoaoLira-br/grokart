@@ -56,11 +56,14 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     private Spinner storesMenu;
     String item = null;
     private String displayName, preferredStore;
-    final int DISPLAYNAMEINT = 0;
-    final int EMAILADDINT = 1;
-    final int PREFERREDSTOREINT = 2;
     final String SUCCESSMSG = "{\"message\":\"success\"}";
 
+    /**
+     * Called when the activity is starting. Variable initialization is here. The content view is set to the edit profile activity layout.
+     * The stores array is created and used to make the Stores Menu dropdown. The edit profile button has its on click listener set,
+     * which calls another method to send a put request to the backend.
+     * @param savedInstanceState the data saved if the page is pre-initialized after being shut down, otherwise null
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,6 +177,14 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
     }
 
 
+    /**
+    * This method sets what happens when an item is selected in the stores dropdown.
+     * If the position of the item is 0, then it is set to null. Otherwise, item is set to whatever was selected.
+     * @param parent the adapter view where the selection happened
+     * @param view the view within the adapter view where the selection happened
+     * @param position the position of the selected item in the array
+     * @param id the row of the selected item
+    */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
