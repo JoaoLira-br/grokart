@@ -287,8 +287,6 @@ public class UserController {
         return 0;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Create App administrator - request should only be sent when the app admin is logged in
      * @param storeName
@@ -348,6 +346,5 @@ public class UserController {
         return storeAdmin.getUserName();
     }
 
->>>>>>> 011a87109df41980c95163afc4c7afc24b74689e
 
 }
