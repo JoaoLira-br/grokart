@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.grokart.utils.Const;
 import com.example.grokart.utils.ItemsAdapter;
 import com.example.grokart.utils.KartItemModel;
 import com.example.grokart.utils.OnItemsClickListener;
@@ -33,6 +34,7 @@ public class ViewListDetailsActivity extends AppCompatActivity {
     private final String TAG = ViewListDetailsActivity.class.getSimpleName();
     private ImageButton btnSaveKart;
     private RecyclerView rvKartItems;
+    private String username;
     private TextView tvKartName, tvTotalPrice, tvTotalItems;
     private final Context ct = ViewListDetailsActivity.this;
 
@@ -47,8 +49,8 @@ public class ViewListDetailsActivity extends AppCompatActivity {
         tvKartName = findViewById(R.id.tv_kart_name);
         tvTotalPrice = findViewById(R.id.tv_finalPrice);
         tvTotalItems = findViewById(R.id.tv_totalItems);
+        username = intent.getStringExtra("username");
         kartItems = intent.getParcelableArrayListExtra("kartItems");
-
         kartName = intent.getStringExtra("kartName");
         kartPrice = Double.parseDouble(intent.getStringExtra("kartPrice"));
         numberOfItems = Integer.parseInt(intent.getStringExtra("numberOfItems"));
@@ -83,34 +85,14 @@ public class ViewListDetailsActivity extends AppCompatActivity {
 //        kartItems = (ArrayList<KartItemModel>) intent.getSerializableExtra("kartItems");
 
     }
-    public void fillUserKart() throws JSONException {
 
-        savedKart.put("kartName", kartName);
-        savedKart.put("kartPrice", kartPrice);
-
-
-        for (int i = 0; i < rvKartItems.getChildCount(); i++) {
-            ItemsAdapter.ItemViewHolder holder = (ItemsAdapter.ItemViewHolder) rvKartItems.findViewHolderForAdapterPosition(i);
-
-            assert holder != null;
-            if(holder.getQuantityToBuy()>0){
-                Log.d(TAG, "fillUserKart: getItemInfo: "+ getItemInfo(holder));
-               savedKartItems.put(getItemInfo(holder));
-                Log.d(TAG, "fillUserKart: savedKartItems: "+savedKartItems);
-
-            }
-        }
-        savedKart.put("kartItems", savedKartItems);
-
-        Log.d(TAG, "imgBtn_viewKart onClick: " + rvKartItems);
-    }
     public JSONObject getItemInfo(ItemsAdapter.ItemViewHolder holder) throws JSONException {
-        String quantityToBuy = String.valueOf(holder.getQuantityToBuy());
+        int quantityToBuy = Integer.parseInt(String.valueOf(holder.getQuantityToBuy()));
         String itemName = holder.getItemName();
         String price = holder.getPrice().substring(2);
         Log.d(TAG, "getItemInfo: price: " + price);
         String maxQuantity = holder.getMaxQuantity();
-        String jsonString = String.format("{\"itemName\":%1$s,\"price\":%2$s,\"quantityToBuy\":%3$s,\"maxQuantity\":%4$s}", itemName, price, quantityToBuy, maxQuantity);
+        String jsonString = String.format("{\"itemName\":%1$s,\"quantityToBuy\":%2$s}", itemName, quantityToBuy);
         Log.d(TAG, "getItemInfo: json:"+ jsonString);
         return new JSONObject(jsonString);
     }
@@ -133,13 +115,43 @@ public class ViewListDetailsActivity extends AppCompatActivity {
             }
         });
     }
+    public void fillUserKart() throws JSONException {
+
+        savedKart.put("kartName", kartName);
+        savedKart.put("kartPrice", kartPrice);
+
+
+        for (int i = 0; i < rvKartItems.getChildCount(); i++) {
+            ItemsAdapter.ItemViewHolder holder = (ItemsAdapter.ItemViewHolder) rvKartItems.findViewHolderForAdapterPosition(i);
+
+            assert holder != null;
+            if(holder.getQuantityToBuy()>0){
+                Log.d(TAG, "fillUserKart: getItemInfo: "+ getItemInfo(holder));
+                savedKartItems.put(getItemInfo(holder));
+                Log.d(TAG, "fillUserKart: savedKartItems: "+savedKartItems);
+
+            }
+        }
+        savedKart.put("kartItems", savedKartItems);
+
+        Log.d(TAG, "imgBtn_viewKart onClick: " + rvKartItems);
+    }
+    ///karts/{username}/{kartName}
     public void saveKart(){
         //TODO: change path to appropriate endpoint
-        PostRequest pr = new PostRequest("somepath",TAG, savedKart);
+        String path = Const.URL_CREATE_KART+"/"+username;
+        PostRequest pr = new PostRequest(Const.URL_CREATE_KART+username,TAG, savedKart);
+        Log.d(TAG, "saveKart:path "+ Const.URL_CREATE_KART+username);
         pr.getRequestThread().start();
         pr.createResponseHandler(()->{
             pr.getResponseHM().get("response");
+            navigateBack();
             //TODO: if response successful send user back to main page
         }).start();
+    }
+    public void navigateBack(){
+        Intent intent = new Intent(ct, MainActivity.class);
+        intent.putExtra("userName", username);
+        startActivity(intent);
     }
 }

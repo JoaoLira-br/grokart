@@ -104,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
             Thread loginResponse = getRequest.createResponseHandler(()->{
+                Log.d(TAG, "proceedLogin: "+getRequest.getResponseHM());
                 int response = Integer.parseInt(getRequest.getResponseHM().get("privilege"));
                 if(response  != -1){
 
@@ -192,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendToHomePage(View view, String userName, int privilege) {
         if(privilege == 0){
 
-            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+"/"+userName+"/", TAG);
+            GetRequest getDisplayName = new GetRequest(Const.URL_USER_INFO+userName+"/", TAG);
             getDisplayName.createRequestThread().start();
             getDisplayName.createResponseHandler(()->{
                 String preferredStore = getDisplayName.getResponseHM().get("preferredStore");

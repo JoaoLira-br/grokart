@@ -63,10 +63,12 @@ public class CreateNewListActivity extends AppCompatActivity {
         userKartItems = new ArrayList<>();
         btn_viewStoreItems = findViewById(R.id.btn_viewStoreItems);
         itemsRecyclerView = findViewById(R.id.rv_storeItems);
+        itemsRecyclerView.setVisibility(View.INVISIBLE);
         imgBtn_viewKart = findViewById(R.id.imgBtn_viewKart);
         et_nameYourKart = findViewById(R.id.et_nameYourKart);
         tv_totalPrice = findViewById(R.id.tv_totalPrice);
         totalPrice = 0.0;
+        numberItems = 0;
         tv_totalPrice.append(" " + totalPrice);
 
 
@@ -87,10 +89,18 @@ public class CreateNewListActivity extends AppCompatActivity {
         btn_viewStoreItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemsAdapter = new ItemsAdapter(ct, getStoreItems(), TAG);
-                Log.d(TAG, "onClick: getStoreItems(): "+getStoreItems());
-                itemsRecyclerView.setAdapter(itemsAdapter);
-                itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ct));
+                if(itemsRecyclerView.getAdapter() == null){
+                    itemsAdapter = new ItemsAdapter(ct, getStoreItems(), TAG);
+                    Log.d(TAG, "onClick: getStoreItems(): "+getStoreItems());
+                    itemsRecyclerView.setAdapter(itemsAdapter);
+                    itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ct));
+                }
+
+                if(!itemsRecyclerView.isShown()){
+                    itemsRecyclerView.setVisibility(View.VISIBLE);
+                }else{
+                    itemsRecyclerView.setVisibility(View.INVISIBLE);
+                }
 //                OnItemsClickListener listenerOnPlus = new OnItemsClickListener() {
 //                    @Override
 //                    public void onItemClick(KartItemModel kartItemModel) {
@@ -160,6 +170,7 @@ public class CreateNewListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewListDetailsActivity.class);
         intent.putParcelableArrayListExtra("kartItems", userKartItems);
         intent.putExtra("kartName", kartName);
+        intent.putExtra("username", userName);
         intent.putExtra("kartPrice", Double.toString(totalPrice));
         intent.putExtra("numberOfItems", Integer.toString(numberItems));
 //        intent.putExtra("BUNDLE",args);

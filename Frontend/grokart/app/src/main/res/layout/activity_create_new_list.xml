@@ -88,11 +88,13 @@
         android:layout_marginStart="68dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/grey_white"
+        android:contentDescription="shopping_kart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btn_viewStoreItems"
         app:layout_constraintTop_toBottomOf="@+id/tv_totalPrice"
-        app:srcCompat="@drawable/ic_shopping_cart_whole" />
+        app:srcCompat="@drawable/ic_shopping_cart_whole"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

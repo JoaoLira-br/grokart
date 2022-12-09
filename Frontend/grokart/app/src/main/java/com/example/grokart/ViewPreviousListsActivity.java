@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
 import com.example.grokart.utils.KartsListAdapter;
+import com.example.grokart.vRequests.GetRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +62,28 @@ public class ViewPreviousListsActivity extends AppCompatActivity {
         kartRV.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         kartRV.addItemDecoration(itemDecoration);
+        getKartInfo();
+    }
+
+    public void getKartInfo(){
+        String path = Const.URL_GET_KART+username+"/"+"kart1";
+        Log.d(TAG, "getKartInfo: path:"+path);
+        GetRequest gr = new GetRequest(Const.URL_GET_KART+username+"/"+"kart1", TAG);
+        gr.createRequestThread().start();
+        gr.createResponseHandler(()->{
+            Log.d(TAG, "getKart: responseHM"+ gr.getResponseHM());
+            Log.d(TAG, "getKart: responseHM.entrySet()"+ gr.getResponseHM().entrySet());
+
+
+        }).start();
+    }
+
+    //karts/{username}/{kartName}
+    public void viewPreviousLists(){
+        Intent intent = new Intent(ViewPreviousListsActivity.this, ViewListDetailsActivity.class);
+        intent.putExtra("username", username);
+//        intent.putExtra("kartName", );
+//        intent.putExtra("kartItems", );
     }
 
     /**

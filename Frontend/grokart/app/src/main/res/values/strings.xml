@@ -73,6 +73,10 @@
     <string name="total_items_bought">Total Items: </string>
     <string name="total_price">Total Price: $</string>
     <string name="confirm_kart_creation">Confirm Kart Creation</string>
+    
+<!--    String related Create Store Admin -->
+    <string name="store_name">Store Name</string>
+    <string name="view_store_name">View Store Name</string>
 
 
 </resources>
