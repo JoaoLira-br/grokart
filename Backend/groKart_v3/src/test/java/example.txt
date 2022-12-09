@@ -1,0 +1,70 @@
+//Example from web
+public void pathVariable2()
+	{
+		RestAssured
+			.given()
+				.log()
+				.all()
+			    .pathParam("resourcePath", "booking")
+			.when()
+				.get("https://restful-booker.herokuapp.com/{resourcePath}")
+			.then()
+				.log()
+				.all();
+	}
+
+
+@Test
+	public void reverseTest() {
+		// Send request and receive response
+		Response response = RestAssured.given().
+				header("Content-Type", "text/plain").
+				header("charset","utf-8").
+				body("hello").
+				when().
+				post("/reverse");
+
+
+		// Check status code
+		int statusCode = response.getStatusCode();
+		assertEquals(200, statusCode);
+
+		// Check response body for correct response
+		String returnString = response.getBody().asString();
+		try {
+			JSONArray returnArr = new JSONArray(returnString);
+			JSONObject returnObj = returnArr.getJSONObject(returnArr.length()-1);
+			assertEquals("olleh", returnObj.get("data"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void capitalizeTest() {
+		// Send request and receive response
+		Response response = RestAssured.given().
+				header("Content-Type", "text/plain").
+				header("charset","utf-8").
+				body("hello").
+				when().
+				post("/capitalize");
+
+
+		// Check status code
+		int statusCode = response.getStatusCode();
+		assertEquals(200, statusCode);
+
+		// Check response body for correct response
+		String returnString = response.getBody().asString();
+		try {
+			JSONArray returnArr = new JSONArray(returnString);
+			JSONObject returnObj = returnArr.getJSONObject(returnArr.length()-1);
+			assertEquals("HELLO", returnObj.get("data"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+

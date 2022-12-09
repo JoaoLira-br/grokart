@@ -10,6 +10,8 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 
     Report findByReportTitle(String reportTitle);
 
+    boolean existsByReportTitle(String reportTitle);
+
     List<Report> findAllByStoreName(String storeName);
     Report findByReportTitleAndStoreName(String reportTitle, String storeName);
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
-@ServerEndpoint("/websocket")
+@ServerEndpoint("/websocket/{username}")
 @Component
 public class WebSocketServer {
 
@@ -24,21 +24,6 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) throws IOException{
         logger.info("Entered on Open");
-
-        /*
-            (Session session, @PathParam("itemName") Item item) throws IOException{
-                //Map the itemName into their respective sessions
-                sessioItemNameMap.put(session,item);
-                ItemNameSessionMap.put(item,session);
-
-                String success = "Item:" + item+ "is ready for update";
-                broadcast(success);
-
-
-                //TODO: need to create a method that handles the PUT controller for item
-            }
-
-         */
         //Map the username into their respective sessions
         sessionUsernameMap.put(session,username);
         userNameSessionMap.put(username,session);
@@ -50,7 +35,7 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(Session session, String message) throws IOException{
         //Handles new messages
-        logger.info("Entered into MessageL Got Message:"+message);
+        logger.info("Entered into Message Got Message:"+message);
         String username = sessionUsernameMap.get(session);
 
         if(message.startsWith("@")) { //directs the message to the particular user (DM message)
@@ -96,21 +81,6 @@ public class WebSocketServer {
             }
         });
     }
-
-    //TODO: need to create a method that handles the PUT controller for item
-    /**
-     * private void updateItem(int price){
-     *     try{
-     *         itemNameSessionMap.get(item).setPrice(price);
-     *         itemRepo.save(item);
-     *     }catch (IOException e){
-     *         logger.info("Exception: "+e.getMessage().toString());
-     *         e.printStackTrace();
-     *     }
-     * }
-     */
-
-
 }
 
 

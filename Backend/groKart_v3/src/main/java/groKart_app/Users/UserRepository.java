@@ -12,14 +12,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserNameAndPassword(String userName, String password);
 
+    User findByPrivilegeAndPreferredStore(int privilege, String preferredStore);
+
     boolean existsByUserName(String userName);
 
     List<User> findAllByPreferredStore(String storeName);
 
     List<User> findAllByPrivilege(int privilege);
-
-    User findByPrivilegeAndPreferredStore(int privilege, String preferredStore);
-
+    
     @Transactional
     void deleteByUserName(String userName);
 }

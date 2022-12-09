@@ -17,10 +17,8 @@ public class Item {
     @ApiModelProperty(notes="Item ID", name="itemId", value="1")
     private int id;
 
-    @ManyToMany
-    @JoinColumn(name = "kart_id")
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
-    @ApiModelProperty(notes="Karts that the Item are added", name="karts", value="List2")
     private List<Kart> karts;
 
     @ManyToOne
@@ -33,7 +31,7 @@ public class Item {
     private String name;
     @ApiModelProperty(notes="Item Price",required = true, name="itemPrice", value="$0.70")
     private double price;
-    //TODO: we might not need storeName anymore
+
     @ApiModelProperty(notes="Store Name",required = true, name="storeName", value="Walmart")
     private String storeName;
     @ApiModelProperty(notes="Item Quantity",required = true, name="itemQuantity", value="100")

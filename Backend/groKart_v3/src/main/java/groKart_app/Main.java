@@ -1,7 +1,6 @@
 package groKart_app;
 
 import groKart_app.Items.ItemRepository;
-import groKart_app.Karts.Kart;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import groKart_app.Users.UserRepository;
-import groKart_app.Items.ItemRepository;
-import groKart_app.Karts.KartRepository;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -20,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableSwagger2
-class Main {
+public class Main {
     private static int BASE_USER = 0;
     private static int STORE_ADMIN = 1;
     private static int APP_ADMIN = 2;
