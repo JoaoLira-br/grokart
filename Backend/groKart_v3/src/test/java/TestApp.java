@@ -1,4 +1,7 @@
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import groKart_app.*;
 
 import groKart_app.Reports.Report;
@@ -9,6 +12,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,7 +99,7 @@ public class TestApp {
     public void createReportTest(){
         //Send the post request
         Map<String, String> request = new HashMap<>();
-        request.put("reportTitle", "testBaga2");
+        request.put("reportTitle", "testBaga");
         request.put("description", "Testing for systemTest for reportController");
         request.put("storeName", "Target");
         request.put("reportStatus", "Declined");
@@ -139,7 +143,74 @@ public class TestApp {
     //Delete testing and delete the report created earlier
     @Test
     public void deleteReportTest(){
-        
+        //Get Specific Report by its Title
+        Response response = RestAssured.given().log().all().pathParams("reportTitle","testBaga", "storeName", "Target")
+                .when()
+                .get("http://coms-309-011.class.las.iastate.edu/reports/{reportTitle}/{storeName}");
+
+        //Check status code
+        int statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        //Retrieve response body and validate
+        ResponseBody body = response.getBody();
+        String responseBody = body.asString();
+        Assert.assertTrue(responseBody.contains("testBaga"));
+
+        //Delete the report
+        Response response1 = RestAssured.given().log().all().pathParams("reportTitle","testBaga", "storeName", "Target")
+                .when()
+                .delete("http://coms-309-011.class.las.iastate.edu/reports/{reportTitle}/{storeName}")
+                .then()
+                .assertThat().statusCode(200)
+                .extract().response();
+
+        //Checking response back
+        String returnString = response1.getBody().asString();
+        try{
+            assertEquals(returnString,success);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Login as storeAdmin and leave a comment on a report Test
+    @Test
+    public void testComments(){
+        //StoreAdmin login
+        RestAssured.given().log().all().pathParams("userName", "bbg", "password", "baga123")
+                .when()
+                .get("http://coms-309-011.class.las.iastate.edu/users/{userName}/{password}")
+                .then().assertThat().statusCode(200)
+                .extract().response().asString().equals("1");
+
+        //Get Specific Report by its Title
+        Response response = RestAssured.given().log().all().pathParams("reportTitle","test", "storeName", "HyVee", "comments", "BagaCommentsTest")
+                .when()
+                .put("http://coms-309-011.class.las.iastate.edu/reports/{reportTitle}/{storeName}/comments/{comments}");
+
+        //Check status code
+        int statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        //Retrieve response body and validate
+        ResponseBody body = response.getBody();
+        String responseBody = body.asString();
+        Assert.assertTrue(responseBody.contains(success));
+
+        //Test for finding non-existing report
+        response = RestAssured.given().log().all().pathParams("reportTitle","test1", "storeName", "HyVee", "comments", "BagaCommentsTest")
+                .when()
+                .put("http://coms-309-011.class.las.iastate.edu/reports/{reportTitle}/{storeName}/comments/{comments}");
+
+        //Check status code
+        statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        //Retrieve response body and validate
+        body = response.getBody();
+        responseBody = body.asString();
+        Assert.assertTrue(responseBody.contains(failure));
     }
 
 
