@@ -1,6 +1,5 @@
 package com.example.grokart;
 
-
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -10,17 +9,18 @@ import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withAlpha;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import androidx.test.espresso.Root;
 import androidx.test.espresso.action.ViewActions;
+import androidx.test.runner.AndroidJUnit4;
 
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import androidx.test.runner.AndroidJUnit4;
 import android.view.View;
 
 import androidx.test.core.app.ActivityScenario;
@@ -32,26 +32,34 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Random;
 import java.util.logging.Filter;
 
 @RunWith(AndroidJUnit4.class)
-public class secondInstrumentedTest {
+
+public class MainActivityInstTest {
     @Rule
-    public ActivityScenarioRule<RegisterActivity> mRegisterActivityTestRule =
-            new ActivityScenarioRule<RegisterActivity>(RegisterActivity.class);
+    public ActivityScenarioRule<MainActivity> mMainctivityTestRule1 =
+            new ActivityScenarioRule<MainActivity>(MainActivity.class);
+
 
     @Test
-    public void loginExistingUser_NavigateToMain() throws Exception{
-        Random rand = new Random(100);
-        String username = "joao";
-        onView(withId(R.id.et_username)).perform(typeText(username));
-        onView(withId(R.id.et_password)).perform(typeText("Victor123"));
-        onView(withId(R.id.btn_login)).perform(click());
-        SystemClock.sleep(1500);
-        onView(withId(R.id.layout_main)).check(matches(isDisplayed()));
+    public void clickViewStoreButton_displaysRV() throws Exception {
 
-//        onView(withId(R.id.tv_main_welcome)).check(matches(withText(String.format("Welcome %1$s!",username ))));
+       onView(withId(R.id.btn_main_createNewList)).perform(click());
+//       onView(Root).wait(1500);
+       onView(withId(R.id.layout_main)).check(matches(isDisplayed()));
 
     }
+    @Test
+    public void clickViewKartButton_navigateToViewListDetails() throws Exception {
+        onView(withHint("Name your Kart")).perform(typeText("kart1"));
+        onView(withContentDescription("shopping_kart")).perform(click());
+        SystemClock.sleep(500);
+        onView(withId(R.id.layout_viewList)).check(matches(isDisplayed()));
+
+
+
+
+    }
+
 }
