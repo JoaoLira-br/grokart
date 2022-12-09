@@ -55,6 +55,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button btn_send;
     private MessageListAdapter mMessageAdapter;
     private String username;
+    private int privilege;
     private Toolbar myToolbar;
     private ArrayList<BaseMessage> messageList;
     private final String TAG = com.example.grokart.ChatActivity.class.getSimpleName();
@@ -69,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
         // gets the user info from the main activity that sent us to this page
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
+        privilege = intent.getIntExtra("privilege", 0);
         // sets up stuff from xml file
         et_message = findViewById(R.id.edit_message);
         btn_send = findViewById(R.id.button_send);
@@ -173,6 +175,7 @@ public class ChatActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(ChatActivity.this, SupportActivity.class);
             intent.putExtra("userName", username);
+            intent.putExtra("privilege", privilege);
             startActivity(intent);
             this.finish();
             return true;
