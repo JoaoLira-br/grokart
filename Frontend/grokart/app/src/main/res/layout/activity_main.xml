@@ -66,21 +66,8 @@
         style="@style/white_button"
         android:layout_width="317dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/view_list_history"
-        app:cornerRadius="10dp"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btn_view_reports"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_view_reports"
-        style="@style/white_button"
-        android:layout_width="317dp"
-        android:layout_height="64dp"
         android:layout_marginBottom="50dp"
-        android:text="@string/reports_page_title"
+        android:text="@string/view_list_history"
         app:cornerRadius="10dp"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

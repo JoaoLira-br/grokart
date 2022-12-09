@@ -65,6 +65,7 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="store">Store</string>
+
     <string name="view_store_items">View Store Items</string>
     <string name="total_Price">$</string>
 
@@ -73,10 +74,26 @@
     <string name="total_items_bought">Total Items: </string>
     <string name="total_price">Total Price: $</string>
     <string name="confirm_kart_creation">Confirm Kart Creation</string>
-    
+
 <!--    String related Create Store Admin -->
     <string name="store_name">Store Name</string>
     <string name="view_store_name">View Store Name</string>
+    <string name="description_heading">Description:</string>
+    <string name="status_icon">Status icon</string>
+    <string name="status_heading">Status:</string>
+    <string name="title_heading">Title:</string>
+    <string name="report_details_page_title">Report Details</string>
+    <string name="messages_heading">Messages:</string>
+    <string name="report_status_default">report status</string>
+    <string name="update">Update</string>
+    <string name="comment">Comment</string>
+    <string name="delete">Delete</string>
+    <string name="send">Send</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="chat">Chat</string>
+    <string name="customer_support">Customer Support</string>
+    <string name="support">Support</string>
+    <string name="store_items">Store Items</string>
 
 
 </resources>

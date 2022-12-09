@@ -18,19 +18,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.grokart.vRequests.PostRequest;
 import com.example.grokart.app.AppController;
 import com.example.grokart.utils.Const;
+import com.example.grokart.vRequests.PutRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 /**
 * This class controls the app when a user wants to make a new report.
@@ -94,6 +100,7 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
             Thread reportResponse = postRequest.createResponseHandler(()->{
                 String response = String.valueOf(postRequest.getResponseHM().get("message"));
                 msgResponse.setText(response);
+                assignReport();
             });
 
             reportRequest.start();
@@ -103,8 +110,42 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
                 e.printStackTrace();
             }
             reportResponse.start();
+
         }
     }
+    /**
+     * This method adds the user to the report
+     */
+    private void assignReport() {
+            StringRequest strReq = new StringRequest(Request.Method.PUT,
+                    Const.URL_REPORTS + et_title.getText().toString() +"/"+ storesMenu.getSelectedItem() +
+                            "/assignTo/" + username, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response.toString());
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    return new HashMap<String, String>();
+                }
+            };
+            // Adding request to request queue
+            AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        }
     /**
     * This method checks that all of the report fields have been appropriately filled out.
      * If so, it returns true. If not, it returns false and prompts the user to correct their inputs.
@@ -137,6 +178,9 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
             report.put("reportTitle", et_title.getText().toString());
             report.put("storeName", storesMenu.getSelectedItem());
             report.put("description", et_description.getText().toString());
+            report.put("user", username);
+            report.put("reportStatus","In progress");
+            report.put("comments", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }

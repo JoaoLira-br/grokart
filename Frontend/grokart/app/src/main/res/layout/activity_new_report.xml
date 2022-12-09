@@ -42,11 +42,12 @@
 
         android:layout_marginStart="52dp"
         android:layout_marginTop="25dp"
-        android:lineSpacingExtra="-9sp"
+
         android:text="@string/title"
         android:textAlignment="textStart"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:lineSpacingExtra="-9sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_createReportTitle" />
 
