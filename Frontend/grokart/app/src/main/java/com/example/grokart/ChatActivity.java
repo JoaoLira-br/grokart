@@ -169,8 +169,6 @@ public class ChatActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //todo set back button to correct location
-
         // If back button clicked
         if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
             Intent intent = new Intent(ChatActivity.this, SupportActivity.class);

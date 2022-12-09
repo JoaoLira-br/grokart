@@ -72,12 +72,13 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     }
 
     private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText, nameText;
+        TextView messageText, timeText, nameText, dateText;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
             nameText = (TextView) itemView.findViewById(R.id.text_gchat_user_other);
             timeText = (TextView) itemView.findViewById(R.id.text_gchat_timestamp_other);
+            dateText = itemView.findViewById(R.id.text_gchat_date_other);
             messageText = (TextView) itemView.findViewById(R.id.text_gchat_message_other);
         }
 
@@ -92,13 +93,14 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     }
 
     private class SentMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText;
+        TextView messageText, timeText, dateText;
 
         SentMessageHolder(View itemView) {
             super(itemView);
 
             messageText = (TextView) itemView.findViewById(R.id.text_gchat_message_me);
             timeText = (TextView) itemView.findViewById(R.id.text_gchat_timestamp_me);
+            dateText = itemView.findViewById(R.id.text_gchat_date_other);
         }
 
         void bind(BaseMessage message) {
