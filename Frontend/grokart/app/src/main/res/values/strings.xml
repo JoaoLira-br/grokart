@@ -75,6 +75,12 @@
     <string name="update">Update</string>
     <string name="comment">Comment</string>
     <string name="delete">Delete</string>
+    <string name="send">Send</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="chat">Chat</string>
+    <string name="customer_support">Customer Support</string>
+    <string name="support">Support</string>
+    <string name="store_items">Store Items</string>
 
 
 </resources>

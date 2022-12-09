@@ -78,7 +78,6 @@ public class ReportsActivity extends AppCompatActivity {
                             intent.putExtra("userName", username);
                             intent.putExtra("title", reports.get(position));
                             intent.putExtra("privilege", 0);
-                            //todo send store info
                             intent.putExtra("store", reportsHM.get(reports.get(position)));
                             startActivity(intent);
                         }
@@ -158,8 +157,9 @@ public class ReportsActivity extends AppCompatActivity {
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             // If back button clicked
             if (item.getItemId() == android.R.id.home) {// Start home intent and finish this intent
-                Intent intent = new Intent(ReportsActivity.this, MainActivity.class);
+                Intent intent = new Intent(ReportsActivity.this, SupportActivity.class);
                 intent.putExtra("userName", username);
+                intent.putExtra("privilege", 0);
                 startActivity(intent);
                 this.finish();
                 return true;
