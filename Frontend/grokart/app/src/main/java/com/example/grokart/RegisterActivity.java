@@ -104,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             GetRequest getRequest = new GetRequest(path, TAG);
             Thread loginRequest = getRequest.createRequestThread();
             Thread loginResponse = getRequest.createResponseHandler(()->{
+                Log.d(TAG, "proceedLogin: "+getRequest.getResponseHM());
                 int response = Integer.parseInt(getRequest.getResponseHM().get("privilege"));
                 if(response  != -1){
 

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateStoreAdmin">
+
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="184dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="36dp"
+        android:backgroundTint="@color/green"
+        android:text="@string/register"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_appTitle"
+        android:layout_width="201dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/k2d_bold"
+        android:text="@string/groKart"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_storeAdmin_username"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="71dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_storeAdmin_username" />
+
+    <EditText
+        android:id="@+id/et_storeName"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:hint="@string/store_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_storeName" />
+
+    <EditText
+        android:id="@+id/et_storeAdmin_password"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="71dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="#D9D9D9"
+        android:backgroundTintMode="src_in"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_storeAdmin_password" />
+
+    <TextView
+        android:id="@+id/tv_storeAdmin_password"
+        android:layout_width="183dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="193dp"
+        android:text="@string/password"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_storeAdmin_username" />
+
+    <TextView
+        android:id="@+id/tv_storeAdmin_username"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="191dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/username"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_storeName" />
+
+    <TextView
+        android:id="@+id/tv_storeName"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="191dp"
+        android:lineSpacingExtra="-9sp"
+        android:text="@string/store_name"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_appTitle" />
+
+    <TextView
+        android:id="@+id/tv_msgResponse"
+        android:layout_width="243dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_storeAdmin_password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

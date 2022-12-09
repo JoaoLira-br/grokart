@@ -2,6 +2,7 @@ package com.example.grokart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,9 +23,11 @@ public class AdminHomeActivity extends AppCompatActivity {
     private final String tag_json_obj = "jobj_req";
     private final String tag_json_arry = "jarray_req";
     private static Button viewAppActivity;
+    private Button btnCreateNewStoreAdmin;
     private static String jsonResponse;
     private TextView usersCount, storesCount;
     private final String TAG = AdminHomeActivity.class.getSimpleName();
+
 
     /**@author Joao Victor Lira
      * this activity allow the admin to see app info*/
@@ -35,6 +38,14 @@ public class AdminHomeActivity extends AppCompatActivity {
         usersCount = findViewById(R.id.tv_userCount);
         storesCount = findViewById(R.id.tv_storeCount);
         viewAppActivity = findViewById(R.id.btn_viewAppActivity);
+        btnCreateNewStoreAdmin = findViewById(R.id.btn_createNewStoreAdm);
+
+        btnCreateNewStoreAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomeActivity.this, CreateStoreAdmin.class));
+            }
+        });
 
         viewAppActivity.setOnClickListener(new View.OnClickListener() {
 

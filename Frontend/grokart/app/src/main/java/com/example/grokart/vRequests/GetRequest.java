@@ -10,6 +10,7 @@ import com.android.volley.VolleyLog;
 
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.grokart.vResponses.ResponseHandlerITF;
 import com.example.grokart.app.AppController;
 
@@ -28,10 +29,16 @@ public class GetRequest implements RequestITF {
     private final HashMap<String, String> responseHM;
     private final HashMap<String, JSONObject> responseArrayHM;
     private final String tag_json_obj = "jobj_req";
+    private final String tag_string = "string_req";
     private final String tag_json_arry = "jarray_req";
     private String TAG;
     private Thread reqThread;
     private JSONObject response;
+    private String responseString;
+
+
+
+
 
     public GetRequest(String path, String TAG) {
         this.path = path;
@@ -56,6 +63,13 @@ public class GetRequest implements RequestITF {
         return path;
     }
 
+    public String getResponseString() {
+        return responseString;
+    }
+
+    public void setResponseString(String responseString) {
+        this.responseString = responseString;
+    }
     public void setUrl(String path) {
         this.path = path;
     }
@@ -64,6 +78,61 @@ public class GetRequest implements RequestITF {
         return reqThread;
     }
 
+    /** @return A thread that runs the volley getRequest. */
+    public Thread createStringRequestThread() {
+        this.reqThread = new Thread( new Runnable() {
+            @Override
+            public void run() {
+                StringRequest stringReq = new StringRequest(Request.Method.GET,path,
+                        new Response.Listener<String>()  {
+                            @Override
+                            public void onResponse(String response) {
+                                setResponseString(response);
+                            }
+//                        hideProgressDialog();
+                        }
+                        , new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        VolleyLog.d("Volley Error:", "Unfortunately we got an error");
+                        VolleyLog.d("Volley Error:", "Error: " + error.getMessage());
+//                hideProgressDialog();
+
+                    }
+                }) {
+
+                    /**
+                     * Passing some request headers
+                     * */
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+//                params.put("name", "Androidhive");
+//                params.put("email", "abc@androidhive.info");
+//                params.put("pass", "password123");
+
+                        return params;
+                    }
+                };
+
+                // Adding request to request queue
+                AppController.getInstance().addToRequestQueue(stringReq,
+                        tag_string);
+            }
+        });
+        return this.reqThread;
+        // Cancelling request
+        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+    };
 
     /** @return A thread that runs the volley getRequest. */
     @Override
