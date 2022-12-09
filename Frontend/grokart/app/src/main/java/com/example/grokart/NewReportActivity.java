@@ -100,6 +100,7 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
             Thread reportResponse = postRequest.createResponseHandler(()->{
                 String response = String.valueOf(postRequest.getResponseHM().get("message"));
                 msgResponse.setText(response);
+                assignReport();
             });
 
             reportRequest.start();
@@ -109,7 +110,7 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
                 e.printStackTrace();
             }
             reportResponse.start();
-            assignReport();
+
         }
     }
     /**
@@ -117,7 +118,7 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
      */
     private void assignReport() {
             StringRequest strReq = new StringRequest(Request.Method.PUT,
-                    Const.URL_REPORTS + et_title +"/"+ storesMenu.getSelectedItem() +
+                    Const.URL_REPORTS + et_title.getText().toString() +"/"+ storesMenu.getSelectedItem() +
                             "/assignTo/" + username, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -178,6 +179,8 @@ public class NewReportActivity extends AppCompatActivity implements AdapterView.
             report.put("storeName", storesMenu.getSelectedItem());
             report.put("description", et_description.getText().toString());
             report.put("user", username);
+            report.put("reportStatus","In progress");
+            report.put("comments", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }
