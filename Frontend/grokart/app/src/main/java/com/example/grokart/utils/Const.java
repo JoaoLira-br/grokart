@@ -26,7 +26,6 @@ public class Const {
 //    public static final String URL_TARGET_ITEMS = "http://coms-309-011.class.las.iastate.edu:8080/stores/Target";
     //get all items from target
 
-
     public static final String URL_USERS_KARTS = "http://coms-309-011.class.las.iastate.edu:8080/users/ownedKarts/";
     public static final String URL_UPDATE_NAME = "http://coms-309-011.class.las.iastate.edu:8080/displayName/";
     public static final String URL_UPDATE_EMAIL = "http://coms-309-011.class.las.iastate.edu:8080/emailAdd/";

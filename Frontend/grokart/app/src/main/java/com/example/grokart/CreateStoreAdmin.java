@@ -2,12 +2,14 @@ package com.example.grokart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.grokart.utils.Const;
 import com.example.grokart.vRequests.GetRequest;
 import com.example.grokart.vRequests.PostRequest;
 
@@ -34,15 +36,19 @@ public class CreateStoreAdmin extends AppCompatActivity {
                 if(checkInputs()){
                     setPathAddress();
                     Log.d(TAG, "onClick: path"+ path);
-                    Log.d(TAG, "onClick: json"+ createJson());
-                    PostRequest pr = new PostRequest(path, TAG, createJson());
+//                    Log.d(TAG, "onClick: json"+ createJson());
+                    PostRequest pr = new PostRequest(path, TAG, null);
                     pr.createRequestThread().start();
                     pr.createResponseHandler(()->{
-
+                        Log.d(TAG, "onClick: getResponseHM"+ pr.getResponseHM());
+                        startActivity(new Intent(CreateStoreAdmin.this, AdminHomeActivity.class));
                     });
                 }
             }
         });
+    }
+    public void navigateBack(){
+
     }
     /**
      * @return true if user inputs correctly, i.e password.length longer than 7, false otherwise*/
@@ -72,13 +78,14 @@ public class CreateStoreAdmin extends AppCompatActivity {
         String username =  etUsername.getText().toString();
         String password =  etPassword.getText().toString();
 
-        path = String.format("/%1$s/%2$s/%3$s",storeName, username, password );
+        path = String.format("%1$s/%2$s/%3$s/%4$s", Const.URL_SAMPLE_CREATE_STORE_ADMIN, storeName, username, password );
     }
     private JSONObject createJson(){
         String storeName =  etStoreName.getText().toString();
         String username =  etUsername.getText().toString();
         String password =  etPassword.getText().toString();
         String json = String.format("{\"storeName:\"%1$s, \"username:\"%2$s, \"password:\"%3$s;}");
+        Log.d(TAG, "createJson: json"+ json);
         JSONObject jsonStoreAdmin = null;
         try {
             jsonStoreAdmin = new JSONObject(json);
