@@ -100,7 +100,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 String path;
                 if(!et_name.getText().toString().equals("")) {
                     msgResponse.append(" Name ");
-                    path = Const.URL_UPDATE_NAME + username + "/" + et_name.getText().toString() + "/";
+                    displayName = et_name.getText().toString();
+                    path = Const.URL_UPDATE_NAME + username + "/" + displayName + "/";
                     makeStringReq(path);
                 }
                 if(!et_email.getText().toString().equals("") ){
@@ -110,7 +111,8 @@ public class EditProfileActivity extends AppCompatActivity implements AdapterVie
                 }
                 if(!storesMenu.getSelectedItem().toString().equals("Select preferred store")) {
                     msgResponse.append(" Preferred store ");
-                    path = Const.URL_UPDATE_PREFERRED_STORE + username + "/" + storesMenu.getSelectedItem().toString() + "/";
+                    preferredStore = storesMenu.getSelectedItem().toString();
+                    path = Const.URL_UPDATE_PREFERRED_STORE + username + "/" + preferredStore + "/";
                     makeStringReq(path);
                 }
             }

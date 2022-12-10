@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
 }
-
+apply plugin: 'jacoco'
 android {
     compileSdk 33
     namespace 'com.example.grokart'
@@ -11,7 +11,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -19,6 +18,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled true
         }
     }
     compileOptions {
@@ -54,9 +56,6 @@ task javadoc(type: Javadoc) {
     failOnError false
     exclude '**/BuildConfig.java'
     exclude '**/R.java'
-
-
-
     }
 
     dependencies {
@@ -73,8 +72,7 @@ task javadoc(type: Javadoc) {
         testImplementation 'junit:junit:4.13.2'
         androidTestImplementation 'androidx.test.ext:junit:1.1.3'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
         androidTestImplementation 'androidx.test:runner:1.4.0'
         androidTestImplementation 'androidx.test:rules:1.4.0'
+        androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'
     }
